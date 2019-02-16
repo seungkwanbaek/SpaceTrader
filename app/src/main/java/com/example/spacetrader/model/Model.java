@@ -38,6 +38,8 @@ public class Model {
     private void registerInteractors() {
         interactorMap.put("Student", new StudentInteractor(myRepository));
         interactorMap.put("Course", new CourseInteractor(myRepository));
+        interactorMap.put("Player", new PlayerInteractor(myRepository));
+
     }
 
     public CourseInteractor getCourseInteractor() {
@@ -46,5 +48,9 @@ public class Model {
 
     public StudentInteractor getStudentInteractor() {
         return (StudentInteractor) interactorMap.get("Student");
+    }
+
+    public PlayerInteractor getPlayerInteractor() {
+        return (PlayerInteractor) interactorMap.get("Player");
     }
 }
