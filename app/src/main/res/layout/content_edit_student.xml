@@ -19,13 +19,13 @@
         android:id="@+id/student_id_field" />
 
     <TextView
-        android:text="Name:"
+        android:id="@+id/name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"
         android:layout_below="@+id/student_id_field"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="11dp" />
+        android:layout_marginTop="11dp"
+        android:text="Player name:" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -35,52 +35,52 @@
         android:ems="10"
         android:id="@+id/student_name_input"
         android:layout_marginTop="32dp"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/name_text"
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="Major"
+        android:id="@+id/difficulty_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
         android:layout_below="@+id/student_name_input"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="38dp" />
+        android:layout_marginTop="38dp"
+        android:text="Difficulty" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/difficulty_text"
         android:layout_alignParentStart="true"
         android:layout_marginTop="32dp"
         android:id="@+id/spinner" />
 
     <TextView
-        android:text="Class Standing"
+        android:id="@+id/skill_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3"
         android:layout_below="@+id/spinner"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="38dp" />
+        android:layout_marginTop="38dp"
+        android:text="Skill Points" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/skill_text"
         android:layout_alignParentStart="true"
         android:layout_marginTop="32dp"
         android:id="@+id/spinner2" />
 
     <Button
-        android:text="Add"
+        android:id="@+id/add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/add_button"
-        android:onClick="onAddPressed"
         android:layout_below="@+id/spinner2"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="52dp" />
+        android:layout_marginTop="52dp"
+        android:onClick="onAddPressed"
+        android:text="OK" />
 
     <Button
         android:text="Cancel"

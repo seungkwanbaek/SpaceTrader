@@ -2,12 +2,12 @@ package com.example.spacetrader.model;
 
 import android.util.Log;
 
+import com.example.spacetrader.Entity.Player;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.gatech.cs2340.lab3newcomponents.entity.Course;
-import edu.gatech.cs2340.lab3newcomponents.entity.SchoolCode;
-import edu.gatech.cs2340.lab3newcomponents.entity.Student;
+
 
 /**
  * This class is an abstraction of the data storage for the business classes
@@ -23,15 +23,12 @@ class Repository {
     }
 
     /** all the students known in the application */
-    private List<Student> allStudents;
+    private List<Player> allPlayers;
 
-    /** all the courses known in the application */
-    private List<Course> allCourses;
 
     public Repository() {
-        allCourses = new ArrayList<>();
-        allStudents = new ArrayList<>();
-        loadDummyData();
+        allPlayers = new ArrayList<>();
+//        loadDummyData();
     }
 
 
@@ -39,72 +36,53 @@ class Repository {
      * populate the model with some dummy data.  The full app would not require this.
      * comment out when persistence functionality is present.
      */
-    private void loadDummyData() {
-        addCourse(new Course("Objects and Design", "2340", SchoolCode.CS));
-        addCourse(new Course( "TQM", "4321", SchoolCode.IE));
-        addCourse(new Course("Concrete Ideas", "5432", SchoolCode.AR));
-        addCourse(new Course("Calc I", "2213", SchoolCode.MATH));
-        addStudent(new Student("Bob", "CS"));
-        addStudent(new Student("Sally", "ISYE"));
-        addStudent(new Student("Fred", "Math"));
-        addStudent(new Student("Edith", "CM"));
-        allCourses.get(0).registerStudent(allStudents.get(0));
-        allCourses.get(0).registerStudent(allStudents.get(1));
-        allCourses.get(1).registerStudent(allStudents.get(3));
-        allCourses.get(1).registerStudent(allStudents.get(2));
-    }
+//    private void loadDummyData() {
+//        addCourse(new Course("Objects and Design", "2340", SchoolCode.CS));
+//        addCourse(new Course( "TQM", "4321", SchoolCode.IE));
+//        addCourse(new Course("Concrete Ideas", "5432", SchoolCode.AR));
+//        addCourse(new Course("Calc I", "2213", SchoolCode.MATH));
+//        addStudent(new Student("Bob", "CS"));
+//        addStudent(new Student("Sally", "ISYE"));
+//        addStudent(new Student("Fred", "Math"));
+//        addStudent(new Student("Edith", "CM"));
+//        allCourses.get(0).registerStudent(allStudents.get(0));
+//        allCourses.get(0).registerStudent(allStudents.get(1));
+//        allCourses.get(1).registerStudent(allStudents.get(3));
+//        allCourses.get(1).registerStudent(allStudents.get(2));
+//    }
 
     /**
-     * get all the students in teh system
-     * @return list of all students
+     * get all players
+     * @return list of all players
      */
-    public List<Student> getAllStudents() { return allStudents;}
+    public List<Player> getAllPlayers() { return allPlayers;}
+
 
     /**
-     * get all the courses in the system
-     * @return list of all the courses
+     * add a new player
+     * @param player the player to add
      */
-    public List<Course>  getAllCourses() { return allCourses; }
-
-    public List<Student> getStudentsForCourse(Course course) {
-        return course.getRegisteredStudents();
+    public void addPlayer(Player player) {
+        player.setPlayerID(Repository.getNextUniqueID());
+        allPlayers.add(player);
     }
 
-    /**
-     * add a new course
-     * @param course the course to add
-     */
-    public void addCourse(Course course) {
-        course.setId(Repository.getNextUniqueID());
-        allCourses.add(course);
+    public void deletePlayer(Player player) {
+        allPlayers.remove(player);
     }
 
-    /** add a new student to the system
-     *
-     * @param student the student to add
-     */
-    public void addStudent(Student student) {
-        student.setId(Repository.getNextUniqueID());
-        allStudents.add(student);
-    }
-
-
-    public void deleteCourse(Course course) {
-        allCourses.remove(course);
-    }
-
-    public void updateStudent(Student s) {
-        for (Student student: allStudents) {
-            if (student.getId() == s.getId()) {
-                Log.d("APP", "Found student to update: " + student);
-                student.setMajor(s.get_major());
-                student.setName(s.get_name());
-                student.setClassStanding(s.get_classStanding());
-                Log.d("APP", "Updated list: " + allStudents.toString());
+    public void updatePlayer(Player p) {
+        for (Player player: allPlayers) {
+            if (player.getPlayerID() == p.getPlayerID()) {
+                Log.d("APP", "Found player to update: " + player);
+                player.setDifficulty(p.getDifficulty());
+                player.setUser_name(p.getUserName());
+                player.setSkill_points(p.getSkillPoints());
+                Log.d("APP", "Updated list: " + allPlayers.toString());
                 return;
             }
         }
-        Log.d("APP", "Student not found with id = " + s.getId());
+        Log.d("APP", "Student not found with id = " + p.getPlayerID());
 
     }
 }

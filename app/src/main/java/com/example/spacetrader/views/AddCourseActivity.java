@@ -12,10 +12,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.Arrays;
+import com.example.spacetrader.R;
 
-import edu.gatech.cs2340.lab3newcomponents.R;
-import edu.gatech.cs2340.lab3newcomponents.entity.SchoolCode;
+import java.util.Arrays;
 
 public class AddCourseActivity extends AppCompatActivity {
 
@@ -33,7 +32,7 @@ public class AddCourseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_course);
+        setContentView(R.layout.content_edit_student);
 
         editCourseName = findViewById(R.id.course_name_input);
         editCourseNumber = findViewById(R.id.course_number_input);
