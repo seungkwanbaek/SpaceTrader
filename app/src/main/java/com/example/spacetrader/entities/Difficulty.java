@@ -1,7 +1,6 @@
-package com.example.spacetrader.Entity;
+package com.example.spacetrader.entities;
 
 /**
- * Created by bryanbaek on 2/17/19
  *
  * This class represents the various difficulty levels for players
  */
