@@ -1,6 +1,5 @@
 package com.example.spacetrader.model;
 
-
 import android.util.Log;
 
 import java.util.List;
@@ -13,19 +12,18 @@ public class PlayerInteractor extends Interactor {
         super(repo);
     }
 
-    public List<Player> getAllPlayers() {
-        return getRepository().getAllPlayers();
-    }
+//    public List<Player> getAllPlayers() {
+//        return getRepository().getAllPlayers();
+//    }
 
     public void addPlayer (Player s) {
         getRepository().addPlayer(s);
     }
 
-    public void updatePlayer(Player s) {
-        getRepository().updatePlayer(s);
-        Log.d("APP", "Interactor: updating player: " + s);
-
-    }
+//    public void updatePlayer(Player s) {
+//        getRepository().updatePlayer(s);
+//        Log.d("APP", "Interactor: updating player: " + s);
+//    }
 
 
 }

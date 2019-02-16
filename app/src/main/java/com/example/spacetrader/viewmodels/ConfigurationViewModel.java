@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.spacetrader.Entity.Player;
@@ -21,8 +22,8 @@ public class ConfigurationViewModel extends AndroidViewModel {
         //players = model.getAllPlayers();
     }
 
-    public void addPlayer(String playerName, Difficulty difficulty) {
-        Player player = new Player(playerName, difficulty);
+    public void addPlayer(String playerName, String difficulty, ArrayList<Integer> skill_points_, String ship_type_) {
+        Player player = new Player(playerName, difficulty, skill_points_, ship_type_);
         model.addPlayer(player);
         //players = model.getAllPlayers();
     }
