@@ -6,14 +6,21 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import edu.gatech.cs2340.lab3newcomponents.entity.Course;
-import edu.gatech.cs2340.lab3newcomponents.entity.SchoolCode;
-import edu.gatech.cs2340.lab3newcomponents.model.CourseInteractor;
-import edu.gatech.cs2340.lab3newcomponents.model.Model;
+import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.model.Model;
+import com.example.spacetrader.model.PlayerInteractor;
 
 public class CourseViewModel extends AndroidViewModel {
     private CourseInteractor model;
+    // private PlayerInteractor model;
+    // private List<Player> players;
     private List<Course> courses;
+
+    public CourseViewModel(@NonNull Application application) {
+        super(application);
+        model = Model.getInstance().getCourseInteractor();
+        courses = model.getAllCourses();
+    }
 
     public CourseViewModel(@NonNull Application application) {
         super(application);
