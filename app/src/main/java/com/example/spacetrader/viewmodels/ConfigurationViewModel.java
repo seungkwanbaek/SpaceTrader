@@ -11,7 +11,7 @@ import com.example.spacetrader.model.Model;
 import com.example.spacetrader.model.PlayerInteractor;
 
 
-public class ConfigurationViewModel {
+public class ConfigurationViewModel extends AndroidViewModel {
     private PlayerInteractor model;
     private List<Player> players;
 
