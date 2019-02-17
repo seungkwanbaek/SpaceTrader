@@ -1,7 +1,6 @@
 package com.example.spacetrader.model;
 
-public abstract class Interactor {
-
+public class Interactor {
     private Repository myRepository;
 
     protected Interactor(Repository repo) {

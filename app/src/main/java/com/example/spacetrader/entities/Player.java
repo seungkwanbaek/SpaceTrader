@@ -1,10 +1,10 @@
-package com.example.spacetrader.Entity;
+package com.example.spacetrader.entities;
 
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Player {
+public class Player implements Serializable {
     private String user_name;
 
     private String difficulty;
@@ -14,6 +14,15 @@ public class Player {
     private String ship_type;
 
     private int playerID;
+
+    public Player(Player player) {
+        this.user_name = player.user_name;
+        this.difficulty = player.difficulty;
+        this.skill_points.put("Pilot", player.skill_points.get("Pilot"));
+        this.skill_points.put("Fighter", player.skill_points.get("Fighter"));
+        this.skill_points.put("Trader", player.skill_points.get("Trader"));
+        this.skill_points.put("Trader", player.skill_points.get("Trader"));
+    }
 
     public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_) {
         this(user_name_, difficulty_, skill_points_, "Gnat");
@@ -25,7 +34,7 @@ public class Player {
         ship_type = ship_type_;
         skill_points.put("Pilot", skill_points_.get(0));
         skill_points.put("Fighter", skill_points_.get(1));
-        skill_points.put("Trade", skill_points_.get(2));
+        skill_points.put("Trader", skill_points_.get(2));
         skill_points.put("Engineer", skill_points_.get(3));
     }
 
@@ -59,8 +68,7 @@ public class Player {
 
     /**
      * Setter for skill_name
-     * @param skill_name the skill name
-     * @param point the point
+     * @param skill_points the skill pints
      */
     public void setSkill_points(HashMap<String, Integer> skill_points) {
         for (String key : skill_points.keySet()) {
@@ -79,5 +87,6 @@ public class Player {
     public void setPlayerID(int id) {
         this.playerID = id;
     }
+
 
 }
