@@ -97,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
                 } else if (skillPointsSum > 16) {
                     String res = "Skill points cannot exceed 16!";
                     Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
-                } else if (skillPointsSum == 0) {
-                    String res = "Please allocate the skill points!";
+                } else if (skillPointsSum < 16) {
+                    String res = "Please allocate all skill points!";
                     Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
                 } else {
                     player = new Player(pName, pDifficulty, new ArrayList<Integer>((Arrays.asList(pValue, fValue, tValue, eValue))));
