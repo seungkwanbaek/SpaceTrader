@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 String pDifficulty = userDifficulty.getSelectedItem().toString();
                 int skillPointsSum = pValue + fValue + tValue + eValue;
 
-                if (pName.equals("Name")) {
+                if (pName.equals("")) {
                     String res = "Please enter your userName!";
                     Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
                 } else if (skillPointsSum > 16) {
