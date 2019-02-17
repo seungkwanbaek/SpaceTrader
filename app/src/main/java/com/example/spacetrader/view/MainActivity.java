@@ -1,6 +1,8 @@
 package com.example.spacetrader.view;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +24,16 @@ public class MainActivity extends AppCompatActivity {
     final Context context = this;
     private Spinner difficultySpinner;
     private EditText nameField;
+
+    /** Value Change Listener for NumberPicker */
+    NumberPicker.OnValueChangeListener onValueChangeListener =
+            new NumberPicker.OnValueChangeListener(){
+                @Override
+                public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                    Toast.makeText(MainActivity.this,
+                            "selected number "+numberPicker.getValue(), Toast.LENGTH_SHORT);
+                }
+            };
 
     private Player player;
     private AddPlayerViewModel viewModel;
@@ -81,6 +93,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /** Set the exit button */
+        Button exitButton = findViewById(R.id.exit_button);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                alertDialogBuilder
+                        .setMessage("Are you sure to exit?")
+                        .setCancelable(false)
+                        .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                MainActivity.this.finish();
+                            }
+                        })
+                        .setPositiveButton("No",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+        });
+
     }
 
     /**
@@ -93,15 +130,6 @@ public class MainActivity extends AppCompatActivity {
         np.setOnValueChangedListener(onValueChangeListener);
     }
 
-    /**
-     * Value Change Listener for NumberPicker
-     */
-    NumberPicker.OnValueChangeListener onValueChangeListener =
-            new 	NumberPicker.OnValueChangeListener(){
-                @Override
-                public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                    Toast.makeText(MainActivity.this,
-                            "selected number "+numberPicker.getValue(), Toast.LENGTH_SHORT);
-                }
-            };
+
+
 }
