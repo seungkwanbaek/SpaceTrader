@@ -50,15 +50,13 @@ public class ShowPlayerActivity extends AppCompatActivity {
             pDiffcuilty.setText(player.getDifficulty());
             System.out.println("Pilot: " + player.getSkillPoint("Pilot"));
             pPoint.setText("" + player.getSkillPoint("Pilot"));
-            pPoint.setText("" + player.getSkillPoint("Fighter"));
-            pPoint.setText("" + player.getSkillPoint("Trader"));
-            pPoint.setText("" + player.getSkillPoint("Engineer"));
+            fPoint.setText("" + player.getSkillPoint("Fighter"));
+            tPoint.setText("" + player.getSkillPoint("Trader"));
+            ePoint.setText("" + player.getSkillPoint("Engineer"));
         } else {
             //no course is an internal error, this should not happen
             Log.d("APP", "INTERNAL ERROR < NO PLAYER PASSED");
         }
-
     }
-
 
 }
