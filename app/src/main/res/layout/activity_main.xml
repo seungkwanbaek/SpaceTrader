@@ -19,9 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/player_id_field"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="12dp"
-        android:layout_marginLeft="18dp"
         android:layout_marginTop="11dp"
         android:text="Player name:" />
 
@@ -31,9 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/name_text"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="19dp"
-        android:layout_marginLeft="18dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -46,9 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/student_name_input"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="10dp"
-        android:layout_marginLeft="18dp"
         android:layout_marginTop="28dp"
         android:text="Difficulty" />
 
@@ -65,9 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/difficulty_spinner"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="18dp"
-        android:layout_marginLeft="18dp"
         android:layout_marginTop="14dp"
         android:text="Skill Points (TOTAL 16)" />
 
@@ -77,9 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/skill_text"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         android:layout_marginTop="42dp"
         android:text="PILOT" />
 
@@ -89,9 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/skill_text"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="120dp"
-        android:layout_marginLeft="120dp"
         android:layout_marginTop="42dp"
         android:text="FIGHTER" />
 
@@ -101,9 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/skill_text"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="223dp"
-        android:layout_marginLeft="223dp"
         android:layout_marginTop="41dp"
         android:text="TRADER" />
 
@@ -113,9 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/skill_text"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="321dp"
-        android:layout_marginLeft="321dp"
         android:layout_marginTop="43dp"
         android:text="ENGINEER" />
 
@@ -125,16 +109,12 @@
         android:layout_height="63dp"
         android:layout_below="@+id/skill_text"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <NumberPicker
         android:id="@+id/fighter_point"
@@ -142,16 +122,12 @@
         android:layout_height="63dp"
         android:layout_below="@+id/skill_text"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="132dp"
-        android:layout_marginLeft="132dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <NumberPicker
         android:id="@+id/engineer_point"
@@ -159,16 +135,12 @@
         android:layout_height="63dp"
         android:layout_below="@+id/skill_text"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="331dp"
-        android:layout_marginLeft="331dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <NumberPicker
         android:id="@+id/trader_point"
@@ -176,16 +148,12 @@
         android:layout_height="63dp"
         android:layout_below="@+id/skill_text"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="231dp"
-        android:layout_marginLeft="231dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/save_button"
@@ -193,7 +161,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="478dp"
-        android:layout_marginLeft="0dp"
+        android:layout_marginStart="0dp"
         android:text="OK" />
 
     <Button
@@ -202,10 +170,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginTop="478dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginRight="0dp"
         android:text="Exit" />
 
 
