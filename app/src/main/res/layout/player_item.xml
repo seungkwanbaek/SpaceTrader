@@ -63,104 +63,105 @@
         android:layout_below="@id/show_skillPoints"
         android:orientation="horizontal">
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+    <LinearLayout
+        android:id="@+id/pilot_skill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        android:gravity="center">
         <TextView
             android:id="@+id/pilot_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PILOT" />
+        <TextView
+            android:id="@+id/text_pPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1" />
+    </LinearLayout>
 
         <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
-
+    <LinearLayout
+        android:id="@+id/fighter_skill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        android:gravity="center">
         <TextView
             android:id="@+id/fighter_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="FIGHTER" />
+        <TextView
+            android:id="@+id/text_fPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1" />
+    </LinearLayout>
 
         <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/trader_text"
+        <LinearLayout
+            android:id="@+id/trader_skill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TRADER" />
-
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/trader_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TRADER" />
+            <TextView
+                android:id="@+id/text_tPoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1" />
+        </LinearLayout>
         <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <TextView
-            android:id="@+id/engineer_text"
+        <LinearLayout
+            android:id="@+id/engineer_skill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ENGINEER" />
-
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/engineer_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ENGINEER" />
+            <TextView
+                android:id="@+id/text_ePoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1" />
+        </LinearLayout>
         <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/skill_values"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_below="@id/skill_names"
-        android:orientation="horizontal">
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-    <TextView
-        android:id="@+id/text_pPoint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1" />
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-    <TextView
-        android:id="@+id/text_fPoint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1" />
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-    <TextView
-        android:id="@+id/text_tPoint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1" />
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-    <TextView
-        android:id="@+id/text_ePoint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1" />
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-    </LinearLayout>
+
+
 
 
 
