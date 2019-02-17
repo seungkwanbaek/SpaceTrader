@@ -1,24 +1,64 @@
 package com.example.spacetrader.view;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
+import com.example.spacetrader.entities.Player;
+import com.example.spacetrader.viewmodel.AddPlayerViewModel;
+
+import org.w3c.dom.Text;
 
 public class ShowPlayerActivity extends AppCompatActivity {
+
+    public static final String STUDENT_DATA = "PLAYER_DATA";
+    private static final int EDIT_REQUEST = 5;
+    private Player player;
+
+    private TextView pName;
+    private TextView pDiffcuilty;
+    private TextView pPoint;
+    private TextView fPoint;
+    private TextView tPoint;
+    private TextView ePoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_player);
+        setContentView(R.layout.player_item);
 
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        pName = findViewById(R.id.show_player_name);
+        pDiffcuilty = findViewById(R.id.show_difficulty);
+        pPoint = findViewById(R.id.text_pPoint);
+        fPoint = findViewById(R.id.text_fPoint);
+        tPoint = findViewById(R.id.text_tPoint);
+        ePoint = findViewById(R.id.text_ePoint);
 
-        TextView textView = findViewById(R.id.textView);
-        textView.setText(message);
+        if (getIntent().hasExtra(MainActivity.PLAYER_DATA)) {
+            player = (Player)getIntent().getSerializableExtra(MainActivity.PLAYER_DATA);
+
+            pName.setText(player.getUserName());
+            pDiffcuilty.setText(player.getDifficulty());
+            System.out.println("Pilot: " + player.getSkillPoint("Pilot"));
+            pPoint.setText("" + player.getSkillPoint("Pilot"));
+            pPoint.setText("" + player.getSkillPoint("Fighter"));
+            pPoint.setText("" + player.getSkillPoint("Trader"));
+            pPoint.setText("" + player.getSkillPoint("Engineer"));
+        } else {
+            //no course is an internal error, this should not happen
+            Log.d("APP", "INTERNAL ERROR < NO PLAYER PASSED");
+        }
 
     }
+
+
 }

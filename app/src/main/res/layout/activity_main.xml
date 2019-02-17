@@ -37,7 +37,8 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="Name"
+        android:text=""/>
 
     <TextView
         android:id="@+id/difficulty_text"

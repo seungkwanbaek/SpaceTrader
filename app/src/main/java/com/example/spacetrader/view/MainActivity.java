@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.spacetrader.R;
@@ -19,8 +20,16 @@ import com.example.spacetrader.entities.Difficulty;
 import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.viewmodel.AddPlayerViewModel;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.androidtutorial.MESSAGE";
+    public static final String PLAYER_DATA = "PLAYER_DATA";
+    private static final int EDIT_REQUEST = 5;
+
     final Context context = this;
     private Spinner difficultySpinner;
     private EditText nameField;
@@ -74,22 +83,27 @@ public class MainActivity extends AppCompatActivity {
                 int tValue = tPoint.getValue();
                 int eValue = ePoint.getValue();
 
+                TextView userName = findViewById(R.id.student_name_input);
+                Spinner userDifficulty = findViewById(R.id.difficulty_spinner);
+                String pName = userName.getText().toString();
+                String pDifficulty = userDifficulty.getSelectedItem().toString();
                 int skillPointsSum = pValue + fValue + tValue + eValue;
 
-                if (skillPointsSum > 16) {
+                if (pName.equals("Name")) {
+                    String res = "Please enter your userName!";
+                    Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
+                } else if (skillPointsSum > 16) {
                     String res = "Skill points cannot exceed 16!";
                     Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
                 } else if (skillPointsSum == 0) {
                     String res = "Please allocate the skill points!";
                     Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
                 } else {
+                    player = new Player(pName, pDifficulty, new ArrayList<Integer>((Arrays.asList(pValue, fValue, tValue, eValue))));
                     Intent intent = new Intent(MainActivity.this, ShowPlayerActivity.class);
-                    EditText editText = findViewById(R.id.student_name_input);
-                    String message = editText.getText().toString();
-                    intent.putExtra(EXTRA_MESSAGE, message);
-                    startActivity(intent);
+                    intent.putExtra(PLAYER_DATA, player);
+                    startActivityForResult(intent, EDIT_REQUEST);
                 }
-
             }
         });
 
@@ -129,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
         np.setMaxValue(16);
         np.setOnValueChangedListener(onValueChangeListener);
     }
-
 
 
 }

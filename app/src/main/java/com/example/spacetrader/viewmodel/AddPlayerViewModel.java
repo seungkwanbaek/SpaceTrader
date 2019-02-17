@@ -10,6 +10,7 @@ import com.example.spacetrader.model.Model;
 
 public class AddPlayerViewModel extends AndroidViewModel {
     private PlayerInteractor interactor;
+    private Player currentPlayer;
 
     public AddPlayerViewModel(@NonNull Application application) {
         super(application);
@@ -19,4 +20,9 @@ public class AddPlayerViewModel extends AndroidViewModel {
     public void addPlayer(Player player) {
         interactor.addPlayer(player);
     }
+
+    public void setCurrentPlayer(Player player) {
+        currentPlayer = player;
+    }
+
 }
