@@ -18,12 +18,15 @@ import android.widget.Toast;
 import com.example.spacetrader.R;
 import com.example.spacetrader.entities.Difficulty;
 import com.example.spacetrader.entities.Player;
+import com.example.spacetrader.entities.SolarSystem;
+import com.example.spacetrader.model.SolarSystemInteractor;
 import com.example.spacetrader.viewmodel.AddPlayerViewModel;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.androidtutorial.MESSAGE";
@@ -33,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
     final Context context = this;
     private Spinner difficultySpinner;
     private EditText nameField;
+
+    private SolarSystemInteractor solarSystemInteractor;
+    private Random rand;
 
     /** Value Change Listener for NumberPicker */
     NumberPicker.OnValueChangeListener onValueChangeListener =
@@ -101,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     String res = "Please allocate the skill points!";
                     Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
                 } else {
+
                     player = new Player(pName, pDifficulty, new ArrayList<Integer>((Arrays.asList(pValue, fValue, tValue, eValue))));
                     Intent intent = new Intent(MainActivity.this, ShowPlayerActivity.class);
                     intent.putExtra(PLAYER_DATA, player);
@@ -134,6 +141,41 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    /**
+     * Initialize the Universe
+     */
+    private void initializeUniverse() {
+        while (solarSystemInteractor.getAllSolarSystems().size() < 10) {
+            int[] coordinate = generateCoordinate();
+            String name = generateSolarName();
+            SolarSystem curSolarSystem = new SolarSystem(name, coordinate[0], coordinate[1]);
+        }
+    }
+
+    /**
+     * Generate the coordinate randomly
+     * @return the corrdinates
+     */
+    private int[] generateCoordinate() {
+        int[] coordinate = new int[2];
+        coordinate[0] = rand.nextInt(100);
+        coordinate[1] = rand.nextInt(100);
+        return coordinate;
+    }
+
+    /**
+     * Generate the solar name randomly
+     * @return the solar name
+     */
+    private String generateSolarName() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 8; i++) {
+            char c = (char)('a' + rand.nextInt(26));
+            sb.append(c);
+        }
+        return new String(sb);
     }
 
     /**
