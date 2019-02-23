@@ -39,6 +39,11 @@ class Repository {
      */
     public List<Player> getAllPlayers() { return allPlayers;}
 
+    /**
+     * get all solar systems
+     * @return list of all solar systems
+     */
+    public List<SolarSystem> getAllSolarSystems() { return allSolarSystems;}
 
     /**
      * add a new player
@@ -47,6 +52,14 @@ class Repository {
     public void addPlayer(Player player) {
         //player.setPlayerID(Repository.getNextUniqueID());
         allPlayers.add(player);
+    }
+
+    /**
+     * add a new solar system
+     * @param solarsystem the solar system to add
+     */
+    public void addSolarSystem(SolarSystem solarsystem) {
+        allSolarSystems.add(solarsystem);
     }
 
     public void deletePlayer(Player player) {
