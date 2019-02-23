@@ -118,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        initializeUniverse();
+
 
         /** Set the exit button */
         Button exitButton = findViewById(R.id.exit_button);

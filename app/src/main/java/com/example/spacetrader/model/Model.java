@@ -1,7 +1,5 @@
 package com.example.spacetrader.model;
 
-import com.example.spacetrader.entities.SolarSystem;
-
 public class Model {
     private Repository repo;
     private PlayerInteractor playerInteractor;
