@@ -20,6 +20,7 @@ import com.example.spacetrader.entities.Difficulty;
 import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.entities.SolarSystem;
 import com.example.spacetrader.model.SolarSystemInteractor;
+import com.example.spacetrader.model.Model;
 import com.example.spacetrader.viewmodel.AddPlayerViewModel;
 
 import org.w3c.dom.Text;
@@ -37,8 +38,9 @@ public class MainActivity extends AppCompatActivity {
     private Spinner difficultySpinner;
     private EditText nameField;
 
-    private SolarSystemInteractor solarSystemInteractor;
-    private Random rand;
+    private Model model;
+    private SolarSystemInteractor solarSystemInteractor = Model.getInstance().getSolarSystemInteractor();
+    private Random rand = new Random();
 
     /** Value Change Listener for NumberPicker */
     NumberPicker.OnValueChangeListener onValueChangeListener =

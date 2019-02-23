@@ -4,7 +4,6 @@ import com.example.spacetrader.entities.SolarSystem;
 import java.util.List;
 
 public class SolarSystemInteractor extends Interactor {
-    private Repository myRepository;
 
     public SolarSystemInteractor(Repository repo) {
         super(repo);
@@ -14,10 +13,6 @@ public class SolarSystemInteractor extends Interactor {
         return getRepository().addSolarSystem(s);
     }
 
-    protected Repository getRepository() {
-        return myRepository;
-    }
-
-    public List<SolarSystem> getAllSolarSystems() { return myRepository.getAllSolarSystems(); }
+    public List<SolarSystem> getAllSolarSystems() { return getRepository().getAllSolarSystems(); }
 
 }

@@ -13,7 +13,7 @@ public class SolarSystem implements Serializable {
     private String techLevel;
     private String resources;
     private HashMap<Integer, Integer> priceList;
-    private Random rand;
+    private Random rand = new Random();
     private int x;
     private int y;
     private static String[] techLevelList = { "Pre-Agriculture", "Agriculture",
