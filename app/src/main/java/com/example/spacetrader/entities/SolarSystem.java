@@ -35,31 +35,6 @@ public class SolarSystem implements Serializable {
         resources = resourcesList[r2];
     }
 
-    public SolarSystem(String name, int xcoord, int ycoord) {
-        this.name = name;
-        this.x = xcoord;
-        this.y = ycoord;
-        priceList = new HashMap<>();
-        int r1 = rand.nextInt(techLevelList.length);
-        int r2 = rand.nextInt(resourcesList.length);
-        techLevel = techLevelList[r1];
-        resources = resourcesList[r2];
-    }
-
-    public SolarSystem(String name_, String techLevel_, String resources_,
-                       ArrayList<Commodity> commodityList, int xcoord, int ycoord) {
-        rand = new Random();
-        name = name_;
-        resources = resources_;
-        techLevel = techLevel_;
-        for (int i = 0; i < commodityList.size(); i++) {
-            Commodity c = commodityList.get(i);
-            priceList.put(c.getId(), rand.nextInt(100));
-        }
-        x = xcoord;
-        y = ycoord;
-    }
-
     @Override
     public boolean equals(Object that) {
         SolarSystem rhs = (SolarSystem) that;
@@ -107,6 +82,11 @@ public class SolarSystem implements Serializable {
     public void printSolarSystem() {
         System.out.println("Name: " + name + ", x_coord: " + x + ", y_coord: " + y +
                 " resources:" + resources + ", techLevel: " + techLevel);
+    }
+
+    public String toString() {
+        return "Name: " + name + ", x_coord: " + x + ", y_coord: " + y +
+                " resources:" + resources + ", techLevel: " + techLevel;
     }
 
 }

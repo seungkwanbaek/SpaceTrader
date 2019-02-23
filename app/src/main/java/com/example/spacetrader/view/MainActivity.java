@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.util.Log;
+
 import com.example.spacetrader.R;
 import com.example.spacetrader.entities.Difficulty;
 import com.example.spacetrader.entities.Player;
@@ -163,7 +165,20 @@ public class MainActivity extends AppCompatActivity {
      */
     private void printUniverse() {
         for (SolarSystem s : solarSystemInteractor.getAllSolarSystems()) {
-            s.printSolarSystem();
+            String content = s.toString();
+            largeLog("APP", content);
+        }
+    }
+
+    /**
+     * Print the Universe
+     */
+    public static void largeLog(String tag, String content) {
+        if (content.length() > 4000) {
+            Log.d(tag, content.substring(0, 4000));
+            largeLog(tag, content.substring(4000));
+        } else {
+            Log.d(tag, content);
         }
     }
 

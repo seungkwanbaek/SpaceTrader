@@ -30,7 +30,6 @@ class Repository {
 
     private List<SolarSystem> allSolarSystems;
 
-
     public Repository() {
         allPlayers = new ArrayList<>();
         allSolarSystems = new ArrayList<>();
