@@ -24,7 +24,6 @@ public class ShowPlayerActivity extends AppCompatActivity {
     private static final int EDIT_REQUEST = 5;
     private Player player;
 
-    private Integer playerPosition;
     private TextView pName;
     private TextView pDiffcuilty;
     private TextView pPoint;
@@ -45,7 +44,7 @@ public class ShowPlayerActivity extends AppCompatActivity {
         ePoint = findViewById(R.id.text_ePoint);
 
         if (getIntent().hasExtra(MainActivity.PLAYER_DATA)) {
-            playerPosition = (Integer)getIntent().getSerializableExtra(MainActivity.PLAYER_DATA);
+            player = (Player)getIntent().getSerializableExtra(MainActivity.PLAYER_DATA);
 
             pName.setText(player.getUserName());
             pDiffcuilty.setText(player.getDifficulty());
