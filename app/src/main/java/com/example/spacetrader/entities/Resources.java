@@ -1,19 +1,19 @@
 package com.example.spacetrader.entities;
 
-public enum Resources {
-    0 ("NOSPECIALRESOURCES"),
-    1 ("MINERALRICH"),
-    2 ("MINERALPOOR"),
-    3 ("DESERT"),
-    4 ("LOTSOFWATER"),
-    5 ("RICHSOIL"),
-    6 ("POORSOIL"),
-    7 ("RICHFAUNA"),
-    8 ("LIFELESS"),
-    9 ("WEIRDMUSHROOMS"),
-    10 ("LOTSOFHERBS"),
-    11 ("ARTISTIC"),
-    12 ("WARLIKE");
+public enum Resource {
+    R0 ("NOSPECIALRESOURCES"),
+    R1 ("MINERALRICH"),
+    R2 ("MINERALPOOR"),
+    R3 ("DESERT"),
+    R4 ("LOTSOFWATER"),
+    R5 ("RICHSOIL"),
+    R6 ("POORSOIL"),
+    R7 ("RICHFAUNA"),
+    R8 ("LIFELESS"),
+    R9 ("WEIRDMUSHROOMS"),
+    R10 ("LOTSOFHERBS"),
+    R11 ("ARTISTIC"),
+    R12 ("WARLIKE");
 
     /** the full string representation of the resources */
     private final String resource;
@@ -23,7 +23,7 @@ public enum Resources {
      *
      * @param Resource  name of the resource
      */
-    Resource(Integer Resource) {
+    Resource(String Resource) {
         resource = Resource;
     }
 
