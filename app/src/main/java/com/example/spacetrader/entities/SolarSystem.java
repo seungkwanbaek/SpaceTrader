@@ -22,28 +22,11 @@ public class SolarSystem implements Serializable {
     private static String[] resourcesList = {"NOSPECIALRESOURCES", "MINERALRICH", "MINERALPOOR",
             "DESERT", "LOTSOFWATER", "RICHSOIL", "POORSOIL", "RICHFAUNA", "LIFELESS",
             "WEIRDMUSHROOMS", "LOTSOFHERBS", "ARTISTIC", "WARLIKE"};
-
-    public SolarSystem() {
-        this.name = generateSolarName();
-        int[] coordinates = generateCoordinate();
-        this.x = coordinates[0];
-        this.y = coordinates[1];
-        priceList = new HashMap<>();
-        int r1 = rand.nextInt(techLevelList.length);
-        int r2 = rand.nextInt(resourcesList.length);
-        techLevel = techLevelList[r1];
-        resources = resourcesList[r2];
-        
-    }
+    
     public SolarSystem(String name, int xcoord, int ycoord) {
-        this.name = name;
-        this.x = xcoord;
-        this.y = ycoord;
-        priceList = new HashMap<>();
-        int r1 = rand.nextInt(techLevelList.length);
-        int r2 = rand.nextInt(resourcesList.length);
-        techLevel = techLevelList[r1];
-        resources = resourcesList[r2];
+        this(name, techLevelList[rand.nextInt(techLevelList.length)],
+                techLevelList[rand.nextInt(resourcesList.length)],
+                new ArrayList<Commodity>(), xcoord, ycoord);
     }
 
     public SolarSystem(String name_, String techLevel_, String resources_,
@@ -52,6 +35,7 @@ public class SolarSystem implements Serializable {
         name = name_;
         resources = resources_;
         techLevel = techLevel_;
+        priceList =  new HashMap<>();
         for (int i = 0; i < commodityList.size(); i++) {
             Commodity c = commodityList.get(i);
             priceList.put(c.getId(), rand.nextInt(100));
