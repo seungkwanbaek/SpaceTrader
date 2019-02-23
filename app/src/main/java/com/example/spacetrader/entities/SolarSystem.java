@@ -5,23 +5,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SolarSystem implements Serializable {
-    private String user_name;
+    private String name;
 
-    private String difficulty;
+    private String techLevel;
 
     private HashMap<String, Integer> skill_points = new HashMap<String, Integer>();
 
-    private String ship_type;
+    private String resources;
 
     private int playerID;
 
-    public Player(Player player) {
-        this.user_name = player.user_name;
-        this.difficulty = player.difficulty;
-        this.skill_points.put("Pilot", player.skill_points.get("Pilot"));
-        this.skill_points.put("Fighter", player.skill_points.get("Fighter"));
-        this.skill_points.put("Trader", player.skill_points.get("Trader"));
-        this.skill_points.put("Trader", player.skill_points.get("Trader"));
+    public SolarSystem(SolarSystem solarsystem) {
+        this.name = solarsystem.user_name;
+        this.techLevel = solarsystem.techLevel;
+        this.skill_points.put("Pilot", solarsystem.skill_points.get("Pilot"));
+        this.skill_points.put("Fighter", solarsystem.skill_points.get("Fighter"));
+        this.skill_points.put("Trader", solarsystem.skill_points.get("Trader"));
+        this.skill_points.put("Trader", solarsystem.skill_points.get("Trader"));
     }
 
     public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_) {
