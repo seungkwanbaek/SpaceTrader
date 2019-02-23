@@ -107,8 +107,9 @@ public class MainActivity extends AppCompatActivity {
                     String res = "Please allocate the skill points!";
                     Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
                 } else {
-
-                    player = new Player(pName, pDifficulty, new ArrayList<Integer>((Arrays.asList(pValue, fValue, tValue, eValue))));
+                    initializeUniverse();
+                    printUniverse();
+                    player = new Player(pName, pDifficulty, new ArrayList<>((Arrays.asList(pValue, fValue, tValue, eValue))));
                     Intent intent = new Intent(MainActivity.this, ShowPlayerActivity.class);
                     intent.putExtra(PLAYER_DATA, player);
                     startActivityForResult(intent, EDIT_REQUEST);
@@ -151,6 +152,13 @@ public class MainActivity extends AppCompatActivity {
             int[] coordinate = generateCoordinate();
             String name = generateSolarName();
             SolarSystem curSolarSystem = new SolarSystem(name, coordinate[0], coordinate[1]);
+            solarSystemInteractor.addSolarSystem(curSolarSystem);
+        }
+    }
+
+    private void printUniverse() {
+        for (SolarSystem s : solarSystemInteractor.getAllSolarSystems()) {
+            s.printSolarSystem();
         }
     }
 

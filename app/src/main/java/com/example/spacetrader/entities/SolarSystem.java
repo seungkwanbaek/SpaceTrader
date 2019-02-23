@@ -10,16 +10,16 @@ import java.util.Random;
 public class SolarSystem implements Serializable {
 
     private String name;
-//    private String techLevel;
-//    private String resources;
+    private String techLevel;
+    private String resources;
     private HashMap<Integer, Integer> priceList;
     private Random rand;
     private int x;
     private int y;
-    private static String[] techLevel = { "Pre-Agriculture", "Agriculture",
+    private static String[] techLevelList = { "Pre-Agriculture", "Agriculture",
             "Medieval", "Renaissance", "Early Industrial", "Industrial",
             "Post-Industrial", "Hi-Tech"};
-    private static String[] resources = {"NOSPECIALRESOURCES", "MINERALRICH", "MINERALPOOR",
+    private static String[] resourcesList = {"NOSPECIALRESOURCES", "MINERALRICH", "MINERALPOOR",
             "DESERT", "LOTSOFWATER", "RICHSOIL", "POORSOIL", "RICHFAUNA", "LIFELESS",
             "WEIRDMUSHROOMS", "LOTSOFHERBS", "ARTISTIC", "WARLIKE"};
 
@@ -28,8 +28,10 @@ public class SolarSystem implements Serializable {
         this.x = xcoord;
         this.y = ycoord;
         priceList = new HashMap<>();
-
-
+        int r1 = rand.nextInt(techLevelList.length);
+        int r2 = rand.nextInt(resourcesList.length);
+        techLevel = techLevelList[r1];
+        resources = resourcesList[r2];
     }
 
     public SolarSystem(String name_, String techLevel_, String resources_,
@@ -65,4 +67,9 @@ public class SolarSystem implements Serializable {
     public HashMap getPriceList() { return priceList; }
 
     public String getTechLevel() { return techLevel; }
+
+    public void printSolarSystem() {
+        System.out.println("Name: " + name + ", x_coord: " + x + ", y_coord: " + y +
+                " resources:" + resources + ", techLevel: " + techLevel);
+    }
 }
