@@ -6,21 +6,18 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class SolarSystem implements Serializable {
-    private Integer id;
 
     private String name;
-
     private String techLevel;
-
     private String resources;
-
     private HashMap<Integer, Integer> priceList;
-
     private Random rand;
+    private int x;
+    private int y;
 
-    public SolarSystem(Integer id_, String name_, String techLevel_, String resources_, ArrayList<Commodity> commodityList) {
+    public SolarSystem(String name_, String techLevel_, String resources_,
+                       ArrayList<Commodity> commodityList, int xcoord, int ycoord) {
         rand = new Random();
-        id = id_;
         name = name_;
         resources = resources_;
         techLevel = techLevel_;
@@ -28,6 +25,20 @@ public class SolarSystem implements Serializable {
             Commodity c = commodityList.get(i);
             priceList.put(c.getId(), rand.nextInt(100));
         }
+        x = xcoord;
+        y = ycoord;
+    }
+
+    @Override
+    public int hashCode() {
+        return 1000000 * x + y;
+    }
+
+    @Override
+    public Boolean equals(SolarSystem that) {
+        if (this.x == that.x && this.y == that.y) {
+            return true;
+        } else return false;
     }
 
     public String getName() { return name; }
