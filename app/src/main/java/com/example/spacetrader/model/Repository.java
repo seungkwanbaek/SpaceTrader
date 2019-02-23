@@ -7,6 +7,8 @@ import com.example.spacetrader.entities.SolarSystem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 
 
@@ -25,12 +27,12 @@ class Repository {
 
     /** all the students known in the application */
     private List<Player> allPlayers;
-    private List<SolarSystem> allSolarSystems;
+    private Set<SolarSystem> allSolarSystems;
 
 
     public Repository() {
         allPlayers = new ArrayList<>();
-        allSolarSystems = new ArrayList<>();
+        allSolarSystems = new HashSet<>();
     }
 
     /**
@@ -43,7 +45,7 @@ class Repository {
      * get all solar systems
      * @return list of all solar systems
      */
-    public List<SolarSystem> getAllSolarSystems() { return allSolarSystems;}
+    public Set<SolarSystem> getAllSolarSystems() { return allSolarSystems;}
 
     /**
      * add a new player
@@ -59,11 +61,18 @@ class Repository {
      * @param solarsystem the solar system to add
      */
     public void addSolarSystem(SolarSystem solarsystem) {
-        allSolarSystems.add(solarsystem);
+        if (!allSolarSystems.contains(solarsystem)) {
+            allSolarSystems.add(solarsystem);
+        }
+
     }
 
     public void deletePlayer(Player player) {
         allPlayers.remove(player);
+    }
+
+    public void deleteSolarSystem(SolarSystem solarsystem) {
+        allSolarSystems.remove(solarsystem);
     }
 
     /*public void updatePlayer(Player p) {
