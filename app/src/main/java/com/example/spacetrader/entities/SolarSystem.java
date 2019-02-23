@@ -33,8 +33,8 @@ public class SolarSystem implements Serializable {
         int r2 = rand.nextInt(resourcesList.length);
         techLevel = techLevelList[r1];
         resources = resourcesList[r2];
-        
     }
+    
     public SolarSystem(String name, int xcoord, int ycoord) {
         this.name = name;
         this.x = xcoord;

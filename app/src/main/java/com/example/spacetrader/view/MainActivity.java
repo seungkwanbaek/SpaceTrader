@@ -156,6 +156,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Print the Universe
+     */
     private void printUniverse() {
         for (SolarSystem s : solarSystemInteractor.getAllSolarSystems()) {
             s.printSolarSystem();
