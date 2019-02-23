@@ -3,6 +3,7 @@ package com.example.spacetrader.model;
 import android.util.Log;
 
 import com.example.spacetrader.entities.Player;
+import com.example.spacetrader.entities.SolarSystem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +25,12 @@ class Repository {
 
     /** all the students known in the application */
     private List<Player> allPlayers;
+    private List<SolarSystem> allSolarSystems;
 
 
     public Repository() {
         allPlayers = new ArrayList<>();
+        allSolarSystems = new ArrayList<>();
     }
 
     /**

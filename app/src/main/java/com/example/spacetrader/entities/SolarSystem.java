@@ -35,10 +35,12 @@ public class SolarSystem implements Serializable {
     }
 
     @Override
-    public Boolean equals(SolarSystem that) {
-        if (this.x == that.x && this.y == that.y) {
-            return true;
-        } else return false;
+    public boolean equals(Object that) {
+        if (this == that) return true;
+        if (!(that instanceof SolarSystem)) return false;
+
+        SolarSystem solarsystem = (SolarSystem) that;
+        return solarsystem.x == x && solarsystem.y == y;
     }
 
     public String getName() { return name; }
@@ -48,7 +50,4 @@ public class SolarSystem implements Serializable {
     public HashMap getPriceList() { return priceList; }
 
     public String getTechLevel() { return techLevel; }
-
-    public int getId() { return id; }
-
 }
