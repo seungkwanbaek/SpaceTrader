@@ -5,21 +5,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Commodity implements Serializable{
+    private Integer id;
     private String name;
-    private int weight;
+    private Integer weight;
 
 
     public Commodity(Commodity commodity) {
+        this.id = commodity.id;
         this.weight = commodity.weight;
         this.name = commodity.name;
     }
 
-    public Commodity(String name, int weight) {
+    public Commodity(Integer id, String name, int weight) {
+        this.id = id;
         this.name = name;
         this.weight = weight;
     }
 
     public String getName() { return name; }
+
+    public Integer getId() { return id; }
 
     public Integer getWeight() { return weight; }
 
