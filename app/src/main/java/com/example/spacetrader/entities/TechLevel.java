@@ -16,9 +16,9 @@ public enum TechLevel {
     /**
      * Constructor for the enumeration
      *
-     * @param techlevel  name of the difficulty
+     * @param Techlevel  name of the techlevel
      */
-    TechLevel(Integer techlevel) {techlevel = techlevel; }
+    TechLevel(String Techlevel) {techlevel = Techlevel; }
 
     /**
      *
