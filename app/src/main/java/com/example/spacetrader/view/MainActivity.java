@@ -151,9 +151,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void initializeUniverse() {
         while (solarSystemInteractor.getAllSolarSystems().size() < 10) {
-            int[] coordinate = generateCoordinate();
-            String name = generateSolarName();
-            SolarSystem curSolarSystem = new SolarSystem(name, coordinate[0], coordinate[1]);
+            SolarSystem curSolarSystem = new SolarSystem();
             solarSystemInteractor.addSolarSystem(curSolarSystem);
         }
     }
@@ -162,30 +160,6 @@ public class MainActivity extends AppCompatActivity {
         for (SolarSystem s : solarSystemInteractor.getAllSolarSystems()) {
             s.printSolarSystem();
         }
-    }
-
-    /**
-     * Generate the coordinate randomly
-     * @return the corrdinates
-     */
-    private int[] generateCoordinate() {
-        int[] coordinate = new int[2];
-        coordinate[0] = rand.nextInt(100);
-        coordinate[1] = rand.nextInt(100);
-        return coordinate;
-    }
-
-    /**
-     * Generate the solar name randomly
-     * @return the solar name
-     */
-    private String generateSolarName() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 8; i++) {
-            char c = (char)('a' + rand.nextInt(26));
-            sb.append(c);
-        }
-        return new String(sb);
     }
 
     /**

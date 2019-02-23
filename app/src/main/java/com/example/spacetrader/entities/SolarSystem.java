@@ -23,6 +23,18 @@ public class SolarSystem implements Serializable {
             "DESERT", "LOTSOFWATER", "RICHSOIL", "POORSOIL", "RICHFAUNA", "LIFELESS",
             "WEIRDMUSHROOMS", "LOTSOFHERBS", "ARTISTIC", "WARLIKE"};
 
+    public SolarSystem() {
+        this.name = generateSolarName();
+        int[] coordinates = generateCoordinate();
+        this.x = coordinates[0];
+        this.y = coordinates[1];
+        priceList = new HashMap<>();
+        int r1 = rand.nextInt(techLevelList.length);
+        int r2 = rand.nextInt(resourcesList.length);
+        techLevel = techLevelList[r1];
+        resources = resourcesList[r2];
+        
+    }
     public SolarSystem(String name, int xcoord, int ycoord) {
         this.name = name;
         this.x = xcoord;
@@ -68,8 +80,33 @@ public class SolarSystem implements Serializable {
 
     public String getTechLevel() { return techLevel; }
 
+    /**
+     * Generate the coordinate randomly
+     * @return the corrdinates
+     */
+    private int[] generateCoordinate() {
+        int[] coordinate = new int[2];
+        coordinate[0] = rand.nextInt(100);
+        coordinate[1] = rand.nextInt(100);
+        return coordinate;
+    }
+
+    /**
+     * Generate the solar name randomly
+     * @return the solar name
+     */
+    private String generateSolarName() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 8; i++) {
+            char c = (char)('a' + rand.nextInt(26));
+            sb.append(c);
+        }
+        return new String(sb);
+    }
+
     public void printSolarSystem() {
         System.out.println("Name: " + name + ", x_coord: " + x + ", y_coord: " + y +
                 " resources:" + resources + ", techLevel: " + techLevel);
     }
+
 }
