@@ -28,8 +28,7 @@ public enum TradeGood implements CargoItem {
     @Override
     public String getItemName() {
         String s = this.toString();
-        char c = s.charAt(0);
-        return Character.toUpperCase(c) + s.substring(1).toLowerCase();
+        return s.toLowerCase();
     }
 
     /**

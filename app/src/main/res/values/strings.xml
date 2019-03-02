@@ -7,4 +7,6 @@
     <string name="back">Back</string>
     <string name="ship_name">Ship Name:</string>
     <string name="remaining">Remaining</string>
+    <string name="water">Water</string>
+    <string name="_0">0</string>
 </resources>
