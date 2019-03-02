@@ -17,11 +17,9 @@ public class SolarSystemInteractor extends Interactor {
 
     public SolarSystem getSolarSystem(String name) {
         List<SolarSystem> allSolarSystems = getAllSolarSystems();
-        for (int i = 0; i < allSolarSystems.size(); i++) {
-            if (allSolarSystems.get(i).getName() == name) {
-                return allSolarSystems.get(i);
-            }
-        }
+        for (SolarSystem s : allSolarSystems)
+            if (s.getName().equals(name))
+                return s;
         return null;
     }
 }
