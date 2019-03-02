@@ -162,7 +162,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="478dp"
         android:layout_marginStart="0dp"
-        android:text="OK" />
+        android:text="OK"
+        android:onClick="onOKPressed"/>
 
     <Button
         android:id="@+id/exit_button"
@@ -172,7 +173,8 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="478dp"
         android:layout_marginEnd="5dp"
-        android:text="Exit" />
+        android:text="Exit"
+        android:onClick="onExitPressed"/>
 
 
 </RelativeLayout>

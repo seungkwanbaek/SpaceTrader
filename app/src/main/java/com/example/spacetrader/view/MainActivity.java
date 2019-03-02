@@ -31,11 +31,20 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String EXTRA_MESSAGE = "com.example.androidtutorial.MESSAGE";
     public static final String PLAYER_NAME = "PLAYER_NAME";
     private static final int EDIT_REQUEST = 5;
 
     final Context context = this;
+
+    private PlayerViewModel viewModel;
+
+    /* All the xml components */
+    private EditText nameField;
+    private Spinner difficultySpinner;
+    private NumberPicker pPoint;
+    private NumberPicker fPoint;
+    private NumberPicker tPoint;
+    private NumberPicker ePoint;
 
     private SolarSystemInteractor solarSystemInteractor = Model.getInstance().getSolarSystemInteractor();
 
@@ -48,10 +57,7 @@ public class MainActivity extends AppCompatActivity {
                             "selected number "+numberPicker.getValue(), Toast.LENGTH_SHORT);
                 }
             };
-
-    private Player player;
-    private PlayerViewModel viewModel;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,88 +65,83 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
 
-        final EditText nameField = findViewById(R.id.username_input);
-        final Spinner difficultySpinner = findViewById(R.id.difficulty_spinner);
+        nameField = findViewById(R.id.username_input);
+        difficultySpinner = findViewById(R.id.difficulty_spinner);
         ArrayAdapter<Difficulty> difficultyAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, Difficulty.values());
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(difficultyAdapter);
 
         /** Set the numberPicker for skillPoints */
-        final NumberPicker pPoint = findViewById(R.id.pilot_point);
-        final NumberPicker fPoint = findViewById(R.id.fighter_point);
-        final NumberPicker tPoint = findViewById(R.id.trader_point);
-        final NumberPicker ePoint = findViewById(R.id.engineer_point);
+        pPoint = findViewById(R.id.pilot_point);
+        fPoint = findViewById(R.id.fighter_point);
+        tPoint = findViewById(R.id.trader_point);
+        ePoint = findViewById(R.id.engineer_point);
 
         setNumberPicker(pPoint);
         setNumberPicker(fPoint);
         setNumberPicker(tPoint);
         setNumberPicker(ePoint);
+    }
 
-        /** Set the save button */
-        Button saveButton = findViewById(R.id.save_button);
+    /**
+     * Button handler for the OK button
+     *
+     * @param view the button that was pressed
+     */
+    public void onOKPressed(View view) {
+        int pValue = pPoint.getValue();
+        int fValue = fPoint.getValue();
+        int tValue = tPoint.getValue();
+        int eValue = ePoint.getValue();
 
-        /** Called when the user taps the Save button */
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int pValue = pPoint.getValue();
-                int fValue = fPoint.getValue();
-                int tValue = tPoint.getValue();
-                int eValue = ePoint.getValue();
+        String pName = nameField.getText().toString();
+        String pDifficulty = difficultySpinner.getSelectedItem().toString();
+        int skillPointsSum = pValue + fValue + tValue + eValue;
 
-                String pName = nameField.getText().toString();
-                String pDifficulty = difficultySpinner.getSelectedItem().toString();
-                int skillPointsSum = pValue + fValue + tValue + eValue;
+        if (pName.equals("")) {
+            String res = "Please enter your userName!";
+            Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
+        } else if (skillPointsSum > 16) {
+            String res = "Skill points cannot exceed 16!";
+            Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
+        } else if (skillPointsSum < 16) {
+            String res = "Please allocate all skill points!";
+            Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
+        } else {
+            initializeUniverse();
+            printUniverse();
+            Player player = new Player(pName, pDifficulty, new ArrayList<>((Arrays.asList(pValue, fValue, tValue, eValue))));
+            viewModel.addPlayer(player);
+            Intent intent = new Intent(MainActivity.this, ShowPlayerActivity.class);
+            intent.putExtra(PLAYER_NAME, pName);
+            startActivityForResult(intent, EDIT_REQUEST);
+        }
+    }
 
-                if (pName.equals("")) {
-                    String res = "Please enter your userName!";
-                    Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
-                } else if (skillPointsSum > 16) {
-                    String res = "Skill points cannot exceed 16!";
-                    Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
-                } else if (skillPointsSum < 16) {
-                    String res = "Please allocate all skill points!";
-                    Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
-                } else {
-                    initializeUniverse();
-                    printUniverse();
-                    player = new Player(pName, pDifficulty, new ArrayList<>((Arrays.asList(pValue, fValue, tValue, eValue))));
-                    viewModel.addPlayer(player);
-                    Intent intent = new Intent(MainActivity.this, ShowPlayerActivity.class);
-                    intent.putExtra(PLAYER_NAME, pName);
-                    startActivityForResult(intent, EDIT_REQUEST);
-                }
-            }
-        });
-        initializeUniverse();
-
-
-        /** Set the exit button */
-        Button exitButton = findViewById(R.id.exit_button);
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                alertDialogBuilder
-                        .setMessage("Are you sure to exit?")
-                        .setCancelable(false)
-                        .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                MainActivity.this.finish();
-                            }
-                        })
-                        .setPositiveButton("No",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
-            }
-        });
-
+    /**
+     * Button handler for the exit button
+     *
+     * @param view the button that was pressed
+     */
+    public void onExitPressed(View view) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        alertDialogBuilder
+                .setMessage("Are you sure to exit?")
+                .setCancelable(false)
+                .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        MainActivity.this.finish();
+                    }
+                })
+                .setPositiveButton("No",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     /**
