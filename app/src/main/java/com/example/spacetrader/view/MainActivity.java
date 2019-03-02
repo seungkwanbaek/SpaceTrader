@@ -36,12 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int EDIT_REQUEST = 5;
 
     final Context context = this;
-    private Spinner difficultySpinner;
-    private EditText nameField;
 
-    private Model model;
     private SolarSystemInteractor solarSystemInteractor = Model.getInstance().getSolarSystemInteractor();
-    private Random rand = new Random();
 
     /** Value Change Listener for NumberPicker */
     NumberPicker.OnValueChangeListener onValueChangeListener =
@@ -61,15 +57,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        nameField = findViewById(R.id.student_name_input);
+        viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
 
-        difficultySpinner = findViewById(R.id.difficulty_spinner);
+        final EditText nameField = findViewById(R.id.username_input);
+        final Spinner difficultySpinner = findViewById(R.id.difficulty_spinner);
         ArrayAdapter<Difficulty> difficultyAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, Difficulty.values());
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(difficultyAdapter);
-
-        viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
 
         /** Set the numberPicker for skillPoints */
         final NumberPicker pPoint = findViewById(R.id.pilot_point);
@@ -81,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
         setNumberPicker(fPoint);
         setNumberPicker(tPoint);
         setNumberPicker(ePoint);
-
-
 
         /** Set the save button */
         Button saveButton = findViewById(R.id.save_button);
@@ -96,10 +89,8 @@ public class MainActivity extends AppCompatActivity {
                 int tValue = tPoint.getValue();
                 int eValue = ePoint.getValue();
 
-                TextView userName = findViewById(R.id.student_name_input);
-                Spinner userDifficulty = findViewById(R.id.difficulty_spinner);
-                String pName = userName.getText().toString();
-                String pDifficulty = userDifficulty.getSelectedItem().toString();
+                String pName = nameField.getText().toString();
+                String pDifficulty = difficultySpinner.getSelectedItem().toString();
                 int skillPointsSum = pValue + fValue + tValue + eValue;
 
                 if (pName.equals("")) {
