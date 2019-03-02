@@ -11,6 +11,6 @@ Jingyang Sui|jsui7|jysui@gatech.edu
 ||
 
 ## Progress
-M5: Creating a configuration page  
-M6: Initialize universe  
-M7: Market and trading <- NOW!  
+[x] M5: Creating a configuration page  
+[x] M6: Initialize universe  
+[] M7: Market and trading
