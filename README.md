@@ -5,7 +5,7 @@ An Android App in development that will resemble a space trader game.
 Name|GT username|email
 :-:|:-:|:-:
 Jingyang Sui|jsui7|jysui@gatech.edu
-||
+Bryan Baek|sbaek47|baek@gatech.edu
 ||
 ||
 ||
