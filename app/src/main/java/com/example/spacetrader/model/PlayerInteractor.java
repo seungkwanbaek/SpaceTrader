@@ -15,12 +15,9 @@ public class PlayerInteractor extends Interactor{
 
     public Player getPlayer(String name) {
         List<Player> players = getRepository().getAllPlayers();
-
-        for (Player p : players) {
+        for (Player p : players)
             if (p.getUserName().equals(name))
                 return p;
-        }
-
         return null;
     }
 }
