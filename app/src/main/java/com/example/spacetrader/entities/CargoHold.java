@@ -2,6 +2,8 @@ package com.example.spacetrader.entities;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import com.example.spacetrader.entities.TradeGood;
+
 
 /**
  * Model of a Cargo Hold.
@@ -20,6 +22,9 @@ public class CargoHold implements Serializable {
     public CargoHold(int maxCapacity) {
         capacity = maxCapacity;
         cargo = new HashMap<>();
+        for (TradeGood good : TradeGood.values()) {
+            cargo.put(good, 0);
+        }
     }
 
     /**
@@ -141,6 +146,13 @@ public class CargoHold implements Serializable {
      */
     public int getCargoQuantity() {
         return cargo.size();
+    }
+
+    /**
+     * @return remaining cargo space
+     */
+    public int getRemaining() {
+        return capacity - cargo.size();
     }
 
     public HashMap<CargoItem, Integer> getCargo() {

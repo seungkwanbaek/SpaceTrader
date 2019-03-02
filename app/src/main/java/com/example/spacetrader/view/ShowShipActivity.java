@@ -11,11 +11,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
+import com.example.spacetrader.entities.CargoItem;
 import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.entities.TradeGood;
 import com.example.spacetrader.viewmodel.PlayerViewModel;
 import com.example.spacetrader.entities.CargoHold;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class ShowShipActivity extends AppCompatActivity {
@@ -25,7 +27,9 @@ public class ShowShipActivity extends AppCompatActivity {
     private CargoHold cargoHold;
 
     private TextView shipType;
-    private TextView pname;
+    private TextView capacity;
+    private TextView remaining;
+
 
 
     /**
@@ -43,14 +47,21 @@ public class ShowShipActivity extends AppCompatActivity {
         playerViewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
 
         shipType = findViewById(R.id.show_ship_type);
+        capacity = findViewById(R.id.show_capacity);
+        remaining = findViewById(R.id.show_remaining);
 
         if (getIntent().hasExtra(ShowPlayerActivity.PLAYER_NAME)) {
             player = playerViewModel.getPlayer(getIntent().getExtras().getString(ShowPlayerActivity.PLAYER_NAME));
-            Log.d("APP", "lololololol");
+            HashMap<CargoItem, Integer> cargo = player.getShip().getCargoHold().getCargo();
 
-            player.getShipType().getCargoHold().getQuantity();
 
-            shipType.setText(player.getShipType().getType().toString());
+            shipType.setText(player.getShip().getType().toString());
+            capacity.setText(String.valueOf(player.getShip().getCargoHold().getCapacity()));
+            remaining.setText(String.valueOf(player.getShip().getCargoHold().getRemaining()));
+
+
+
+
 
         } else {
             //no course is an internal error, this should not happen

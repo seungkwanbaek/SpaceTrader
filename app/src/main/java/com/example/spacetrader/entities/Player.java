@@ -48,7 +48,7 @@ public class Player implements Serializable {
 
     public HashMap getSkillPoints() { return skill_points; }
 
-    public Ship getShipType() { return ship; }
+    public Ship getShip() { return ship; }
 
     public int getPlayerID() { return playerID; }
 
@@ -82,7 +82,7 @@ public class Player implements Serializable {
      * Setter for ship_type
      * @param ship the ship_type
      */
-    public void setShip_type(Ship ship) {
+    public void setShip(Ship ship) {
         this.ship = ship;
     }
 
