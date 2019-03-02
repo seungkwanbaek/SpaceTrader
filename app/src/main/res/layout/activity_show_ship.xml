@@ -7,33 +7,14 @@
     android:layout_height="match_parent">
 
 
-    <Button
-        android:id="@+id/Back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="587dp"
-        android:layout_marginEnd="164dp"
-        android:layout_marginBottom="96dp"
-        android:text="Back" />
-
     <TextView
-        android:id="@+id/ShipName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/show_ship_type"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="119dp"
-        android:layout_marginTop="47dp"
-        android:layout_marginEnd="233dp"
-        android:layout_marginBottom="665dp"
-        android:text="Ship Name: " />
+        android:layout_marginStart="183dp"
+        android:layout_marginTop="229dp" />
 
     <TextView
         android:id="@+id/Remaining"
@@ -43,29 +24,32 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="313dp"
         android:layout_marginBottom="296dp"
-        android:text="Remaining" />
+        android:text="@string/remaining" />
 
     <TextView
-        android:id="@+id/Capacity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/Shiptype"
+        android:layout_width="82dp"
+        android:layout_height="45dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="461dp"
-        android:layout_marginEnd="326dp"
-        android:layout_marginBottom="251dp"
-        android:text="Capacity" />
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="106dp"
+        android:layout_marginEnd="283dp"
+        android:layout_marginBottom="579dp"
+        android:text="Ship" />
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="218dp"
-        android:layout_height="288dp"
-        android:layout_alignParentStart="true"
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="26dp"
-        android:layout_marginEnd="166dp"
-        android:layout_marginBottom="323dp" />
+        android:layout_marginEnd="169dp"
+        android:layout_marginBottom="97dp"
+        android:onClick="onBackPressed"
+        android:text="Back" />
+
+
 </RelativeLayout>

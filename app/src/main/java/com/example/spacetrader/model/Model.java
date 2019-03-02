@@ -4,6 +4,7 @@ public class Model {
     private Repository repo;
     private PlayerInteractor playerInteractor;
     private SolarSystemInteractor solarSystemInteractor;
+    private ShipInteractor shipInteractor;
 
     private static Model instance = new Model();
 
@@ -19,4 +20,6 @@ public class Model {
         return playerInteractor;
     }
     public SolarSystemInteractor getSolarSystemInteractor() { return solarSystemInteractor; }
+    public ShipInteractor getShipInteractor() { return shipInteractor; }
+
 }

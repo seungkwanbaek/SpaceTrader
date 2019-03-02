@@ -15,6 +15,7 @@ import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.viewmodel.PlayerViewModel;
 
 public class ShowPlayerActivity extends AppCompatActivity {
+    public static final String PLAYER_NAME = "PLAYER_NAME";
 
     private PlayerViewModel playerViewModel;
     private Player player;
@@ -34,6 +35,7 @@ public class ShowPlayerActivity extends AppCompatActivity {
 
     public void onShipPressed(View view) {
         Intent intent = new Intent( ShowPlayerActivity.this, ShowShipActivity.class);
+        intent.putExtra(PLAYER_NAME, player.getUserName());
         startActivity(intent);
         finish();
     }

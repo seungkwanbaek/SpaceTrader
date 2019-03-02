@@ -17,7 +17,6 @@ public class Ship implements Serializable {
      * Create a new ship of a given type and set its owner.
      *
      * @param type  The type of the new ship.
-     * @param owner The owner of the new ship.
      */
     public Ship(ShipType type) {
         this.type = type;
@@ -74,4 +73,7 @@ public class Ship implements Serializable {
     public void refuel() {
         fuelAmount = type.fuelCapacity;
     }
+
+
+
 }

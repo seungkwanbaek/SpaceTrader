@@ -4,4 +4,7 @@
     <string name="button_send">Send</string>
     <string name="ship">Ship</string>
     <string name="market">Market</string>
+    <string name="back">Back</string>
+    <string name="ship_name">Ship Name:</string>
+    <string name="remaining">Remaining</string>
 </resources>
