@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_ship"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <Button
+        android:id="@+id/Back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="159dp"
+        android:layout_marginTop="587dp"
+        android:layout_marginEnd="164dp"
+        android:layout_marginBottom="96dp"
+        android:text="Back" />
+
+    <TextView
+        android:id="@+id/ShipName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="233dp"
+        android:layout_marginBottom="665dp"
+        android:text="Ship Name: " />
+
+    <TextView
+        android:id="@+id/Remaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="313dp"
+        android:layout_marginBottom="296dp"
+        android:text="Remaining" />
+
+    <TextView
+        android:id="@+id/Capacity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="461dp"
+        android:layout_marginEnd="326dp"
+        android:layout_marginBottom="251dp"
+        android:text="Capacity" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="218dp"
+        android:layout_height="288dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="166dp"
+        android:layout_marginBottom="323dp" />
+</RelativeLayout>

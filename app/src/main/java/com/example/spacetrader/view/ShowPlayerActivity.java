@@ -26,6 +26,19 @@ public class ShowPlayerActivity extends AppCompatActivity {
     private TextView tPoint;
     private TextView ePoint;
 
+    /**
+     * Button handler for view ship button
+     *
+     * @param view the button
+     */
+
+    public void onShipPressed(View view) {
+        Intent intent = new Intent( ShowPlayerActivity.this, ShowShipActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
@@ -58,13 +71,6 @@ public class ShowPlayerActivity extends AppCompatActivity {
 
             /** Set the ship button */
             Button ship = findViewById(R.id.gotoShip);
-            ship.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(ShowPlayerActivity.this, ShowShipActivity.class);
-                    startActivity(intent);
-                }
-            });
 
         } else {
             //no course is an internal error, this should not happen
