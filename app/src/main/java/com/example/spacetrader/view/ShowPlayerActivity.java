@@ -1,10 +1,13 @@
 package com.example.spacetrader.view;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
@@ -49,6 +52,20 @@ public class ShowPlayerActivity extends AppCompatActivity {
             fPoint.setText("" + player.getSkillPoint("Fighter"));
             tPoint.setText("" + player.getSkillPoint("Trader"));
             ePoint.setText("" + player.getSkillPoint("Engineer"));
+
+            /** Set the market button */
+            Button mkt = findViewById(R.id.gotoMarket);
+
+            /** Set the ship button */
+            Button ship = findViewById(R.id.gotoShip);
+            ship.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ShowPlayerActivity.this, ShowShipActivity.class);
+                    startActivity(intent);
+                }
+            });
+
         } else {
             //no course is an internal error, this should not happen
             Log.d("APP", "INTERNAL ERROR < NO PLAYER PASSED");
