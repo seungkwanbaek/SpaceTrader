@@ -1,27 +1,19 @@
 package com.example.spacetrader.view;
 
-import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entities.Player;
-import com.example.spacetrader.viewmodel.AddPlayerViewModel;
-
-import org.w3c.dom.Text;
+import com.example.spacetrader.viewmodel.PlayerViewModel;
 
 public class ShowPlayerActivity extends AppCompatActivity {
 
-    public static final String STUDENT_DATA = "PLAYER_DATA";
-    private static final int EDIT_REQUEST = 5;
+    private PlayerViewModel playerViewModel;
     private Player player;
 
     private TextView pName;
@@ -32,9 +24,11 @@ public class ShowPlayerActivity extends AppCompatActivity {
     private TextView ePoint;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player_item);
+
+        playerViewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
 
         pName = findViewById(R.id.show_player_name);
         pDiffcuilty = findViewById(R.id.show_difficulty);
@@ -43,8 +37,10 @@ public class ShowPlayerActivity extends AppCompatActivity {
         tPoint = findViewById(R.id.text_tPoint);
         ePoint = findViewById(R.id.text_ePoint);
 
-        if (getIntent().hasExtra(MainActivity.PLAYER_DATA)) {
-            player = (Player)getIntent().getSerializableExtra(MainActivity.PLAYER_DATA);
+        if (getIntent().hasExtra(MainActivity.PLAYER_NAME)) {
+            //player = (Player)getIntent().getSerializableExtra(MainActivity.PLAYER_NAME);
+            player = playerViewModel.getPlayer(getIntent().getExtras().getString(MainActivity.PLAYER_NAME));
+            if (player == null) throw new Resources.NotFoundException("[ERROR] Player username not found");
 
             pName.setText(player.getUserName());
             pDiffcuilty.setText(player.getDifficulty());

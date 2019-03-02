@@ -8,11 +8,10 @@ import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.model.PlayerInteractor;
 import com.example.spacetrader.model.Model;
 
-public class AddPlayerViewModel extends AndroidViewModel {
+public class PlayerViewModel extends AndroidViewModel {
     private PlayerInteractor interactor;
-    private Player currentPlayer;
 
-    public AddPlayerViewModel(@NonNull Application application) {
+    public PlayerViewModel(@NonNull Application application) {
         super(application);
         interactor = Model.getInstance().getPlayerInteractor();
     }
@@ -21,8 +20,7 @@ public class AddPlayerViewModel extends AndroidViewModel {
         interactor.addPlayer(player);
     }
 
-    public void setCurrentPlayer(Player player) {
-        currentPlayer = player;
+    public Player getPlayer(String name) {
+        return interactor.getPlayer(name);
     }
-
 }

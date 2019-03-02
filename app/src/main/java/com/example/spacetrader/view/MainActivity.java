@@ -1,5 +1,6 @@
 package com.example.spacetrader.view;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -23,9 +24,7 @@ import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.entities.SolarSystem;
 import com.example.spacetrader.model.SolarSystemInteractor;
 import com.example.spacetrader.model.Model;
-import com.example.spacetrader.viewmodel.AddPlayerViewModel;
-
-import org.w3c.dom.Text;
+import com.example.spacetrader.viewmodel.PlayerViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,7 +32,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.androidtutorial.MESSAGE";
-    public static final String PLAYER_DATA = "PLAYER_DATA";
+    public static final String PLAYER_NAME = "PLAYER_NAME";
     private static final int EDIT_REQUEST = 5;
 
     final Context context = this;
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             };
 
     private Player player;
-    private AddPlayerViewModel viewModel;
+    private PlayerViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, Difficulty.values());
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(difficultyAdapter);
+
+        viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
 
         /** Set the numberPicker for skillPoints */
         final NumberPicker pPoint = findViewById(R.id.pilot_point);
@@ -114,8 +115,9 @@ public class MainActivity extends AppCompatActivity {
                     initializeUniverse();
                     printUniverse();
                     player = new Player(pName, pDifficulty, new ArrayList<>((Arrays.asList(pValue, fValue, tValue, eValue))));
+                    viewModel.addPlayer(player);
                     Intent intent = new Intent(MainActivity.this, ShowPlayerActivity.class);
-                    intent.putExtra(PLAYER_DATA, player);
+                    intent.putExtra(PLAYER_NAME, pName);
                     startActivityForResult(intent, EDIT_REQUEST);
                 }
             }

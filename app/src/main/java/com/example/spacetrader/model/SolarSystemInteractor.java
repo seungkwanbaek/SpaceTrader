@@ -15,4 +15,13 @@ public class SolarSystemInteractor extends Interactor {
 
     public List<SolarSystem> getAllSolarSystems() { return getRepository().getAllSolarSystems(); }
 
+    public SolarSystem getSolarSystem(String name) {
+        List<SolarSystem> allSolarSystems = getAllSolarSystems();
+        for (int i = 0; i < allSolarSystems.size(); i++) {
+            if (allSolarSystems.get(i).getName() == name) {
+                return allSolarSystems.get(i);
+            }
+        }
+        return null;
+    }
 }
