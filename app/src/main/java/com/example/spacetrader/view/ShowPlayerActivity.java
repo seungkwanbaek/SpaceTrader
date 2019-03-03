@@ -29,7 +29,6 @@ public class ShowPlayerActivity extends AppCompatActivity {
     private TextView solarSystem;
 
     public static final String SOLAR_SYSTEM_NAME = "SOLAR_SYSTEM_NAME";
-    private static final int EDIT_REQUEST = 4;
 
     /**
      * Button handler for view ship button
@@ -73,14 +72,6 @@ public class ShowPlayerActivity extends AppCompatActivity {
             tPoint.setText("" + player.getSkillPoint("Trader"));
             ePoint.setText("" + player.getSkillPoint("Engineer"));
             solarSystem.setText(player.getSolarSystem().getName());
-
-            /** Set the market button */
-            Button mkt = findViewById(R.id.Market_button);
-
-            /** Set the ship button */
-            Button ship = findViewById(R.id.Ship_button);
-
-
         } else {
             //no course is an internal error, this should not happen
             Log.d("APP", "INTERNAL ERROR < NO PLAYER PASSED");
@@ -90,6 +81,6 @@ public class ShowPlayerActivity extends AppCompatActivity {
     public void onMarketButtonPressed(View view) {
         Intent intent = new Intent(ShowPlayerActivity.this, ShowMarketActivity.class);
         intent.putExtra(SOLAR_SYSTEM_NAME, solarSystem.getText());
-        startActivityForResult(intent, EDIT_REQUEST);
+        startActivity(intent);
     }
 }

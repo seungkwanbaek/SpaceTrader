@@ -13,12 +13,10 @@ import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.viewmodel.PlayerViewModel;
 
 public class ShowMarketActivity extends AppCompatActivity {
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.market_main);
-    }
-
-    public void onBuyPressed(View view) {
-
     }
 }

@@ -33,7 +33,6 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     public static final String PLAYER_NAME = "PLAYER_NAME";
-    private static final int EDIT_REQUEST = 5;
 
     final Context context = this;
 
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             playerViewModel.addPlayer(player);
             Intent intent = new Intent(MainActivity.this, ShowPlayerActivity.class);
             intent.putExtra(PLAYER_NAME, pName);
-            startActivityForResult(intent, EDIT_REQUEST);
+            startActivity(intent);
         }
     }
 
