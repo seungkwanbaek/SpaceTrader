@@ -1,10 +1,12 @@
 package com.example.spacetrader.view;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
@@ -17,11 +19,15 @@ public class ShowPlayerActivity extends AppCompatActivity {
     private Player player;
 
     private TextView pName;
-    private TextView pDiffcuilty;
+    private TextView pDiffculty;
     private TextView pPoint;
     private TextView fPoint;
     private TextView tPoint;
     private TextView ePoint;
+    private TextView solarSystem;
+
+    public static final String SOLAR_SYSTEM_NAME = "SOLAR_SYSTEM_NAME";
+    private static final int EDIT_REQUEST = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
@@ -31,11 +37,12 @@ public class ShowPlayerActivity extends AppCompatActivity {
         playerViewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
 
         pName = findViewById(R.id.show_player_name);
-        pDiffcuilty = findViewById(R.id.show_difficulty);
+        pDiffculty = findViewById(R.id.show_difficulty);
         pPoint = findViewById(R.id.text_pPoint);
         fPoint = findViewById(R.id.text_fPoint);
         tPoint = findViewById(R.id.text_tPoint);
         ePoint = findViewById(R.id.text_ePoint);
+        solarSystem = findViewById(R.id.show_solar_system);
 
         if (getIntent().hasExtra(MainActivity.PLAYER_NAME)) {
             //player = (Player)getIntent().getSerializableExtra(MainActivity.PLAYER_NAME);
@@ -43,16 +50,22 @@ public class ShowPlayerActivity extends AppCompatActivity {
             if (player == null) throw new Resources.NotFoundException("[ERROR] Player username not found");
 
             pName.setText(player.getUserName());
-            pDiffcuilty.setText(player.getDifficulty());
+            pDiffculty.setText(player.getDifficulty());
             System.out.println("Pilot: " + player.getSkillPoint("Pilot"));
             pPoint.setText("" + player.getSkillPoint("Pilot"));
             fPoint.setText("" + player.getSkillPoint("Fighter"));
             tPoint.setText("" + player.getSkillPoint("Trader"));
             ePoint.setText("" + player.getSkillPoint("Engineer"));
+            solarSystem.setText(player.getSolarSystem().getName());
         } else {
             //no course is an internal error, this should not happen
             Log.d("APP", "INTERNAL ERROR < NO PLAYER PASSED");
         }
     }
 
+    public void onMarketButtonPressed(View view) {
+        Intent intent = new Intent(ShowPlayerActivity.this, ShowMarketActivity.class);
+        intent.putExtra(SOLAR_SYSTEM_NAME, solarSystem.getText());
+        startActivityForResult(intent, EDIT_REQUEST);
+    }
 }

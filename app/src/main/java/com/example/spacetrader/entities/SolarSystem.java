@@ -12,7 +12,6 @@ public class SolarSystem implements Serializable {
     private String name;
     private String techLevel;
     private String resources;
-    private HashMap<Integer, Integer> priceList;
     private Random rand = new Random();
     private int x;
     private int y;
@@ -28,7 +27,6 @@ public class SolarSystem implements Serializable {
         int[] coordinates = generateCoordinate();
         this.x = coordinates[0];
         this.y = coordinates[1];
-        priceList = new HashMap<>();
         int r1 = rand.nextInt(techLevelList.length);
         int r2 = rand.nextInt(resourcesList.length);
         techLevel = techLevelList[r1];
@@ -50,8 +48,6 @@ public class SolarSystem implements Serializable {
     public String getName() { return name; }
 
     public String getResources() { return resources; }
-
-    public HashMap getPriceList() { return priceList; }
 
     public String getTechLevel() { return techLevel; }
 
