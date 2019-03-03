@@ -51,7 +51,11 @@ public class ShowShipActivity extends AppCompatActivity {
      *
      */
     public void onBackPressed(View view) {
-        onBackPressed();
+        super.onBackPressed();
+        Intent i = new Intent(ShowShipActivity.this, ShowPlayerActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+        finish();
     }
 
     @Override
