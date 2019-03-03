@@ -1,10 +1,13 @@
 package com.example.spacetrader.view;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
@@ -12,6 +15,7 @@ import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.viewmodel.PlayerViewModel;
 
 public class ShowPlayerActivity extends AppCompatActivity {
+    public static final String PLAYER_NAME = "PLAYER_NAME";
 
     private PlayerViewModel playerViewModel;
     private Player player;
@@ -22,6 +26,20 @@ public class ShowPlayerActivity extends AppCompatActivity {
     private TextView fPoint;
     private TextView tPoint;
     private TextView ePoint;
+
+    /**
+     * Button handler for view ship button
+     *
+     * @param view the button
+     */
+
+    public void onShipPressed(View view) {
+        Intent intent = new Intent( ShowPlayerActivity.this, ShowShipActivity.class);
+        intent.putExtra(PLAYER_NAME, player.getUserName());
+        startActivity(intent);
+        finish();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
@@ -49,6 +67,13 @@ public class ShowPlayerActivity extends AppCompatActivity {
             fPoint.setText("" + player.getSkillPoint("Fighter"));
             tPoint.setText("" + player.getSkillPoint("Trader"));
             ePoint.setText("" + player.getSkillPoint("Engineer"));
+
+            /** Set the market button */
+            Button mkt = findViewById(R.id.gotoMarket);
+
+            /** Set the ship button */
+            Button ship = findViewById(R.id.gotoShip);
+
         } else {
             //no course is an internal error, this should not happen
             Log.d("APP", "INTERNAL ERROR < NO PLAYER PASSED");

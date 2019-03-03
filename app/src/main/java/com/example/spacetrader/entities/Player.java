@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.example.spacetrader.entities.ShipType.Gnat;
+
 public class Player implements Serializable {
     private String user_name;
 
@@ -11,7 +13,7 @@ public class Player implements Serializable {
 
     private HashMap<String, Integer> skill_points = new HashMap<String, Integer>();
 
-    private String ship_type;
+    private Ship ship;
 
     private int playerID;
 
@@ -25,13 +27,13 @@ public class Player implements Serializable {
     }
 
     public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_) {
-        this(user_name_, difficulty_, skill_points_, "Gnat");
+        this(user_name_, difficulty_, skill_points_, new Ship(ShipType.Gnat));
     }
 
-    public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_, String ship_type_) {
+    public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_, Ship ship_type_) {
         user_name = user_name_;
         difficulty = difficulty_;
-        ship_type = ship_type_;
+        ship = ship_type_;
         skill_points.put("Pilot", skill_points_.get(0));
         skill_points.put("Fighter", skill_points_.get(1));
         skill_points.put("Trader", skill_points_.get(2));
@@ -46,7 +48,7 @@ public class Player implements Serializable {
 
     public HashMap getSkillPoints() { return skill_points; }
 
-    public String getShipType() { return ship_type; }
+    public Ship getShip() { return ship; }
 
     public int getPlayerID() { return playerID; }
 
@@ -78,10 +80,10 @@ public class Player implements Serializable {
 
     /**
      * Setter for ship_type
-     * @param ship_type the ship_type
+     * @param ship the ship_type
      */
-    public void setShip_type(String ship_type) {
-        this.ship_type = ship_type;
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 
     public void setPlayerID(int id) {
