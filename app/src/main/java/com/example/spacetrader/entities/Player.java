@@ -17,6 +17,8 @@ public class Player implements Serializable {
 
     private int playerID;
 
+    private SolarSystem solarSystem;
+
     public Player(Player player) {
         this.user_name = player.user_name;
         this.difficulty = player.difficulty;
@@ -24,20 +26,22 @@ public class Player implements Serializable {
         this.skill_points.put("Fighter", player.skill_points.get("Fighter"));
         this.skill_points.put("Trader", player.skill_points.get("Trader"));
         this.skill_points.put("Trader", player.skill_points.get("Trader"));
+        this.solarSystem = player.solarSystem;
     }
 
-    public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_) {
-        this(user_name_, difficulty_, skill_points_, new Ship(ShipType.Gnat));
+    public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_, SolarSystem solarSystem) {
+        this(user_name_, difficulty_, skill_points_, new Ship(ShipType.Gnat), solarSystem);
     }
 
-    public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_, Ship ship_type_) {
-        user_name = user_name_;
-        difficulty = difficulty_;
-        ship = ship_type_;
-        skill_points.put("Pilot", skill_points_.get(0));
-        skill_points.put("Fighter", skill_points_.get(1));
-        skill_points.put("Trader", skill_points_.get(2));
-        skill_points.put("Engineer", skill_points_.get(3));
+    public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_, Ship ship_type_, SolarSystem solarSystem) {
+        this.user_name = user_name_;
+        this.difficulty = difficulty_;
+        this.ship = ship_type_;
+        this.skill_points.put("Pilot", skill_points_.get(0));
+        this.skill_points.put("Fighter", skill_points_.get(1));
+        this.skill_points.put("Trader", skill_points_.get(2));
+        this.skill_points.put("Engineer", skill_points_.get(3));
+        this.solarSystem = solarSystem;
     }
 
     public String getUserName() { return user_name; }
@@ -52,10 +56,10 @@ public class Player implements Serializable {
 
     public int getPlayerID() { return playerID; }
 
-    /**
-     * Setter for user_name
-     * @param user_name the user name
-     */
+    public SolarSystem getSolarSystem() { return solarSystem; }
+
+
+
     public void setUser_name(String user_name) {
         this.user_name = user_name;
     }
@@ -89,6 +93,8 @@ public class Player implements Serializable {
     public void setPlayerID(int id) {
         this.playerID = id;
     }
+
+    public void setSolarSystem(SolarSystem solarSystem) { this.solarSystem = solarSystem; }
 
 
 }

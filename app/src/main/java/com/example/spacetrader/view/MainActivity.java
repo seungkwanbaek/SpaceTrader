@@ -25,6 +25,7 @@ import com.example.spacetrader.entities.SolarSystem;
 import com.example.spacetrader.model.SolarSystemInteractor;
 import com.example.spacetrader.model.Model;
 import com.example.spacetrader.viewmodel.PlayerViewModel;
+import com.example.spacetrader.viewmodel.SolarSystemViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     final Context context = this;
 
-    private PlayerViewModel viewModel;
+    private PlayerViewModel playerViewModel;
+    private SolarSystemViewModel solarSystemViewModel;
 
     /* All the xml components */
     private EditText nameField;
@@ -63,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
+        playerViewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
+        solarSystemViewModel = ViewModelProviders.of(this).get(SolarSystemViewModel.class);
 
         nameField = findViewById(R.id.username_input);
         difficultySpinner = findViewById(R.id.difficulty_spinner);
@@ -111,8 +114,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             initializeUniverse();
             printUniverse();
-            Player player = new Player(pName, pDifficulty, new ArrayList<>((Arrays.asList(pValue, fValue, tValue, eValue))));
-            viewModel.addPlayer(player);
+            SolarSystem selectedSolarSystem = solarSystemViewModel.getAllSolarSystems().get(0);
+            Player player = new Player(pName, pDifficulty,
+                    new ArrayList<>((Arrays.asList(pValue, fValue, tValue, eValue))),
+                    selectedSolarSystem );
+            playerViewModel.addPlayer(player);
             Intent intent = new Intent(MainActivity.this, ShowPlayerActivity.class);
             intent.putExtra(PLAYER_NAME, pName);
             startActivityForResult(intent, EDIT_REQUEST);
@@ -150,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
     private void initializeUniverse() {
         while (solarSystemInteractor.getAllSolarSystems().size() < 10) {
             SolarSystem curSolarSystem = new SolarSystem();
-            solarSystemInteractor.addSolarSystem(curSolarSystem);
+            solarSystemViewModel.addSolarSystem(curSolarSystem);
         }
     }
 
@@ -158,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
      * Print the Universe
      */
     private void printUniverse() {
-        for (SolarSystem s : solarSystemInteractor.getAllSolarSystems()) {
+        for (SolarSystem s : solarSystemViewModel.getAllSolarSystems()) {
             String content = s.toString();
             largeLog("APP", content);
         }
