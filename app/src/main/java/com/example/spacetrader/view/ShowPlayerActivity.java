@@ -73,14 +73,6 @@ public class ShowPlayerActivity extends AppCompatActivity {
             tPoint.setText("" + player.getSkillPoint("Trader"));
             ePoint.setText("" + player.getSkillPoint("Engineer"));
             solarSystem.setText(player.getSolarSystem().getName());
-
-            /** Set the market button */
-            Button mkt = findViewById(R.id.Market_button);
-
-            /** Set the ship button */
-            Button ship = findViewById(R.id.Ship_button);
-
-
         } else {
             //no course is an internal error, this should not happen
             Log.d("APP", "INTERNAL ERROR < NO PLAYER PASSED");
