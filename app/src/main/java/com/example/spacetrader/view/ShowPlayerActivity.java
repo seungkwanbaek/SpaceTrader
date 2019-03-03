@@ -36,13 +36,6 @@ public class ShowPlayerActivity extends AppCompatActivity {
      * @param view the button
      */
 
-    public void onShipPressed(View view) {
-        Intent intent = new Intent( ShowPlayerActivity.this, ShowShipActivity.class);
-        intent.putExtra(PLAYER_NAME, player.getUserName());
-        startActivity(intent);
-        finish();
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
@@ -82,5 +75,12 @@ public class ShowPlayerActivity extends AppCompatActivity {
         Intent intent = new Intent(ShowPlayerActivity.this, ShowMarketActivity.class);
         intent.putExtra(SOLAR_SYSTEM_NAME, solarSystem.getText());
         startActivity(intent);
+    }
+
+    public void onShipButtonPressed(View view) {
+        Intent intent = new Intent( ShowPlayerActivity.this, ShowShipActivity.class);
+        intent.putExtra(PLAYER_NAME, player.getUserName());
+        startActivity(intent);
+        finish();
     }
 }
