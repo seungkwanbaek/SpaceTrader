@@ -16,6 +16,7 @@ import com.example.spacetrader.viewmodel.PlayerViewModel;
 
 public class ShowPlayerActivity extends AppCompatActivity {
     public static final String PLAYER_NAME = "PLAYER_NAME";
+    public static final String SOLAR_SYSTEM_NAME = "SOLAR_SYSTEM_NAME";
 
     private PlayerViewModel playerViewModel;
     private Player player;
@@ -27,8 +28,6 @@ public class ShowPlayerActivity extends AppCompatActivity {
     private TextView tPoint;
     private TextView ePoint;
     private TextView solarSystem;
-
-    public static final String SOLAR_SYSTEM_NAME = "SOLAR_SYSTEM_NAME";
 
     /**
      * Button handler for view ship button
@@ -74,6 +73,7 @@ public class ShowPlayerActivity extends AppCompatActivity {
     public void onMarketButtonPressed(View view) {
         Intent intent = new Intent(ShowPlayerActivity.this, ShowMarketActivity.class);
         intent.putExtra(SOLAR_SYSTEM_NAME, solarSystem.getText());
+        intent.putExtra(PLAYER_NAME, player.getUserName());
         startActivity(intent);
     }
 
