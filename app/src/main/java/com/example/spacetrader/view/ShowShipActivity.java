@@ -25,6 +25,7 @@ import java.util.Map;
 
 public class ShowShipActivity extends AppCompatActivity {
     private PlayerViewModel playerViewModel;
+    public static final String PLAYER_NAME = "PLAYER_NAME";
 
     private Player player;
     private CargoHold cargoHold;
@@ -54,6 +55,7 @@ public class ShowShipActivity extends AppCompatActivity {
         super.onBackPressed();
         Intent i = new Intent(ShowShipActivity.this, ShowPlayerActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        i.putExtra(PLAYER_NAME, player.getUserName());
         startActivity(i);
         finish();
     }
