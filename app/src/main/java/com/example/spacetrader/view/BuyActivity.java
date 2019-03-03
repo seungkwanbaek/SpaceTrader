@@ -20,7 +20,7 @@ public class BuyActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
-        setContentView();
+        setContentView(R.layout.market_buy);
 
         playerViewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
         solarSystemViewModel = ViewModelProviders.of(this).get(SolarSystemViewModel.class);

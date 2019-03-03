@@ -15,7 +15,7 @@ import com.example.spacetrader.viewmodel.PlayerViewModel;
 public class ShowMarketActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
-        setContentView();
+        setContentView(R.layout.market_main);
     }
 
     public void onBuyPressed(View view) {

@@ -75,10 +75,10 @@ public class ShowPlayerActivity extends AppCompatActivity {
             solarSystem.setText(player.getSolarSystem().getName());
 
             /** Set the market button */
-            Button mkt = findViewById(R.id.gotoMarket);
+            Button mkt = findViewById(R.id.Market_button);
 
             /** Set the ship button */
-            Button ship = findViewById(R.id.gotoShip);
+            Button ship = findViewById(R.id.Ship_button);
 
 
         } else {

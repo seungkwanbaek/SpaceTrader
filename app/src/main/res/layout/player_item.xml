@@ -12,19 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="29dp"
         android:layout_marginTop="30dp"
         android:text="Player: " />
-
-    <TextView
-        android:id="@+id/text_solar_system"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="252dp"
-        android:text="Solar System:" />
 
     <TextView
         android:id="@+id/show_player_name"
@@ -50,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="29dp"
         android:layout_marginTop="74dp"
         android:text="Difficulty" />
 
@@ -70,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="29dp"
         android:layout_marginTop="119dp"
         android:text="Skill Points (TOTAL 16)" />
 
@@ -179,16 +169,38 @@
             android:layout_weight="1" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/Market_button"
+    <TextView
+        android:id="@+id/text_solar_system"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="296dp"
-        android:text="Market"
-        android:onClick="onMarketButtonPressed"/>
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="252dp"
+        android:layout_below="@id/skill_names"
+        android:text="Solar System:" />
+
+    <Button
+        android:id="@+id/Market_button"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/text_solar_system"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="29dp"
+        android:onClick="onMarketButtonPressed"
+        android:text="Market" />
+
+    <Button
+        android:id="@+id/Ship_button"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/text_solar_system"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="129dp"
+        android:layout_marginTop="30dp"
+        android:onClick="onShipPressed"
+        android:text="Ship" />
 
 
 </RelativeLayout>
