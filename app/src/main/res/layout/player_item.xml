@@ -61,63 +61,56 @@
         android:id="@+id/skill_names"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="153dp"
-        android:layout_marginBottom="525dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/show_skillPoints"
         android:orientation="horizontal">
 
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+    <LinearLayout
+        android:id="@+id/pilot_skill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/pilot_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PILOT" />
+        <TextView
+            android:id="@+id/text_pPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1" />
+    </LinearLayout>
+
         <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <LinearLayout
-            android:id="@+id/pilot_skill"
+    <LinearLayout
+        android:id="@+id/fighter_skill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/fighter_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/pilot_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PILOT" />
-
-            <TextView
-                android:id="@+id/text_pPoint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1" />
-        </LinearLayout>
-
-        <Space
+            android:text="FIGHTER" />
+        <TextView
+            android:id="@+id/text_fPoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <LinearLayout
-            android:id="@+id/fighter_skill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/fighter_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="FIGHTER" />
-
-            <TextView
-                android:id="@+id/text_fPoint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1" />
-        </LinearLayout>
+            android:text="1" />
+    </LinearLayout>
 
         <Space
             android:layout_width="wrap_content"
