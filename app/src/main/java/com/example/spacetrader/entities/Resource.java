@@ -30,8 +30,15 @@ public class Resource {
         this.MTH = MTH;
     }
 
-    public int getPrice() {
-        return (basePrice + IPL * (TTP - MTLP) + var);
+    public String getName() {
+        return this.name;
+    }
+    public int getMTLP() {
+        return this.getMTLP();
+    }
+
+    public int getPrice(int techLevelValue) {
+        return (basePrice + IPL * (techLevelValue - MTLP) + var);
     }
 
 

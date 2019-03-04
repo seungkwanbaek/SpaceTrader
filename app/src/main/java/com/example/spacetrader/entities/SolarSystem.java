@@ -5,20 +5,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class SolarSystem implements Serializable {
 
     private String name;
     private String techLevel;
-    private String resources;
+    private int techLevelValue;
+    private String resourceDescrption;
     private Random rand = new Random();
     private int x;
     private int y;
-    private static String[] techLevelList = { "Pre-Agriculture", "Agriculture",
+    private final ResourcesList resourcesList = new ResourcesList();
+    private HashMap<Resource, Integer> pricesList;
+    private static final String[] techLevelList = { "Pre-Agriculture", "Agriculture",
             "Medieval", "Renaissance", "Early Industrial", "Industrial",
             "Post-Industrial", "Hi-Tech"};
-    private static String[] resourcesList = {"NOSPECIALRESOURCES", "MINERALRICH", "MINERALPOOR",
+    private static final String[] resourceDescrptionList = {"NOSPECIALRESOURCES", "MINERALRICH", "MINERALPOOR",
             "DESERT", "LOTSOFWATER", "RICHSOIL", "POORSOIL", "RICHFAUNA", "LIFELESS",
             "WEIRDMUSHROOMS", "LOTSOFHERBS", "ARTISTIC", "WARLIKE"};
 
@@ -27,10 +31,18 @@ public class SolarSystem implements Serializable {
         int[] coordinates = generateCoordinate();
         this.x = coordinates[0];
         this.y = coordinates[1];
-        int r1 = rand.nextInt(techLevelList.length);
-        int r2 = rand.nextInt(resourcesList.length);
-        techLevel = techLevelList[r1];
-        resources = resourcesList[r2];
+        this.techLevelValue = rand.nextInt(techLevelList.length);
+        int r2 = rand.nextInt(resourceDescrptionList.length);
+        techLevel = techLevelList[techLevelValue];
+        resourceDescrption = resourceDescrptionList[r2];
+        this.pricesList = new HashMap<>();
+        updatePriceList();
+    }
+
+    public void updatePriceList() {
+        for (Resource resource : resourcesList.getResourceList()) {
+            pricesList.put(resource, resource.getPrice(techLevelValue));
+        }
     }
 
     @Override
@@ -47,9 +59,13 @@ public class SolarSystem implements Serializable {
 
     public String getName() { return name; }
 
-    public String getResources() { return resources; }
+    public String getResourceDescrption() { return resourceDescrption; }
 
     public String getTechLevel() { return techLevel; }
+
+    public List<Map.Entry> getResourcePrice() {
+        return new ArrayList<Map.Entry>(pricesList.entrySet());
+    }
 
     /**
      * Generate the coordinate randomly
@@ -75,14 +91,15 @@ public class SolarSystem implements Serializable {
         return new String(sb);
     }
 
+
     public void printSolarSystem() {
         System.out.println("Name: " + name + ", x_coord: " + x + ", y_coord: " + y +
-                " resources:" + resources + ", techLevel: " + techLevel);
+                " resourceDescription:" + resourceDescrption + ", techLevel: " + techLevel);
     }
 
     public String toString() {
         return "Name: " + name + ", x_coord: " + x + ", y_coord: " + y +
-                " resources:" + resources + ", techLevel: " + techLevel;
+                " resourceDescription:" + resourceDescrption + ", techLevel: " + techLevel;
     }
 
 }

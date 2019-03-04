@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp">
+
+    <RelativeLayout
+        android:id="@+id/resource_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+        <TextView
+            android:id="@+id/text_resource_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <TextView
+            android:id="@+id/text_resource_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="23dp"
+            android:paddingEnd="8dp" />
+
+        <NumberPicker
+            android:id="@+id/np_buy_amount"
+            android:layout_width="50dp"
+            android:layout_height="22dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="78dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/text_resource_price" />
+    </RelativeLayout>
+
+
+
+</android.support.v7.widget.CardView>
