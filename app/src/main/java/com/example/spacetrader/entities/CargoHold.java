@@ -160,7 +160,7 @@ public class CargoHold implements Serializable {
      * @return remaining cargo space
      */
     public int getRemaining() {
-        return capacity - cargo.size();
+        return capacity - getQuantity();
     }
 
     public HashMap<CargoItem, Integer> getCargo() {
