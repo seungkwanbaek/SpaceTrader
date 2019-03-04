@@ -1,7 +1,11 @@
 package com.example.spacetrader.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.example.spacetrader.entities.TradeGood;
 
 
@@ -25,6 +29,10 @@ public class CargoHold implements Serializable {
         for (TradeGood good : TradeGood.values()) {
             cargo.put(good, 0);
         }
+    }
+
+    public List<Map.Entry> getCargoList() {
+        return new ArrayList<Map.Entry>(cargo.entrySet());
     }
 
     /**

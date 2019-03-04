@@ -8,10 +8,11 @@ public class ShipInteractor extends Interactor{
         super(repo);
     }
 
-    public Player getPlayer() {
+    public Player getPlayer(String name) {
         List<Player> players = getRepository().getAllPlayers();
         for (Player p : players)
-            return p;
+            if (p.getUserName().equals(name))
+                return p;
         return null;
     }
 

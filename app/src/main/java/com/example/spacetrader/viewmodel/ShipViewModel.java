@@ -17,7 +17,7 @@ public class ShipViewModel extends AndroidViewModel {
         interactor = Model.getInstance().getShipInteractor();
     }
 
-    public Player getPlayer() {
-        return interactor.getPlayer();
+    public Player getPlayer(String name) {
+        return interactor.getPlayer(name);
     }
 }
