@@ -31,6 +31,7 @@ class Repository {
     private List<SolarSystem> allSolarSystems;
 
     public Repository() {
+        Log.w("[[X]]", "New repo created");
         allPlayers = new ArrayList<>();
         allSolarSystems = new ArrayList<>();
     }

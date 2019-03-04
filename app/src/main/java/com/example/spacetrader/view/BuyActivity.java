@@ -42,6 +42,11 @@ public class BuyActivity extends AppCompatActivity {
         Log.d("APP", solarSystemViewModel.getAllSolarSystems().toString());
     }
 
+    public void onBuyPressed(View view) {
+        Integer totalPrice = 0;
+
+    }
+
     @Override
     public void onResume() {
         super.onResume();

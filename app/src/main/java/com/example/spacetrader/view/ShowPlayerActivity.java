@@ -1,5 +1,7 @@
 package com.example.spacetrader.view;
 
+import java.util.Locale;
+
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -15,8 +17,8 @@ import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.viewmodel.PlayerViewModel;
 
 public class ShowPlayerActivity extends AppCompatActivity {
-    public static final String PLAYER_NAME = "PLAYER_NAME";
     public static final String SOLAR_SYSTEM_NAME = "SOLAR_SYSTEM_NAME";
+    public static final String PLAYER_NAME = "PLAYER_NAME";
 
     private PlayerViewModel playerViewModel;
     private Player player;
@@ -47,15 +49,15 @@ public class ShowPlayerActivity extends AppCompatActivity {
         if (getIntent().hasExtra(MainActivity.PLAYER_NAME)) {
             //player = (Player)getIntent().getSerializableExtra(MainActivity.PLAYER_NAME);
             player = playerViewModel.getPlayer(getIntent().getExtras().getString(MainActivity.PLAYER_NAME));
-            if (player == null) throw new Resources.NotFoundException("[ERROR] Player username not found");
+            if (player == null) throw new Resources.NotFoundException("[ERROR] Player username "+getIntent().getExtras().getString(MainActivity.PLAYER_NAME)+" not found");
 
             pName.setText(player.getUserName());
             pDifficulty.setText(player.getDifficulty());
             System.out.println("Pilot: " + player.getSkillPoint("Pilot"));
-            pPoint.setText("" + player.getSkillPoint("Pilot"));
-            fPoint.setText("" + player.getSkillPoint("Fighter"));
-            tPoint.setText("" + player.getSkillPoint("Trader"));
-            ePoint.setText("" + player.getSkillPoint("Engineer"));
+            pPoint.setText(String.format(Locale.US, "%d", player.getSkillPoint("Pilot")));
+            fPoint.setText(String.format(Locale.US, "%d", player.getSkillPoint("Fighter")));
+            tPoint.setText(String.format(Locale.US, "%d", player.getSkillPoint("Trader")));
+            ePoint.setText(String.format(Locale.US, "%d", player.getSkillPoint("Engineer")));
             solarSystem.setText(player.getSolarSystem().getName());
         } else {
             //no course is an internal error, this should not happen

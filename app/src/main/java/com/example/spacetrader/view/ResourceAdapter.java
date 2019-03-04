@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.annotation.NonNull;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
@@ -25,13 +26,14 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
 
     private OnResourcePriceClickListener listener;
 
-    public ResourceViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+    @NonNull
+    public ResourceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.resource_item, parent, false);
         return new ResourceViewHolder(itemView);
     }
 
-    public void onBindViewHolder(ResourceViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ResourceViewHolder holder, int position) {
         Map.Entry resourcePricePair = resourcePriceList.get(position);
         Log.d("APP", "Binding: " + position + " " + resourcePriceList.get(position));
         Resource curResource = ((Resource)resourcePricePair.getKey());
@@ -49,11 +51,12 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
 
     private void setNumberPicker(NumberPicker np) {
         np.setMinValue(0);
+        np.setMaxValue(500);
         np.setOnValueChangedListener(onValueChangeListener);
     }
 
     NumberPicker.OnValueChangeListener onValueChangeListener =
-            new 	NumberPicker.OnValueChangeListener(){
+            new NumberPicker.OnValueChangeListener(){
                 @Override
                 public void onValueChange(NumberPicker numberPicker, int i, int i1) {
                 }
@@ -65,23 +68,12 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
         private TextView resourcePrice;
         private NumberPicker buyAmount;
 
-        public ResourceViewHolder(View itemView) {
+        private ResourceViewHolder(View itemView) {
             super(itemView);
             resourceName = itemView.findViewById(R.id.text_resource_name);
             resourcePrice = itemView.findViewById(R.id.text_resource_price);
             buyAmount = itemView.findViewById(R.id.np_buy_amount);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onResourceClicked(resourcePriceList.get(position));
-                    }
-                }
-            });
-
+            setNumberPicker(buyAmount);
         }
     }
 
