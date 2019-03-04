@@ -36,7 +36,7 @@ public class Player implements Serializable {
         this(user_name_, difficulty_, skill_points_, new Ship(ShipType.Gnat), solarSystem, 1000);
     }
 
-    public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_, Ship ship_type_, SolarSystem solarSystem, double currentCredit {
+    public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_, Ship ship_type_, SolarSystem solarSystem, double currentCredit) {
         this.user_name = user_name_;
         this.difficulty = difficulty_;
         this.ship = ship_type_;
