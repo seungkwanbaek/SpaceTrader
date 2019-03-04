@@ -29,27 +29,11 @@ public class ShowShipActivity extends AppCompatActivity {
     private ShipViewModel shipViewModel;
     private ShipAdapter adapter;
 
-
     public static final String PLAYER_NAME = "PLAYER_NAME";
-
     private Player player;
-    private CargoHold cargoHold;
-
     private TextView shipType;
     private TextView capacity;
     private TextView remaining;
-
-    private TextView water;
-    private TextView furs;
-    private TextView food;
-    private TextView ore;
-    private TextView games;
-
-    private TextView firearms;
-    private TextView medicine;
-    private TextView machines;
-    private TextView narcotics;
-    private TextView robots;
 
 
     /**
