@@ -29,13 +29,6 @@ public class ShowPlayerActivity extends AppCompatActivity {
     private TextView ePoint;
     private TextView solarSystem;
 
-    /**
-     * Button handler for view ship button
-     *
-     * @param view the button
-     */
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
