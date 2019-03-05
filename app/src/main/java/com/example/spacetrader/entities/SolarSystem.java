@@ -17,8 +17,8 @@ public class SolarSystem implements Serializable {
     private Random rand = new Random();
     private int x;
     private int y;
-    private final ResourcesList resourcesList = new ResourcesList();
-    private HashMap<Resource, Integer> pricesList;
+    //private final ResourcesList resourcesList = new ResourcesList();
+    //private HashMap<Resource, Integer> pricesList;
     private static final String[] techLevelList = { "Pre-Agriculture", "Agriculture",
             "Medieval", "Renaissance", "Early Industrial", "Industrial",
             "Post-Industrial", "Hi-Tech"};
@@ -35,14 +35,6 @@ public class SolarSystem implements Serializable {
         int r2 = rand.nextInt(resourceDescrptionList.length);
         techLevel = techLevelList[techLevelValue];
         resourceDescrption = resourceDescrptionList[r2];
-        this.pricesList = new HashMap<>();
-        updatePriceList();
-    }
-
-    public void updatePriceList() {
-        for (Resource resource : resourcesList.getResourceList()) {
-            pricesList.put(resource, resource.getPrice(techLevelValue));
-        }
     }
 
     @Override
@@ -58,19 +50,9 @@ public class SolarSystem implements Serializable {
     }
 
     public String getName() { return name; }
-
     public String getResourceDescrption() { return resourceDescrption; }
+    public int getTechLevel() { return techLevelValue; }
 
-    public String getTechLevel() { return techLevel; }
-
-    public HashMap<Resource, Integer> getPriceList() {
-        return pricesList;
-    }
-
-    /**
-     * Generate the coordinate randomly
-     * @return the corrdinates
-     */
     private int[] generateCoordinate() {
         int[] coordinate = new int[2];
         coordinate[0] = rand.nextInt(100);
@@ -89,12 +71,6 @@ public class SolarSystem implements Serializable {
             sb.append(c);
         }
         return new String(sb);
-    }
-
-
-    public void printSolarSystem() {
-        System.out.println("Name: " + name + ", x_coord: " + x + ", y_coord: " + y +
-                " resourceDescription:" + resourceDescrption + ", techLevel: " + techLevel);
     }
 
     public String toString() {

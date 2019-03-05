@@ -15,14 +15,20 @@ import android.widget.Button;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entities.Player;
+import com.example.spacetrader.entities.Resource;
 import com.example.spacetrader.entities.ResourceItem;
 import com.example.spacetrader.entities.SolarSystem;
 import com.example.spacetrader.viewmodel.PlayerViewModel;
+import com.example.spacetrader.viewmodel.ResourceViewModel;
 import com.example.spacetrader.viewmodel.SolarSystemViewModel;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class BuySellActivity extends AppCompatActivity {
     PlayerViewModel playerViewModel;
     SolarSystemViewModel solarSystemViewModel;
+    ResourceViewModel resourceViewModel;
     private ResourceAdapter adapter;
     private SolarSystem solarSystem;
     private Player player;
@@ -36,6 +42,7 @@ public class BuySellActivity extends AppCompatActivity {
         setContentView(R.layout.buy_sell_page);
         playerViewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
         solarSystemViewModel = ViewModelProviders.of(this).get(SolarSystemViewModel.class);
+        resourceViewModel = ViewModelProviders.of(this).get(ResourceViewModel.class);
         solarSystem = solarSystemViewModel.getSolarSystem(getIntent().
                 getExtras().getString(ShowPlayerActivity.SOLAR_SYSTEM_NAME));
         player = playerViewModel.getPlayer(getIntent().
@@ -96,10 +103,10 @@ public class BuySellActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        if (buyFlag) adapter.setUpBuyAdapter(solarSystem.getPriceList(),
+        if (buyFlag) adapter.setUpBuyAdapter(generateResourcePriceList(),
                 player.getCurrentCredit(), player.getShipCapacity(), player.getUsedCapacity(),
                 balanceTextView, subTotalTextView, capacityTextView, usedCapacityTextView);
-        else adapter.setUpSellAdapter(solarSystem.getPriceList(), player.getCargo(),
+        else adapter.setUpSellAdapter(generateResourcePriceList(), player.getCargo(),
                 player.getCurrentCredit(), player.getShipCapacity(), player.getUsedCapacity(),
                 balanceTextView, subTotalTextView, capacityTextView, usedCapacityTextView);
     }
@@ -110,5 +117,14 @@ public class BuySellActivity extends AppCompatActivity {
         intent.putExtra(ShowPlayerActivity.PLAYER_NAME, player.getUserName());
         startActivity(intent);
         finish();
+    }
+
+    private HashMap<String, Integer> generateResourcePriceList() {
+        HashMap<String, Integer> priceList = new HashMap<>();
+        int techLv = solarSystem.getTechLevel();
+        List<Resource> allResources = resourceViewModel.getAllResource();
+        for (Resource r : allResources)
+            priceList.put(r.getName(), r.getPrice(techLv));
+        return priceList;
     }
 }
