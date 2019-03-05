@@ -54,7 +54,7 @@ public class ShowShipActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        adapter.setUpCargo(player.getShip().getCargo());
+        adapter.setUpCargo(player.getCargo());
     }
 
     public void onBackPressed(View view) {

@@ -40,7 +40,7 @@ public class BuyActivity extends AppCompatActivity {
         player = playerViewModel.getPlayer(getIntent().
                 getExtras().getString(ShowPlayerActivity.PLAYER_NAME));
 
-        if (player == null) throw new Resources.NotFoundException("[ERROR] Player username "+getIntent().getExtras().getString(MainActivity.PLAYER_NAME)+" not found");
+        //if (player == null) throw new Resources.NotFoundException("[ERROR] Player username "+getIntent().getExtras().getString(MainActivity.PLAYER_NAME)+" not found");
 
         resourceRecyclerView = findViewById(R.id.resource_list);
         resourceRecyclerView.setLayoutManager(new LinearLayoutManager(this));
