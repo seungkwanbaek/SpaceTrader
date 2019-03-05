@@ -30,6 +30,7 @@ public class ShowPlayerActivity extends AppCompatActivity {
     private TextView tPoint;
     private TextView ePoint;
     private TextView solarSystem;
+    private TextView balance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
@@ -45,6 +46,7 @@ public class ShowPlayerActivity extends AppCompatActivity {
         tPoint = findViewById(R.id.text_tPoint);
         ePoint = findViewById(R.id.text_ePoint);
         solarSystem = findViewById(R.id.show_solar_system);
+        balance = findViewById(R.id.show_balance);
 
         if (getIntent().hasExtra(MainActivity.PLAYER_NAME)) {
             //player = (Player)getIntent().getSerializableExtra(MainActivity.PLAYER_NAME);
@@ -59,6 +61,7 @@ public class ShowPlayerActivity extends AppCompatActivity {
             tPoint.setText(String.format(Locale.US, "%d", player.getSkillPoint("Trader")));
             ePoint.setText(String.format(Locale.US, "%d", player.getSkillPoint("Engineer")));
             solarSystem.setText(player.getSolarSystem().getName());
+            balance.setText(Integer.toString(player.getCurrentCredit()));
         } else {
             //no course is an internal error, this should not happen
             Log.d("APP", "INTERNAL ERROR < NO PLAYER PASSED");
@@ -76,6 +79,5 @@ public class ShowPlayerActivity extends AppCompatActivity {
         Intent intent = new Intent( ShowPlayerActivity.this, ShowShipActivity.class);
         intent.putExtra(PLAYER_NAME, player.getUserName());
         startActivity(intent);
-        finish();
     }
 }

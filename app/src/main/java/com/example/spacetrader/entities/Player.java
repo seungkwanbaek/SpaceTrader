@@ -19,7 +19,7 @@ public class Player implements Serializable {
 
     private SolarSystem solarSystem;
 
-    private double currentCredit;
+    private int currentCredit;
 
     public Player(Player player) {
         this.user_name = player.user_name;
@@ -29,14 +29,14 @@ public class Player implements Serializable {
         this.skill_points.put("Trader", player.skill_points.get("Trader"));
         this.skill_points.put("Trader", player.skill_points.get("Trader"));
         this.solarSystem = player.solarSystem;
-        this.currentCredit = 1000.00;
+        this.currentCredit = 1000;
     }
 
     public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_, SolarSystem solarSystem) {
         this(user_name_, difficulty_, skill_points_, new Ship(ShipType.Gnat), solarSystem, 1000);
     }
 
-    public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_, Ship ship_type_, SolarSystem solarSystem, double currentCredit) {
+    public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_, Ship ship_type_, SolarSystem solarSystem, int currentCredit) {
         this.user_name = user_name_;
         this.difficulty = difficulty_;
         this.ship = ship_type_;
@@ -100,7 +100,7 @@ public class Player implements Serializable {
 
     public void setSolarSystem(SolarSystem solarSystem) { this.solarSystem = solarSystem; }
 
-    public double getCurrentCredit() {
+    public int getCurrentCredit() {
         return currentCredit;
     }
 

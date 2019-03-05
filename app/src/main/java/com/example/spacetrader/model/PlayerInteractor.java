@@ -13,6 +13,10 @@ public class PlayerInteractor extends Interactor{
         getRepository().addPlayer(s);
     }
 
+    public int getCredit(String name) {
+        return getPlayer(name).getCurrentCredit();
+    }
+
     public Player getPlayer(String name) {
         List<Player> players = getRepository().getAllPlayers();
         for (Player p : players)
