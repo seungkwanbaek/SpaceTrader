@@ -27,6 +27,7 @@ public class BuyActivity extends AppCompatActivity {
     private SolarSystem solarSystem;
     private Player player;
     private RecyclerView resourceRecyclerView;
+    private TextView balanceTextView, subTotalTextView;
 
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
@@ -34,12 +35,15 @@ public class BuyActivity extends AppCompatActivity {
         playerViewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
         solarSystemViewModel = ViewModelProviders.of(this).get(SolarSystemViewModel.class);
         solarSystem = solarSystemViewModel.getSolarSystem(getIntent().
-                getExtras().getString(ShowMarketActivity.SOLAR_SYSTEM_NAME));
+                getExtras().getString(ShowPlayerActivity.SOLAR_SYSTEM_NAME));
         player = playerViewModel.getPlayer(getIntent().
-                getExtras().getString(ShowMarketActivity.PLAYER_NAME));
+                getExtras().getString(ShowPlayerActivity.PLAYER_NAME));
         resourceRecyclerView = findViewById(R.id.resource_list);
         resourceRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         resourceRecyclerView.setHasFixedSize(true);
+
+        balanceTextView = findViewById(R.id.show_current_balance);
+        subTotalTextView = findViewById(R.id.show_subtotal);
 
         // Setup the adapter for this recycler view
         adapter = new ResourceAdapter();
@@ -48,28 +52,27 @@ public class BuyActivity extends AppCompatActivity {
     }
 
     public void onBuyPressed(View view) {
-        int totalPrice = 0;
-        int size = ((ResourceAdapter) resourceRecyclerView.getAdapter()).getItemCount();
-        for (int i = 0; i < size; i++) {
-            ResourceItem r = adapter.getItem(i);
-            int price = r.getResroucePrice();
-            int amount = r.getResrouceAmount();
-            int subtotal = price*amount;
-            totalPrice += subtotal;
-        }
+        int totalPrice = adapter.getSubTotal();
         int currentBalance = player.getCurrentCredit();
         if (totalPrice > currentBalance) throw new Resources.NotFoundException("Balance not enough");
         player.cost(totalPrice);
         playerViewModel.setPlayer(player);
-        Intent intent = new Intent(this, ShowMarketActivity.class);
-        intent.putExtra(ShowMarketActivity.SOLAR_SYSTEM_NAME, solarSystem.getName());
-        intent.putExtra(ShowMarketActivity.PLAYER_NAME, player.getUserName());
+        Intent intent = new Intent(this, ShowPlayerActivity.class);
+        intent.putExtra(ShowPlayerActivity.SOLAR_SYSTEM_NAME, solarSystem.getName());
+        intent.putExtra(ShowPlayerActivity.PLAYER_NAME, player.getUserName());
         startActivity(intent);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        adapter.setResourceList(solarSystem.getPriceList());
+        adapter.setUpAdapter(solarSystem.getPriceList(), player.getCurrentCredit(), balanceTextView, subTotalTextView);
+    }
+
+    public void onCancelPressed() {
+        Intent intent = new Intent(this, ShowPlayerActivity.class);
+        intent.putExtra(ShowPlayerActivity.SOLAR_SYSTEM_NAME, solarSystem.getName());
+        intent.putExtra(ShowPlayerActivity.PLAYER_NAME, player.getUserName());
+        startActivity(intent);
     }
 }

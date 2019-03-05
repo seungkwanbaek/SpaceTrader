@@ -25,14 +25,15 @@ import java.util.Map;
 public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.ResourceViewHolder> {
 
     private List<ResourceItem> resourceList = new ArrayList<>();
-
-    private OnResourcePriceClickListener listener;
+    private int subTotal = 0, balance = 0;
+    private TextView balanceTextView, subTotalTextView;
 
     @NonNull
     public ResourceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.resource_item, parent, false);
         return new ResourceViewHolder(itemView);
+
     }
 
     public void onBindViewHolder(@NonNull ResourceViewHolder holder, int position) {
@@ -46,9 +47,16 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
 
     public ResourceItem getItem(int position) { return resourceList.get(position); }
 
-    public void setResourceList(HashMap<Resource, Integer> resourcePriceList) {
+    public int getSubTotal() { return subTotal; }
+
+    public void setUpAdapter(HashMap<Resource, Integer> resourcePriceList, int balance_, TextView balanceTextView_, TextView subTotalTextView_) {
+        this.balance = balance_;
+        this.balanceTextView = balanceTextView_;
+        this.subTotalTextView = subTotalTextView_;
+        balanceTextView.setText(Integer.toString(balance));
+        balanceTextView.setText("0");
         for (Map.Entry<Resource, Integer> entry : resourcePriceList.entrySet()) {
-            resourceList.add(new ResourceItem(entry.getKey().getName(), entry.getValue().intValue(), 0));
+            resourceList.add(new ResourceItem(entry.getKey().getName(), entry.getValue(), 0));
         }
         notifyDataSetChanged();
     }
@@ -70,16 +78,10 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
                 public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                     int position = getAdapterPosition();
                     resourceList.get(position).setResourceAmount(newVal);
+                    subTotal += (newVal-oldVal)*resourceList.get(position).getResroucePrice();
+                    subTotalTextView.setText(Integer.toString(subTotal));
                 }
             });
         }
-    }
-
-    public interface OnResourcePriceClickListener {
-        void onResourceClicked(Map.Entry resourcePricePair);
-    }
-
-    public void setOnResourceClickListener(OnResourcePriceClickListener listener) {
-        this.listener = listener;
     }
 }

@@ -68,12 +68,14 @@ public class ShowPlayerActivity extends AppCompatActivity {
         }
     }
 
-    public void onMarketButtonPressed(View view) {
-        Intent intent = new Intent(ShowPlayerActivity.this, ShowMarketActivity.class);
+    public void onBuyPressed(View view) {
+        Intent intent = new Intent(ShowPlayerActivity.this, BuyActivity.class);
         intent.putExtra(SOLAR_SYSTEM_NAME, solarSystem.getText());
         intent.putExtra(PLAYER_NAME, player.getUserName());
         startActivity(intent);
     }
+
+
 
     public void onShipButtonPressed(View view) {
         Intent intent = new Intent( ShowPlayerActivity.this, ShowShipActivity.class);
