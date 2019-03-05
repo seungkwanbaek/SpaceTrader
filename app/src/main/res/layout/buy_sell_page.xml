@@ -175,7 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Subtotal capacity"/>
+                android:text="Used Capacity"/>
 
             <Space
                 android:layout_width="0dp"
@@ -212,12 +212,12 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/buy_submit_button"
+                android:id="@+id/buy_sell_button"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_gravity="center"
                 android:text="BUY"
-                android:onClick="onBuyPressed"/>
+                android:onClick="onSubmitPressed"/>
 
             <Space
                 android:layout_width="0dp"

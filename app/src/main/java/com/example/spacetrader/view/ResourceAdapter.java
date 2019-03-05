@@ -22,6 +22,7 @@ import java.util.Map;
 public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.ResourceViewHolder> {
 
     private List<ResourceItem> resourceList = new ArrayList<>();
+    private boolean buyFlag = true;
     private int subTotal = 0, balance = 0, cap = 0, usedCap = 0;
     private TextView balanceTextView, subTotalTextView, capacityTextView, usedCapacityTextView;
 
@@ -36,6 +37,12 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
         ResourceItem resourceItem = resourceList.get(position);
         holder.resourceName.setText(resourceItem.getResourceName());
         holder.resourcePrice.setText(Integer.toString(resourceItem.getResroucePrice()));
+        if (resourceItem.getResrouceAmount() == 0) holder.buyAmount.setMaxValue(100);
+        else holder.buyAmount.setMaxValue(resourceItem.getResrouceAmount());
+        holder.buyAmount.setMinValue(0);
+        holder.buyAmount.setValue(0);
+        resourceItem.setResourceAmount(0);
+        resourceList.set(position, resourceItem);
     }
 
     public int getItemCount() { return resourceList.size(); }
@@ -46,7 +53,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
 
     public int getUsedCap() { return usedCap; }
 
-    public void setUpAdapter(HashMap<Resource, Integer> resourcePriceList, int balance_, int cap_, int usedCap_,
+    public void setUpBuyAdapter(HashMap<Resource, Integer> resourcePriceList, int balance_, int cap_, int usedCap_,
                              TextView balanceTextView_, TextView subTotalTextView_, TextView capacityTextView_, TextView usedCapacityTextView_) {
         this.balance = balance_;
         this.usedCap = usedCap_;
@@ -64,6 +71,27 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
         notifyDataSetChanged();
     }
 
+    public void setUpSellAdapter(HashMap<Resource, Integer> resourcePriceList, HashMap<String, Integer> cargo, int balance_, int cap_, int usedCap_,
+                                TextView balanceTextView_, TextView subTotalTextView_, TextView capacityTextView_, TextView usedCapacityTextView_) {
+        this.balance = balance_;
+        this.usedCap = usedCap_;
+        this.cap = cap_;
+        this.buyFlag = false;
+        this.balanceTextView = balanceTextView_;
+        this.subTotalTextView = subTotalTextView_;
+        this.capacityTextView = capacityTextView_;
+        this.usedCapacityTextView = usedCapacityTextView_;
+        balanceTextView.setText(Integer.toString(balance));
+        capacityTextView.setText(Integer.toString(cap));
+        usedCapacityTextView.setText(Integer.toString(usedCap));
+        for (Map.Entry<Resource, Integer> entry : resourcePriceList.entrySet()) {
+            String rName = entry.getKey().getName();
+            if (cargo.containsKey(rName))
+                resourceList.add(new ResourceItem(entry.getKey().getName(), entry.getValue(), cargo.get(rName)));
+        }
+        notifyDataSetChanged();
+    }
+
     class ResourceViewHolder extends RecyclerView.ViewHolder {
         private TextView resourceName;
         private TextView resourcePrice;
@@ -74,8 +102,6 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
             resourceName = itemView.findViewById(R.id.text_resource_name);
             resourcePrice = itemView.findViewById(R.id.text_resource_price);
             buyAmount = itemView.findViewById(R.id.np_buy_amount);
-            buyAmount.setMaxValue(100);
-            buyAmount.setMinValue(0);
             buyAmount.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                 @Override
                 public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -83,7 +109,8 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
                     resourceList.get(position).setResourceAmount(newVal);
                     subTotal += (newVal-oldVal)*resourceList.get(position).getResroucePrice();
                     subTotalTextView.setText(Integer.toString(subTotal));
-                    usedCap += newVal-oldVal;
+                    if (buyFlag) usedCap += newVal-oldVal;
+                    else usedCap -= newVal-oldVal;
                     usedCapacityTextView.setText(Integer.toString(usedCap));
                 }
             });

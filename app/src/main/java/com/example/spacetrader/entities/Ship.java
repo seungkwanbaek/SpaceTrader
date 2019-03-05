@@ -1,5 +1,7 @@
 package com.example.spacetrader.entities;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +55,15 @@ public class Ship implements Serializable {
         Integer currentAmount = cargo.get(resourceName);
         if (currentAmount == null) cargo.put(resourceName, amount);
         else cargo.put(resourceName, amount+currentAmount);
+    }
+
+    public void unloadCargo(String resourceName, int amount) {
+        if (amount == 0) return;
+        Integer currentAmount = cargo.get(resourceName);
+        assert(currentAmount != null && currentAmount >= amount);
+        Log.d("[TEST]", resourceName+" "+Integer.toString(currentAmount)+" "+Integer.toString(amount));
+        if (currentAmount == amount) cargo.remove(resourceName);
+        else cargo.put(resourceName, currentAmount-amount);
     }
 
     public int getTotalCargoAmount() {

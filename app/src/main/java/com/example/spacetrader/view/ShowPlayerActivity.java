@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
@@ -19,6 +18,7 @@ import com.example.spacetrader.viewmodel.PlayerViewModel;
 public class ShowPlayerActivity extends AppCompatActivity {
     public static final String SOLAR_SYSTEM_NAME = "SOLAR_SYSTEM_NAME";
     public static final String PLAYER_NAME = "PLAYER_NAME";
+    public static final String BUY_FLAG = "1";
 
     private PlayerViewModel playerViewModel;
     private Player player;
@@ -69,7 +69,15 @@ public class ShowPlayerActivity extends AppCompatActivity {
     }
 
     public void onBuyPressed(View view) {
-        Intent intent = new Intent(this, BuyActivity.class);
+        Intent intent = new Intent(this, BuySellActivity.class);
+        intent.putExtra(SOLAR_SYSTEM_NAME, solarSystem.getText());
+        intent.putExtra(PLAYER_NAME, player.getUserName());
+        intent.putExtra(BUY_FLAG, "true");
+        startActivity(intent);
+    }
+
+    public void onSellPressed(View view) {
+        Intent intent = new Intent(this, BuySellActivity.class);
         intent.putExtra(SOLAR_SYSTEM_NAME, solarSystem.getText());
         intent.putExtra(PLAYER_NAME, player.getUserName());
         startActivity(intent);

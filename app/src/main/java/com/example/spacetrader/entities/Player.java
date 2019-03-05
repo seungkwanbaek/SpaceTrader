@@ -42,36 +42,20 @@ public class Player implements Serializable {
     }
 
     public String getUserName() { return user_name; }
-
     public String getDifficulty() { return difficulty; }
 
     public Integer getSkillPoint(String skill_name) { return skill_points.get(skill_name); }
-
     public HashMap getSkillPoints() { return skill_points; }
 
     public Ship getShip() { return ship; }
-
     public int getUsedCapacity() { return ship.getTotalCargoAmount(); }
-
     public int getShipCapacity() { return ship.getCargoCapacity(); }
 
     public SolarSystem getSolarSystem() { return solarSystem; }
 
     public HashMap<String, Integer> getCargo() { return this.ship.getCargo(); }
-
     public void loadCargo(String resourceName, int amount) { this.ship.loadCargo(resourceName, amount); }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
-    }
-
-    /**
-     * Setter for difficulty
-     * @param difficulty the difficulty
-     */
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
-    }
+    public void unloadCargo(String resourceName, int amount) { this.ship.unloadCargo(resourceName, amount); }
 
     /**
      * Setter for skill_name
@@ -99,5 +83,5 @@ public class Player implements Serializable {
 
     public void cost(int credit) { this.currentCredit -= credit; }
 
-
+    public void deposit(int credit) { this.currentCredit += credit; }
 }
