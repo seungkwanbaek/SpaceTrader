@@ -76,10 +76,12 @@ public class BuySellActivity extends AppCompatActivity {
             if (totalPrice > currentBalance) {
                 String msg = "You don't have enough balance!";
                 Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+                return;
             }
             if (cap <= usedCap) {
                 String msg = "You don't have enough space ship capacity!";
                 Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+                return;
             }
             player.cost(totalPrice);
             for (int i = 0; i < adapter.getItemCount(); ++i) {
