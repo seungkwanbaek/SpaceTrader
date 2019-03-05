@@ -58,6 +58,10 @@ class Repository {
         allPlayers.add(player);
     }
 
+    public void updatePlayer(Player player) {
+        allPlayers.set(0, player);
+    }
+
     /**
      * add a new solarSystem
      * @param solarSystem the solar system to add

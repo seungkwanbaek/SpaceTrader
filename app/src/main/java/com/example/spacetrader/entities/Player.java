@@ -104,5 +104,7 @@ public class Player implements Serializable {
         return currentCredit;
     }
 
+    public void cost(int credit) { this.currentCredit -= credit; }
+
 
 }

@@ -63,8 +63,8 @@ public class SolarSystem implements Serializable {
 
     public String getTechLevel() { return techLevel; }
 
-    public List<Map.Entry> getResourcePrice() {
-        return new ArrayList<Map.Entry>(pricesList.entrySet());
+    public HashMap<Resource, Integer> getPriceList() {
+        return pricesList;
     }
 
     /**

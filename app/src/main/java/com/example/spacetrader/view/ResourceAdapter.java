@@ -12,17 +12,19 @@ import android.widget.Toast;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entities.Resource;
+import com.example.spacetrader.entities.ResourceItem;
 
 import org.w3c.dom.Entity;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.ResourceViewHolder> {
-    private List<Map.Entry> resourcePriceList = new ArrayList<>();
+
+    private List<ResourceItem> resourceList = new ArrayList<>();
 
     private OnResourcePriceClickListener listener;
 
@@ -34,34 +36,22 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
     }
 
     public void onBindViewHolder(@NonNull ResourceViewHolder holder, int position) {
-        Map.Entry resourcePricePair = resourcePriceList.get(position);
-        Log.d("APP", "Binding: " + position + " " + resourcePriceList.get(position));
-        Resource curResource = ((Resource)resourcePricePair.getKey());
-        Integer curPrice = (Integer)resourcePricePair.getValue();
-        holder.resourceName.setText(curResource.getName());
-        holder.resourcePrice.setText("" + curPrice);
+        ResourceItem resourceItem = resourceList.get(position);
+        Log.d("APP", "Binding: " + position + " " + resourceList.get(position));
+        holder.resourceName.setText(resourceItem.getResourceName());
+        holder.resourcePrice.setText(Integer.toString(resourceItem.getResroucePrice()));
     }
 
-    public int getItemCount() { return resourcePriceList.size(); }
+    public int getItemCount() { return resourceList.size(); }
 
-    public void setResourcePriceList(List<Map.Entry> resourcePriceList) {
-        this.resourcePriceList = resourcePriceList;
+    public ResourceItem getItem(int position) { return resourceList.get(position); }
+
+    public void setResourceList(HashMap<Resource, Integer> resourcePriceList) {
+        for (Map.Entry<Resource, Integer> entry : resourcePriceList.entrySet()) {
+            resourceList.add(new ResourceItem(entry.getKey().getName(), entry.getValue().intValue(), 0));
+        }
         notifyDataSetChanged();
     }
-
-    private void setNumberPicker(NumberPicker np) {
-        np.setMinValue(0);
-        np.setMaxValue(500);
-        np.setOnValueChangedListener(onValueChangeListener);
-    }
-
-    NumberPicker.OnValueChangeListener onValueChangeListener =
-            new NumberPicker.OnValueChangeListener(){
-                @Override
-                public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                }
-            };
-
 
     class ResourceViewHolder extends RecyclerView.ViewHolder {
         private TextView resourceName;
@@ -73,7 +63,15 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
             resourceName = itemView.findViewById(R.id.text_resource_name);
             resourcePrice = itemView.findViewById(R.id.text_resource_price);
             buyAmount = itemView.findViewById(R.id.np_buy_amount);
-            setNumberPicker(buyAmount);
+            buyAmount.setMaxValue(100);
+            buyAmount.setMinValue(0);
+            buyAmount.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+                @Override
+                public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                    int position = getAdapterPosition();
+                    resourceList.get(position).setResourceAmount(newVal);
+                }
+            });
         }
     }
 

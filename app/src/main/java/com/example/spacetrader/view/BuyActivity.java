@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.spacetrader.R;
 import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.entities.Resource;
+import com.example.spacetrader.entities.ResourceItem;
 import com.example.spacetrader.entities.SolarSystem;
 import com.example.spacetrader.viewmodel.PlayerViewModel;
 import com.example.spacetrader.viewmodel.SolarSystemViewModel;
@@ -24,6 +25,8 @@ public class BuyActivity extends AppCompatActivity {
     SolarSystemViewModel solarSystemViewModel;
     private ResourceAdapter adapter;
     private SolarSystem solarSystem;
+    private Player player;
+    private RecyclerView resourceRecyclerView;
 
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
@@ -32,24 +35,41 @@ public class BuyActivity extends AppCompatActivity {
         solarSystemViewModel = ViewModelProviders.of(this).get(SolarSystemViewModel.class);
         solarSystem = solarSystemViewModel.getSolarSystem(getIntent().
                 getExtras().getString(ShowMarketActivity.SOLAR_SYSTEM_NAME));
-        RecyclerView recyclerView = findViewById(R.id.resource_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
+        player = playerViewModel.getPlayer(getIntent().
+                getExtras().getString(ShowMarketActivity.PLAYER_NAME));
+        resourceRecyclerView = findViewById(R.id.resource_list);
+        resourceRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        resourceRecyclerView.setHasFixedSize(true);
 
         // Setup the adapter for this recycler view
         adapter = new ResourceAdapter();
-        recyclerView.setAdapter(adapter);
-        Log.d("APP", solarSystemViewModel.getAllSolarSystems().toString());
+        resourceRecyclerView.setAdapter(adapter);
+        //Log.d("APP", solarSystemViewModel.getAllSolarSystems().toString());
     }
 
     public void onBuyPressed(View view) {
-        Integer totalPrice = 0;
-
+        int totalPrice = 0;
+        int size = ((ResourceAdapter) resourceRecyclerView.getAdapter()).getItemCount();
+        for (int i = 0; i < size; i++) {
+            ResourceItem r = adapter.getItem(i);
+            int price = r.getResroucePrice();
+            int amount = r.getResrouceAmount();
+            int subtotal = price*amount;
+            totalPrice += subtotal;
+        }
+        int currentBalance = player.getCurrentCredit();
+        if (totalPrice > currentBalance) throw new Resources.NotFoundException("Balance not enough");
+        player.cost(totalPrice);
+        playerViewModel.setPlayer(player);
+        Intent intent = new Intent(this, ShowMarketActivity.class);
+        intent.putExtra(ShowMarketActivity.SOLAR_SYSTEM_NAME, solarSystem.getName());
+        intent.putExtra(ShowMarketActivity.PLAYER_NAME, player.getUserName());
+        startActivity(intent);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        adapter.setResourcePriceList(solarSystem.getResourcePrice());
+        adapter.setResourceList(solarSystem.getPriceList());
     }
 }
