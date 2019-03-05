@@ -7,10 +7,11 @@ import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.util.Log;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entities.Player;
@@ -27,7 +28,7 @@ public class BuyActivity extends AppCompatActivity {
     private SolarSystem solarSystem;
     private Player player;
     private RecyclerView resourceRecyclerView;
-    private TextView balanceTextView, subTotalTextView;
+    private TextView balanceTextView, subTotalTextView, capcaityTextView, usedCapacityTextView;
 
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
@@ -38,38 +39,57 @@ public class BuyActivity extends AppCompatActivity {
                 getExtras().getString(ShowPlayerActivity.SOLAR_SYSTEM_NAME));
         player = playerViewModel.getPlayer(getIntent().
                 getExtras().getString(ShowPlayerActivity.PLAYER_NAME));
+
+        if (player == null) throw new Resources.NotFoundException("[ERROR] Player username "+getIntent().getExtras().getString(MainActivity.PLAYER_NAME)+" not found");
+
         resourceRecyclerView = findViewById(R.id.resource_list);
         resourceRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         resourceRecyclerView.setHasFixedSize(true);
 
         balanceTextView = findViewById(R.id.show_current_balance);
         subTotalTextView = findViewById(R.id.show_subtotal);
+        capcaityTextView = findViewById(R.id.show_capacity);
+        usedCapacityTextView = findViewById(R.id.show_subtotal_capacity);
+        balanceTextView.setText(Integer.toString(player.getCurrentCredit()));
 
-        // Setup the adapter for this recycler view
         adapter = new ResourceAdapter();
         resourceRecyclerView.setAdapter(adapter);
-        //Log.d("APP", solarSystemViewModel.getAllSolarSystems().toString());
     }
 
     public void onBuyPressed(View view) {
         int totalPrice = adapter.getSubTotal();
+        int usedCap = adapter.getUsedCap();
+        int cap = player.getShipCapacity();
         int currentBalance = player.getCurrentCredit();
-        if (totalPrice > currentBalance) throw new Resources.NotFoundException("Balance not enough");
-        player.cost(totalPrice);
-        playerViewModel.setPlayer(player);
-        Intent intent = new Intent(this, ShowPlayerActivity.class);
-        intent.putExtra(ShowPlayerActivity.SOLAR_SYSTEM_NAME, solarSystem.getName());
-        intent.putExtra(ShowPlayerActivity.PLAYER_NAME, player.getUserName());
-        startActivity(intent);
+        if (totalPrice > currentBalance) {
+            String msg = "You don't have enough balance!";
+            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        } else if (cap <= usedCap) {
+            String msg = "You don't have enough space ship capacity!";
+            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        } else {
+            player.cost(totalPrice);
+            for (int i = 0; i < adapter.getItemCount(); ++i) {
+                ResourceItem r = adapter.getItem(i);
+                player.loadCargo(r.getResourceName(), r.getResrouceAmount());
+            }
+            playerViewModel.setPlayer(player);
+            Intent intent = new Intent(this, ShowPlayerActivity.class);
+            intent.putExtra(ShowPlayerActivity.SOLAR_SYSTEM_NAME, solarSystem.getName());
+            intent.putExtra(ShowPlayerActivity.PLAYER_NAME, player.getUserName());
+            startActivity(intent);
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        adapter.setUpAdapter(solarSystem.getPriceList(), player.getCurrentCredit(), balanceTextView, subTotalTextView);
+        adapter.setUpAdapter(solarSystem.getPriceList(),
+                player.getCurrentCredit(), player.getShipCapacity(), player.getUsedCapacity(),
+                balanceTextView, subTotalTextView, capcaityTextView, usedCapacityTextView);
     }
 
-    public void onCancelPressed() {
+    public void onCancelPressed(View view) {
         Intent intent = new Intent(this, ShowPlayerActivity.class);
         intent.putExtra(ShowPlayerActivity.SOLAR_SYSTEM_NAME, solarSystem.getName());
         intent.putExtra(ShowPlayerActivity.PLAYER_NAME, player.getUserName());

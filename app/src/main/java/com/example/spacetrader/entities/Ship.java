@@ -2,6 +2,7 @@ package com.example.spacetrader.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Model of a ship.
@@ -10,7 +11,8 @@ import java.util.ArrayList;
  */
 public class Ship implements Serializable {
     private ShipType type;
-    private CargoHold cargoHold;
+    //private CargoHold cargoHold;
+    private HashMap<String, Integer> cargo;
     private double fuelAmount;
 
     /**
@@ -21,7 +23,7 @@ public class Ship implements Serializable {
     public Ship(ShipType type) {
         this.type = type;
         this.fuelAmount = type.fuelCapacity;
-        this.cargoHold = new CargoHold(type.cargoCapacity);
+        this.cargo = new HashMap<>();
     }
 
     /**
@@ -31,11 +33,32 @@ public class Ship implements Serializable {
         return type;
     }
 
+    public int getCargoCapacity() {
+        return type.cargoCapacity;
+    }
+
+    public int getFuelCapacity() {
+        return type.fuelCapacity;
+    }
+
     /**
      * @return The ship's cargo hold
      */
-    public CargoHold getCargoHold() {
-        return cargoHold;
+    public HashMap<String, Integer> getCargo() {
+        return cargo;
+    }
+
+    public void loadCargo(String resourceName, int amount) {
+        /*Integer currentAmount = cargo.get(resourceName);
+        if (currentAmount == null) cargo.put(resourceName, amount);
+        else cargo.put(resourceName, amount+currentAmount);*/
+        cargo.put(resourceName, amount);
+    }
+
+    public int getTotalCargoAmount() {
+        int totalAmount = 0;
+        for (String r : cargo.keySet()) totalAmount += cargo.get(r);
+        return totalAmount;
     }
 
     /**

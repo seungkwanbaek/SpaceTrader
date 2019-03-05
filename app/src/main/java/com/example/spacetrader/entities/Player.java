@@ -8,17 +8,10 @@ import static com.example.spacetrader.entities.ShipType.Gnat;
 
 public class Player implements Serializable {
     private String user_name;
-
     private String difficulty;
-
     private HashMap<String, Integer> skill_points = new HashMap<String, Integer>();
-
     private Ship ship;
-
-    private int playerID;
-
     private SolarSystem solarSystem;
-
     private int currentCredit;
 
     public Player(Player player) {
@@ -58,11 +51,15 @@ public class Player implements Serializable {
 
     public Ship getShip() { return ship; }
 
-    public int getPlayerID() { return playerID; }
+    public int getUsedCapacity() { return ship.getTotalCargoAmount(); }
+
+    public int getShipCapacity() { return ship.getCargoCapacity(); }
 
     public SolarSystem getSolarSystem() { return solarSystem; }
 
+    public HashMap<String, Integer> getCargo() { return this.ship.getCargo(); }
 
+    public void loadCargo(String resourceName, int amount) { this.ship.loadCargo(resourceName, amount); }
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
@@ -92,10 +89,6 @@ public class Player implements Serializable {
      */
     public void setShip(Ship ship) {
         this.ship = ship;
-    }
-
-    public void setPlayerID(int id) {
-        this.playerID = id;
     }
 
     public void setSolarSystem(SolarSystem solarSystem) { this.solarSystem = solarSystem; }

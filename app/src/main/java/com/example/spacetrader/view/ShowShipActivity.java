@@ -7,65 +7,35 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entities.CargoItem;
 import com.example.spacetrader.entities.Player;
-import com.example.spacetrader.entities.TradeGood;
 import com.example.spacetrader.viewmodel.PlayerViewModel;
-import com.example.spacetrader.entities.CargoHold;
 import com.example.spacetrader.viewmodel.ShipViewModel;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class ShowShipActivity extends AppCompatActivity {
     private PlayerViewModel playerViewModel;
     private ShipViewModel shipViewModel;
     private ShipAdapter adapter;
 
-    public static final String PLAYER_NAME = "PLAYER_NAME";
     private Player player;
     private TextView shipType;
     private TextView capacity;
     private TextView remaining;
 
-
-    /**
-     * Button handler for view back button
-     *
-     */
-    public void onBackPressed(View view) {
-        super.onBackPressed();
-        Intent i = new Intent(ShowShipActivity.this, ShowPlayerActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        i.putExtra(PLAYER_NAME, player.getUserName());
-        startActivity(i);
-        finish();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        adapter.setResourcePriceList(player.getShip().getCargoHold().getCargoList());
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_show_ship);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_show_ship);
         playerViewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
         shipViewModel = ViewModelProviders.of(this).get(ShipViewModel.class);
 
         player = playerViewModel.getPlayer(getIntent().
                 getExtras().getString(ShowPlayerActivity.PLAYER_NAME));
 
-        RecyclerView recyclerView = findViewById(R.id.ship_resource_list);
+        RecyclerView recyclerView = findViewById(R.id.resource_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
@@ -73,12 +43,25 @@ public class ShowShipActivity extends AppCompatActivity {
         adapter = new ShipAdapter();
         recyclerView.setAdapter(adapter);
 
-        shipType = findViewById(R.id.show_ship_type);
+        shipType = findViewById(R.id.ship_type);
         capacity = findViewById(R.id.show_capacity);
-        remaining = findViewById(R.id.show_remaining);
+        remaining = findViewById(R.id.show_used);
         shipType.setText(player.getShip().getType().toString());
-        capacity.setText(String.valueOf(player.getShip().getCargoHold().getCapacity()));
-        remaining.setText(String.valueOf(player.getShip().getCargoHold().getRemaining()));
+        capacity.setText(String.valueOf(player.getShip().getCargoCapacity()));
+        remaining.setText(String.valueOf(player.getShip().getTotalCargoAmount()));
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.setUpCargo(player.getShip().getCargo());
+    }
+
+    public void onBackPressed(View view) {
+        super.onBackPressed();
+        Intent intent = new Intent(this, ShowPlayerActivity.class);
+        intent.putExtra(ShowPlayerActivity.PLAYER_NAME, player.getUserName());
+        startActivity(intent);
+        finish();
     }
 }

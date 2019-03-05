@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/resource_layout"
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -24,7 +24,7 @@
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/text_tradegood_name"
+            android:id="@+id/resource_name"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -35,14 +35,9 @@
             android:layout_height="1dp"
             android:layout_weight="1" />
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
-
         <TextView
-            android:id="@+id/amount"
-            android:layout_width="50dp"
+            android:id="@+id/resource_amount"
+            android:layout_width="70dp"
             android:layout_gravity="center"
             android:layout_height="wrap_content" />
 
