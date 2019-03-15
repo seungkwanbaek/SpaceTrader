@@ -6,11 +6,12 @@ Name|GT username|email
 :-:|:-:|:-:
 Jingyang Sui|jsui7|jysui@gatech.edu
 Bryan Baek|sbaek47|baek@gatech.edu
-||
+Xibei Zhang|xzhang774|xzhang774@gatech.edu
 ||
 ||
 
 ## Progress
 - [x] M5: Creating a configuration page  
 - [x] M6: Initialize universe  
-- [ ] M7: Market and trading
+- [x] M7: Market and trading
+- [x] M8: Travel and Update
