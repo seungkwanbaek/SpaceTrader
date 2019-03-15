@@ -3,25 +3,24 @@ import java.lang.Math;
 
 public class SolarSystemItem {
     private String solarSystemName;
+    private SolarSystem solarSystem;
     private int x;
     private int y;
-    private String curSolarSystemName;
     private int cur_x;
     private int cur_y;
     private double solarSystemDistance;
     private double cost;
 
-    public SolarSystemItem(String solarSystemName, String curSolarSystemName,
-                           int x, int y, int cur_x, int cur_y) {
-        this.solarSystemName = solarSystemName;
-        this.curSolarSystemName = curSolarSystemName;
-        this.x = x;
+    public SolarSystemItem(SolarSystem solarSystem, int x, int y, int cur_x, int cur_y) {
+        this.solarSystemName = solarSystem.getName();
+        this.solarSystem = solarSystem;
         this.y = y;
         this.cur_x = cur_x;
         this.cur_y = cur_y;
         this.solarSystemDistance = getDistance(x, cur_x, y, cur_y);
         this.cost = solarSystemDistance * 0.1;
     }
+    public SolarSystem getSolarSystem() { return solarSystem; }
 
     public String getSolarSystemName() { return solarSystemName; }
 

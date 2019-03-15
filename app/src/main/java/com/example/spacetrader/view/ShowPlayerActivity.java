@@ -1,5 +1,6 @@
 package com.example.spacetrader.view;
 
+import java.text.DecimalFormat;
 import java.util.Locale;
 
 import android.arch.lifecycle.ViewModelProviders;
@@ -31,6 +32,7 @@ public class ShowPlayerActivity extends AppCompatActivity {
     private TextView ePoint;
     private TextView solarSystem;
     private TextView balance;
+    private TextView shipFuel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
@@ -47,6 +49,7 @@ public class ShowPlayerActivity extends AppCompatActivity {
         ePoint = findViewById(R.id.text_ePoint);
         solarSystem = findViewById(R.id.show_solar_system);
         balance = findViewById(R.id.show_balance);
+        shipFuel = findViewById(R.id.show_fuel);
 
         if (getIntent().hasExtra(MainActivity.PLAYER_NAME)) {
             //player = (Player)getIntent().getSerializableExtra(MainActivity.PLAYER_NAME);
@@ -65,6 +68,7 @@ public class ShowPlayerActivity extends AppCompatActivity {
             ePoint.setText(String.format(Locale.US, "%d", player.getSkillPoint("Engineer")));
             solarSystem.setText(player.getSolarSystem().getName());
             balance.setText(Integer.toString(player.getCurrentCredit()));
+            shipFuel.setText(formatDouble(player.getShip().getFuelAmount()));
         } else {
             //no course is an internal error, this should not happen
             Log.d("APP", "INTERNAL ERROR < NO PLAYER PASSED");
@@ -96,5 +100,10 @@ public class ShowPlayerActivity extends AppCompatActivity {
         Intent intent = new Intent( this, TravelActivity.class);
         intent.putExtra(PLAYER_NAME, player.getUserName());
         startActivity(intent);
+    }
+
+    private String formatDouble(Double value) {
+        final DecimalFormat df = new DecimalFormat("0.00");
+        return df.format(value);
     }
 }

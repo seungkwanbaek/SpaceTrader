@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.spacetrader.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

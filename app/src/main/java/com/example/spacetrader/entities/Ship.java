@@ -101,6 +101,10 @@ public class Ship implements Serializable {
         }
     }
 
+    public void useFuel(double amount) {
+        fuelAmount -= amount;
+    }
+
     /**
      * Restores ship fuel to maximum.
      */

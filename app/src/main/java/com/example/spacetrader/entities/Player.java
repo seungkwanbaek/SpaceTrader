@@ -85,4 +85,9 @@ public class Player implements Serializable {
     public void cost(int credit) { this.currentCredit -= credit; }
 
     public void deposit(int credit) { this.currentCredit += credit; }
+
+    public void travel(SolarSystem destination, double costFuel) {
+        this.solarSystem = destination;
+        this.ship.useFuel(costFuel);
+    }
 }
