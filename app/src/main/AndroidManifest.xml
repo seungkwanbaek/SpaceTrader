@@ -36,10 +36,18 @@
 
         <activity
             android:name=".view.BuySellActivity"
-            android:parentActivityName=".view.ShowMarketActivity">
+            android:parentActivityName=".view.ShowPlayerActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.spacetrader.view.ShowMarketActivity" />
+                android:value="com.example.spacetrader.view.ShowPlayerActivity" />
+        </activity>
+
+        <activity
+            android:name=".view.TravelActivity"
+            android:parentActivityName=".view.ShowPlayerActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.spacetrader.view.ShowPlayerActivity" />
         </activity>
 
     </application>

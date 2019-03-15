@@ -354,6 +354,18 @@
                 android:layout_height="1dp"
                 android:layout_weight="1" />
 
+            <Button
+                android:id="@+id/travel_button"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:onClick="onTravelButtonPressed"
+                android:text="Travel" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
         </LinearLayout>
 
     </LinearLayout>

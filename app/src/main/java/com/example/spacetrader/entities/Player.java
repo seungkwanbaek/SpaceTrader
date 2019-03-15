@@ -50,6 +50,7 @@ public class Player implements Serializable {
     public Ship getShip() { return ship; }
     public int getUsedCapacity() { return ship.getTotalCargoAmount(); }
     public int getShipCapacity() { return ship.getCargoCapacity(); }
+    public double getFuel() { return ship.getFuelAmount(); }
 
     public SolarSystem getSolarSystem() { return solarSystem; }
 

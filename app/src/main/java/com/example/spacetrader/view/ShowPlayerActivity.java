@@ -50,9 +50,12 @@ public class ShowPlayerActivity extends AppCompatActivity {
 
         if (getIntent().hasExtra(MainActivity.PLAYER_NAME)) {
             //player = (Player)getIntent().getSerializableExtra(MainActivity.PLAYER_NAME);
-            player = playerViewModel.getPlayer(getIntent().getExtras().getString(MainActivity.PLAYER_NAME));
-            if (player == null) throw new Resources.NotFoundException("[ERROR] Player username "+getIntent().getExtras().getString(MainActivity.PLAYER_NAME)+" not found");
-
+            player = playerViewModel.getPlayer(getIntent().getExtras().
+                    getString(MainActivity.PLAYER_NAME));
+            if (player == null) {
+                throw new Resources.NotFoundException("[ERROR] Player username "
+                        + getIntent().getExtras().getString(MainActivity.PLAYER_NAME)+" not found");
+            }
             pName.setText(player.getUserName());
             pDifficulty.setText(player.getDifficulty());
             System.out.println("Pilot: " + player.getSkillPoint("Pilot"));
@@ -85,6 +88,12 @@ public class ShowPlayerActivity extends AppCompatActivity {
 
     public void onShipButtonPressed(View view) {
         Intent intent = new Intent( this, ShowShipActivity.class);
+        intent.putExtra(PLAYER_NAME, player.getUserName());
+        startActivity(intent);
+    }
+
+    public void onTravelButtonPressed(View view) {
+        Intent intent = new Intent( this, TravelActivity.class);
         intent.putExtra(PLAYER_NAME, player.getUserName());
         startActivity(intent);
     }

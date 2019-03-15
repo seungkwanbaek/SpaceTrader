@@ -53,6 +53,9 @@ public class SolarSystem implements Serializable {
     public String getResourceDescrption() { return resourceDescrption; }
     public int getTechLevel() { return techLevelValue; }
 
+    public int getX() { return x; }
+    public int getY() { return y; }
+
     private int[] generateCoordinate() {
         int[] coordinate = new int[2];
         coordinate[0] = rand.nextInt(100);
