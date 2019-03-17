@@ -169,8 +169,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_gravity="center"
-                android:text="STAY"
-                android:onClick="onStayPressed"/>
+                android:text="CANCEL"
+                android:onClick="onCancelPressed"/>
 
             <Space
                 android:layout_width="0dp"

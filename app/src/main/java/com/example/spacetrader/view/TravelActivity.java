@@ -72,9 +72,14 @@ public class TravelActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onStayPressed(View view) {
-        Intent intent = new Intent(this, TravelActivity.class);
-        intent.putExtra(ShowPlayerActivity.SOLAR_SYSTEM_NAME, player.getSolarSystem().getName());
+    public void onCancelPressed(View view) {
+        String solarName = getIntent().getExtras().getString(ShowPlayerActivity.SOLAR_SYSTEM_NAME);
+        Intent intent = new Intent(this, ShowPlayerActivity.class);
+        //SolarSystem destination = solarSystemViewModel.getSolarSystem(getIntent().
+         //       getExtras().getString(ShowPlayerActivity.SOLAR_SYSTEM_NAME));
+
+//        intent.putExtra(ShowPlayerActivity.SOLAR_SYSTEM_NAME, player.getSolarSystem().getName());
+        intent.putExtra(ShowPlayerActivity.SOLAR_SYSTEM_NAME, solarName);
         intent.putExtra(ShowPlayerActivity.PLAYER_NAME, player.getUserName());
         startActivity(intent);
         finish();

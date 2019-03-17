@@ -99,6 +99,7 @@ public class ShowPlayerActivity extends AppCompatActivity {
     public void onTravelButtonPressed(View view) {
         Intent intent = new Intent( this, TravelActivity.class);
         intent.putExtra(PLAYER_NAME, player.getUserName());
+        intent.putExtra(SOLAR_SYSTEM_NAME, solarSystem.getText());
         startActivity(intent);
     }
 
