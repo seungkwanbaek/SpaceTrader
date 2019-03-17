@@ -41,6 +41,7 @@ public class SolarSystemAdapter extends RecyclerView.Adapter<SolarSystemAdapter.
     private double costFuel;
     private double costDistance;
     private SolarSystem solarSystem;
+    private View selectedItem;
 
     public double getCostFuel() { return costFuel; }
     public double getCostDistance() { return costDistance; }
@@ -103,20 +104,14 @@ public class SolarSystemAdapter extends RecyclerView.Adapter<SolarSystemAdapter.
         }
 
         public void onClick(View view) {
+            if (selectedItem != null) selectedItem.setSelected(false);
+            selectedItem = view;
             int position = getAdapterPosition();
-            System.out.println("position" + position + " Click works");
-            if (selectedItems.get(getAdapterPosition(), false)) {
-                selectedItems.delete(getAdapterPosition());
-                view.setSelected(false);
-            }
-            else {
-                int i = getAdapterPosition();
-                selectedItems.put(getAdapterPosition(), true);
-                view.setSelected(true);
-                costDistance = solarSystemItemsList.get(i).getSolarSystemDistance();
-                costFuel = solarSystemItemsList.get(i).getCost();
-                solarSystem = solarSystemItemsList.get(i).getSolarSystem();
-            }
+            selectedItems.put(getAdapterPosition(), true);
+            view.setSelected(true);
+            costDistance = solarSystemItemsList.get(position).getSolarSystemDistance();
+            costFuel = solarSystemItemsList.get(position).getCost();
+            solarSystem = solarSystemItemsList.get(position).getSolarSystem();
         }
     }
 }
