@@ -23,7 +23,7 @@ import com.example.spacetrader.viewmodel.SolarSystemViewModel;
 
 import java.text.DecimalFormat;
 import java.util.List;
-
+import java.util.Random;
 public class TravelActivity extends AppCompatActivity {
     PlayerViewModel playerViewModel;
     SolarSystemViewModel solarSystemViewModel;
@@ -64,6 +64,10 @@ public class TravelActivity extends AppCompatActivity {
             return;
         } else {
             player.travel(destination, costFuel);
+        }
+        Random rand = new Random();
+        if (rand.nextDouble() > 0.6) {
+            player.getShip().unloadCargo("Water", 2);
         }
         playerViewModel.setPlayer(player);
         Intent intent = new Intent(this, ShowPlayerActivity.class);

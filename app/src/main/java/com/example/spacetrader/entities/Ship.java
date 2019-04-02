@@ -58,6 +58,10 @@ public class Ship implements Serializable {
     }
 
     public void unloadCargo(String resourceName, int amount) {
+        if (!cargo.containsKey(resourceName)) {
+            Log.d("[TEST]", "No " + resourceName + " resource!");
+            return;
+        }
         if (amount == 0) return;
         Integer currentAmount = cargo.get(resourceName);
         assert(currentAmount != null && currentAmount >= amount);
