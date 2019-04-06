@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static com.example.spacetrader.entities.ShipType.Gnat;
-
 public class Player implements Serializable {
     private String user_name;
     private String difficulty;
