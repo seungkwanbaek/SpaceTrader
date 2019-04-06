@@ -16,9 +16,7 @@ import static org.junit.Assert.*;
  * @author Bryan
  */
 public class ShipTest {
-
     Ship ship;
-
     @Before
     public void pretest() {
         ship = new Ship(Gnat);
@@ -26,6 +24,9 @@ public class ShipTest {
 
     @Test
     public void loadCargo() {
+        ship.loadCargo(null, 5);
+        Assert.assertEquals(0, ship.getTotalCargoAmount());
+
         ship.loadCargo("Water", -1);
         Assert.assertEquals(0, ship.getTotalCargoAmount());
 

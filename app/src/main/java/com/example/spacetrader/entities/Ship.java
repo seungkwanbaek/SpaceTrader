@@ -51,6 +51,7 @@ public class Ship implements Serializable {
     }
 
     public void loadCargo(String resourceName, int amount) {
+        if (resourceName == null) return;
         if (amount <= 0) return;
         Integer currentAmount = cargo.get(resourceName);
         if (currentAmount == null) cargo.put(resourceName, amount);
