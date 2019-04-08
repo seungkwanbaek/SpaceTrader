@@ -18,8 +18,15 @@ public class Player implements Serializable {
     private int shipCapacity;
     private double fuel;
 
+    /**
+     * Default Constructor for Player
+     */
     public Player() { }
 
+    /**
+     * Constructor of player with given player
+     * @param player given player
+     */
     public Player(Player player) {
         this.user_name = player.user_name;
         this.difficulty = player.difficulty;
@@ -31,10 +38,26 @@ public class Player implements Serializable {
         this.currentCredit = 1000;
     }
 
+    /**
+     * Constructor of player with given name, difficulty, skillPoints and solarSystem
+     * @param user_name_ given userName
+     * @param difficulty_ given difficulty
+     * @param skill_points_ given skillPoints
+     * @param solarSystem given solarSystem
+     */
     public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_, SolarSystem solarSystem) {
         this(user_name_, difficulty_, skill_points_, new Ship(ShipType.Gnat), solarSystem, 1000);
     }
 
+    /**
+     * Constructor of player
+     * @param user_name_ given userName
+     * @param difficulty_ given difficulty
+     * @param skill_points_ given skillPoints
+     * @param ship_type_ given shipType
+     * @param solarSystem given solarSystem
+     * @param currentCredit given currentCredit
+     */
     public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_, Ship ship_type_, SolarSystem solarSystem, int currentCredit) {
         this.user_name = user_name_;
         this.difficulty = difficulty_;
@@ -50,31 +73,97 @@ public class Player implements Serializable {
         this.fuel = ship.getFuelAmount();
     }
 
-    public String getUserName() { return user_name; }
-    public String getDifficulty() { return difficulty; }
+    /**
+     * Getter for userName
+     * @return the userName
+     */
+    public String getUserName() {
+        return user_name;
+    }
 
-    public Integer getSkillPoint(String skill_name) { return skill_points.get(skill_name); }
-    public HashMap getSkillPoints() { return skill_points; }
+    /**
+     * Getter for difficulty
+     * @return the difficulty
+     */
+    public String getDifficulty() {
+        return difficulty;
+    }
 
-    public Ship getShip() { return ship; }
+    /**
+     * Getter for skill point
+     * @param skill_name the skill name
+     * @return the skill point
+     */
+    public Integer getSkillPoint(String skill_name) {
+        return skill_points.get(skill_name);
+    }
+
+    /**
+     * Getter for skillPoints
+     * @return the map of skillPoints allocation
+     */
+    public HashMap getSkillPoints() {
+        return skill_points;
+    }
+
+    /**
+     * Getter for ship
+     * @return the ship
+     */
+    public Ship getShip() {
+        return ship;
+    }
+
+    /**
+     * Getter for usedCapacity
+     * @return the usedcapacity
+     */
     public long getUsedCapacity() {
         this.usedCapacity = ship.getTotalCargoAmount();
         return usedCapacity;
     }
+
+    /**
+     * Getter for shipCapacity
+     * @return the shipcapacity
+     */
     public int getShipCapacity() {
         this.shipCapacity = ship.getCargoCapacity();
         return shipCapacity;
     }
+
+    /**
+     * Getter for fuel
+     * @return the fuel
+     */
     public double getFuel() {
         this.fuel = ship.getFuelAmount();
         return fuel;
     }
 
-    public SolarSystem getSolarSystem() { return solarSystem; }
-    public HashMap<String, Long> getCargo() { return this.ship.getCargo(); }
+    /**
+     * Getter for current credit
+     * @return the current credit
+     */
+    public int getCurrentCredit() {
+        return currentCredit;
+    }
 
-    public void loadCargo(String resourceName, int amount) { this.ship.loadCargo(resourceName, amount); }
-    public void unloadCargo(String resourceName, int amount) { this.ship.unloadCargo(resourceName, amount); }
+    /**
+     * Getter for solar system
+     * @return the solar system
+     */
+    public SolarSystem getSolarSystem() {
+        return solarSystem;
+    }
+
+    /**
+     * Getter for cargo
+     * @return the cargo
+     */
+    public HashMap<String, Long> getCargo() {
+        return this.ship.getCargo();
+    }
 
     public void setSkillPoints(Map<String, Integer> skillPoints) {
         this.skill_points.put("Pilot", skillPoints.get("Pilot"));
@@ -83,6 +172,10 @@ public class Player implements Serializable {
         this.skill_points.put("Engineer", skillPoints.get("Engineer"));
     }
 
+    /**
+     * Setter for usedCapacity
+     * @param usedCapacity the used capacity
+     */
     public void setUsedCapacity(int usedCapacity) {
         this.usedCapacity = usedCapacity;
     }
@@ -105,16 +198,54 @@ public class Player implements Serializable {
         this.ship = ship;
     }
 
-    public void setSolarSystem(SolarSystem solarSystem) { this.solarSystem = solarSystem; }
+    /**
+     * Setter for solarSystem
+     * @param solarSystem the solarSystem
+     */
 
-    public int getCurrentCredit() {
-        return currentCredit;
+    public void setSolarSystem(SolarSystem solarSystem) {
+        this.solarSystem = solarSystem;
     }
 
-    public void cost(int credit) { this.currentCredit -= credit; }
+    /**
+     * Load cargo
+     * @param resourceName the resource name
+     * @param amount the amount
+     */
+    public void loadCargo(String resourceName, int amount) {
+        this.ship.loadCargo(resourceName, amount);
+    }
 
-    public void deposit(int credit) { this.currentCredit += credit; }
+    /**
+     * Unload Cargo
+     * @param resourceName the resource name
+     * @param amount the amount
+     */
+    public void unloadCargo(String resourceName, int amount) {
+        this.ship.unloadCargo(resourceName, amount);
+    }
 
+    /**
+     * Cost certain credit
+     * @param credit the credit amount
+     */
+    public void cost(int credit) {
+        this.currentCredit -= credit;
+    }
+
+    /**
+     * Deposit certain credit
+     * @param credit the credit amount
+     */
+    public void deposit(int credit) {
+        this.currentCredit += credit;
+    }
+
+    /**
+     * Travel to destination solarSystem with fuel
+     * @param destination the destination solarSystem
+     * @param costFuel cost fuel
+     */
     public void travel(SolarSystem destination, double costFuel) {
         this.solarSystem = destination;
         this.ship.useFuel(costFuel);

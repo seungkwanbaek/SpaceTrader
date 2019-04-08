@@ -67,9 +67,13 @@ public class TravelActivity extends AppCompatActivity {
             player.travel(destination, costFuel);
         }
         Random rand = new Random();
+        int curTechLevelValue = player.getSolarSystem().getTechLevelValue();
         if (rand.nextDouble() > 0.6) {
-            player.getShip().unloadCargo("Water", 2);
+            curTechLevelValue = curTechLevelValue > 1 ? curTechLevelValue - 2 : curTechLevelValue + 2;
+        } else {
+            curTechLevelValue = curTechLevelValue > 0 ? curTechLevelValue - 1 : curTechLevelValue + 1;
         }
+        player.getSolarSystem().setTechLevelValue(curTechLevelValue);
         playerViewModel.setPlayer(player);
         MainActivity.myPlayerReference.setValue(player);
         Intent intent = new Intent(this, ShowPlayerActivity.class);

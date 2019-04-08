@@ -3,7 +3,6 @@ package com.example.spacetrader.entities;
 import android.util.Log;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -13,15 +12,16 @@ import java.util.HashMap;
  */
 public class Ship implements Serializable {
     private ShipType type;
-    //private CargoHold cargoHold;
     private HashMap<String, Long> cargo;
     private double fuelAmount;
 
-    public Ship() {};
+    /**
+     * Default Constructor for ship
+     */
+    public Ship() {}
 
     /**
      * Create a new ship of a given type and set its owner.
-     *
      * @param type  The type of the new ship.
      */
     public Ship(ShipType type) {
@@ -30,37 +30,54 @@ public class Ship implements Serializable {
         this.cargo = new HashMap<>();
     }
 
+    /**
+     * Constructor of ship with type, cargo and fuelAmount
+     * @param type the type
+     * @param cargo the cargo
+     * @param fuelAmount the fule amount
+     */
     public Ship(ShipType type, HashMap<String, Long> cargo, double fuelAmount) {
         this.type = type;
         this.cargo = cargo;
         this.fuelAmount = fuelAmount;
     }
-    public void setFuelCapacity(int fuelCapacity) { }
-    public void setCargoCapacity(int cargoCapacity) {}
-    public void setFuelAmount(double fuelAmount) { this.fuelAmount = fuelAmount; }
-
     /**
+     * Getter method for type
      * @return The type of the ship
      */
     public ShipType getType() {
         return type;
     }
 
+    /**
+     * Getter method for cargo capacity
+     * @return the cargo capacity
+     */
     public int getCargoCapacity() {
         return type.cargoCapacity;
     }
 
+    /**
+     * Getter method for fuel capacity
+     * @return the fuel capacity
+     */
     public int getFuelCapacity() {
         return type.fuelCapacity;
     }
 
     /**
+     * Getter method for cargo
      * @return The ship's cargo hold
      */
     public HashMap<String, Long> getCargo() {
         return cargo;
     }
 
+    /**
+     * Load cargo with resource name and amount
+     * @param resourceName the resource name
+     * @param amount the resource amount
+     */
     public void loadCargo(String resourceName, long amount) {
         if (amount == 0) return;
         Long currentAmount = cargo.get(resourceName);
@@ -68,6 +85,11 @@ public class Ship implements Serializable {
         else cargo.put(resourceName, amount+currentAmount);
     }
 
+    /**
+     * Unload cargo with resource and amount
+     * @param resourceName the resource name
+     * @param amount the resource amount
+     */
     public void unloadCargo(String resourceName, int amount) {
         if (!cargo.containsKey(resourceName)) {
             Log.d("[TEST]", "No " + resourceName + " resource!");
@@ -81,6 +103,10 @@ public class Ship implements Serializable {
         else cargo.put(resourceName, currentAmount-amount);
     }
 
+    /**
+     * Getter for total cargoAmount
+     * @return the total cargo amount
+     */
     public long getTotalCargoAmount() {
         long totalAmount = 0;
         for (String r : cargo.keySet()) totalAmount += cargo.get(r);
@@ -116,6 +142,10 @@ public class Ship implements Serializable {
         }
     }
 
+    /**
+     * use fuel method
+     * @param amount the used fuel amount
+     */
     public void useFuel(double amount) {
         fuelAmount -= amount;
     }
@@ -126,7 +156,6 @@ public class Ship implements Serializable {
     public void refuel() {
         fuelAmount = type.fuelCapacity;
     }
-
 
 
 }

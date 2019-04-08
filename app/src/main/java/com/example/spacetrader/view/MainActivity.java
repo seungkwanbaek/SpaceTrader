@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
     public static final String PLAYER_NAME = "PLAYER_NAME";
 
     final Context context = this;
-
     private PlayerViewModel playerViewModel;
     private SolarSystemViewModel solarSystemViewModel;
 
@@ -98,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
         setNumberPicker(fPoint);
         setNumberPicker(tPoint);
         setNumberPicker(ePoint);
+        initializeUniverse();
+        printUniverse();
     }
 
     /**
@@ -124,8 +125,6 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
             String res = "Please allocate all skill points!";
             Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
         } else {
-            initializeUniverse();
-            printUniverse();
             SolarSystem selectedSolarSystem = solarSystemViewModel.getAllSolarSystems().get(0);
             final Player player = new Player(pName, pDifficulty,
                     new ArrayList<>((Arrays.asList(pValue, fValue, tValue, eValue))),
@@ -146,7 +145,11 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
      * @param view the button was pressed
      */
     public void onLastPressed(View view) {
+        initializeUniverse();
+        printUniverse();
+        solarSystemViewModel.addSolarSystem(lastPlayer.getSolarSystem());
         playerViewModel.addPlayer(lastPlayer);
+        mySolarSystemReference.setValue(solarSystemViewModel.getAllSolarSystems());
         Intent intent = new Intent(MainActivity.this, ShowPlayerActivity.class);
         intent.putExtra(PLAYER_NAME, lastPlayer.getUserName());
         startActivity(intent);
@@ -232,7 +235,6 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
     protected void onStart() {
         super.onStart();
         myPlayerReference.addListenerForSingleValueEvent(this);
-//        mySolarSystemReference.addListenerForSingleValueEvent(this);
     }
 
     /**

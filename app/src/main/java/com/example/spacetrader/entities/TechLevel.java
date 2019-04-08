@@ -15,19 +15,18 @@ public enum TechLevel {
 
     /**
      * Constructor for the enumeration
-     *
      * @param Techlevel  name of the techlevel
      */
     TechLevel(String Techlevel) {techlevel = Techlevel; }
 
     /**
-     *
-     * @return   the techlevel
+     * Getter method for techLevel
+     * @return the techlevel
      */
     public String getTechLevel() { return techlevel; }
 
     /**
-     *
+     * toString method
      * @return the display string representation of the tech level
      */
     public String toString() { return techlevel; }
