@@ -154,7 +154,13 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
      * @param view the button was pressed
      */
     public void onLastPressed(View view) {
+        initializeUniverse();
+        printUniverse();
+        solarSystemViewModel.addSolarSystem(lastPlayer.getSolarSystem());
+//        SolarSystem selectedSolarSystem = solarSystemViewModel.getAllSolarSystems().get(0);
+//        lastPlayer.setSolarSystem(selectedSolarSystem);
         playerViewModel.addPlayer(lastPlayer);
+        mySolarSystemReference.setValue(solarSystemViewModel.getAllSolarSystems());
         Intent intent = new Intent(MainActivity.this, ShowPlayerActivity.class);
         intent.putExtra(PLAYER_NAME, lastPlayer.getUserName());
         startActivity(intent);

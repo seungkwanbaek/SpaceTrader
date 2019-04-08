@@ -37,6 +37,9 @@ public class SolarSystem implements Serializable {
         resourceDescrption = resourceDescrptionList[r2];
     }
 
+    public void setTechLevelValue(int tv) {
+        this.techLevelValue = tv;
+    }
     public SolarSystem(String name, String resourceDescrption, String techLevel, int x, int y) {
         this.name = name;
         this.x = x;

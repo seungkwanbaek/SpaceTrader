@@ -13,7 +13,16 @@
           "package_name": "com.example.androidtutorial"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1085787416401-jt4a0e0jt146a7jheeg2rcu8ui90ab69.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.androidtutorial",
+            "certificate_hash": "564a1a40b8631522c4812330768e813c7f453e73"
+          }
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAlItMeUtJRJf0BsyEtt0C7TKLptMipfGY"

@@ -31,6 +31,10 @@ public class Player implements Serializable {
         this.currentCredit = 1000;
     }
 
+    public void SetSS(SolarSystem ss) {
+        this.solarSystem = ss;
+    }
+
     public Player(String user_name_, String difficulty_, ArrayList<Integer> skill_points_, SolarSystem solarSystem) {
         this(user_name_, difficulty_, skill_points_, new Ship(ShipType.Gnat), solarSystem, 1000);
     }
