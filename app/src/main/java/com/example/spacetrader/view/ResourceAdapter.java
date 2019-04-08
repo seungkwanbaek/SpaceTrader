@@ -23,6 +23,12 @@ public final class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.
     private long cap = 0, usedCap = 0;
     private TextView balanceTextView, subTotalTextView, capacityTextView, usedCapacityTextView;
 
+    /**
+     * Create the resource list in buy/sell page
+     * @param parent
+     * @param i
+     * @return
+     */
     @NonNull
     @Override
     public ResourceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
