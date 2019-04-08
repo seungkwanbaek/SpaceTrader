@@ -35,6 +35,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+
+
 public class MainActivity extends AppCompatActivity implements ValueEventListener {
     public static final String PLAYER_NAME = "PLAYER_NAME";
 
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(difficultyAdapter);
 
-        /** Set the numberPicker for skillPoints */
+        // Set the numberPicker for skillPoints
         pPoint = findViewById(R.id.pilot_point);
         fPoint = findViewById(R.id.fighter_point);
         tPoint = findViewById(R.id.trader_point);

@@ -1,11 +1,6 @@
 package com.example.spacetrader.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public class SolarSystem implements Serializable {
@@ -56,9 +51,8 @@ public class SolarSystem implements Serializable {
         this.techLevel = techLevel;
     }
     @Override
-    /**
-     * Override equals method
-     */
+
+    // Override equals method
     public boolean equals(Object that) {
         SolarSystem rhs = (SolarSystem) that;
         if (rhs.name.equals(this.name)) {
