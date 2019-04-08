@@ -124,8 +124,8 @@ public class BuySellActivity extends AppCompatActivity {
         finish();
     }
 
-    private HashMap<String, Long> generateResourcePriceList() {
-        HashMap<String, Long> priceList = new HashMap<>();
+    private Map<String, Long> generateResourcePriceList() {
+        Map<String, Long> priceList = new HashMap<>();
         int techLv = solarSystem.getTechLevelValue();
         List<Resource> allResources = resourceViewModel.getAllResource();
         for (Resource r : allResources)

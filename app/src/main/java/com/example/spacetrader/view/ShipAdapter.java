@@ -17,7 +17,7 @@ import java.util.List;
 import com.example.spacetrader.entities.ResourceItem;
 
 
-public class ShipAdapter extends RecyclerView.Adapter<ShipAdapter.ShipViewHolder> {
+public final class ShipAdapter extends RecyclerView.Adapter<ShipAdapter.ShipViewHolder> {
     private List<ResourceItem> cargoList = new ArrayList<>();
 
     @NonNull

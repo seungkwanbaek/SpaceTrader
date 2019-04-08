@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.ResourceViewHolder> {
+public final class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.ResourceViewHolder> {
 
     private List<ResourceItem> resourceList = new ArrayList<>();
     private boolean buyFlag = true;
@@ -68,7 +68,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
         usedCapacityTextView.setText(Long.toString(usedCap));
     }
 
-    public void setUpBuyAdapter(HashMap<String, Long> resourcePriceList, int balance_, long cap_, long usedCap_,
+    public void setUpBuyAdapter(Map<String, Long> resourcePriceList, int balance_, long cap_, long usedCap_,
                              TextView balanceTextView_, TextView subTotalTextView_, TextView capacityTextView_, TextView usedCapacityTextView_) {
         setUpAdapter(balance_, cap_, usedCap_, balanceTextView_, subTotalTextView_, capacityTextView_, usedCapacityTextView_);
 
@@ -78,7 +78,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
         notifyDataSetChanged();
     }
 
-    public void setUpSellAdapter(HashMap<String, Long> resourcePriceList, HashMap<String, Long> cargo, int balance_, long cap_, long usedCap_,
+    public void setUpSellAdapter(Map<String, Long> resourcePriceList, HashMap<String, Long> cargo, int balance_, long cap_, long usedCap_,
                                 TextView balanceTextView_, TextView subTotalTextView_, TextView capacityTextView_, TextView usedCapacityTextView_) {
         setUpAdapter(balance_, cap_, usedCap_, balanceTextView_, subTotalTextView_, capacityTextView_, usedCapacityTextView_);
         this.buyFlag = false;
@@ -90,7 +90,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
         notifyDataSetChanged();
     }
 
-    class ResourceViewHolder extends RecyclerView.ViewHolder {
+    final class ResourceViewHolder extends RecyclerView.ViewHolder {
         private TextView resourceName;
         private TextView resourcePrice;
         private NumberPicker buyAmount;
