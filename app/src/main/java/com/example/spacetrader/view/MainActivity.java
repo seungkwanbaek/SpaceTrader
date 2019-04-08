@@ -3,23 +3,17 @@ package com.example.spacetrader.view;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.icu.lang.UScript;
-import android.nfc.Tag;
-import android.support.annotation.NonNull;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.content.Intent;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import android.util.Log;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entities.Difficulty;
@@ -27,8 +21,8 @@ import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.entities.Ship;
 import com.example.spacetrader.entities.ShipType;
 import com.example.spacetrader.entities.SolarSystem;
-import com.example.spacetrader.model.SolarSystemInteractor;
 import com.example.spacetrader.model.Model;
+import com.example.spacetrader.model.SolarSystemInteractor;
 import com.example.spacetrader.viewmodel.PlayerViewModel;
 import com.example.spacetrader.viewmodel.SolarSystemViewModel;
 import com.google.firebase.database.DataSnapshot;
@@ -40,8 +34,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements ValueEventListener {
     public static final String PLAYER_NAME = "PLAYER_NAME";
