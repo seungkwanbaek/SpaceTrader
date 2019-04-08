@@ -176,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
                     }
                 })
                 .setPositiveButton("No",new DialogInterface.OnClickListener() {
+                    @Override
                     public void onClick(DialogInterface dialog,int id) {
                         dialog.cancel();
                     }
@@ -236,6 +237,7 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
         System.out.println("The read failed: " + databaseError.getCode());
     }
 
+    @Override
     protected void onStart() {
         super.onStart();
         myPlayerReference.addListenerForSingleValueEvent(this);

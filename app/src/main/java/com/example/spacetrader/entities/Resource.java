@@ -59,7 +59,8 @@ public class Resource {
      * @return the calculated price
      */
     public int getPrice(int techLevelValue) {
-        return (basePrice + IPL * (techLevelValue - MTLP) + var);
+        int result = basePrice + IPL * (techLevelValue - MTLP) + var;
+        return result;
     }
 
 

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Model of a ship.
@@ -12,7 +13,7 @@ import java.util.HashMap;
  */
 public class Ship implements Serializable {
     private ShipType type;
-    private HashMap<String, Long> cargo;
+    private Map<String, Long> cargo;
     private double fuelAmount;
 
     /**
@@ -36,7 +37,7 @@ public class Ship implements Serializable {
      * @param cargo the cargo
      * @param fuelAmount the fule amount
      */
-    public Ship(ShipType type, HashMap<String, Long> cargo, double fuelAmount) {
+    public Ship(ShipType type, Map<String, Long> cargo, double fuelAmount) {
         this.type = type;
         this.cargo = cargo;
         this.fuelAmount = fuelAmount;
@@ -69,7 +70,7 @@ public class Ship implements Serializable {
      * Getter method for cargo
      * @return The ship's cargo hold
      */
-    public HashMap<String, Long> getCargo() {
+    public Map<String, Long> getCargo() {
         return cargo;
     }
 
@@ -135,7 +136,8 @@ public class Ship implements Serializable {
      * @param amount amount of fuel to be added
      */
     public void addFuel(double amount) {
-        if (fuelAmount + amount > type.fuelCapacity) {
+        double currentAmount = fuelAmount + amount;
+        if (currentAmount > type.fuelCapacity) {
             fuelAmount = type.fuelCapacity;
         } else {
             fuelAmount += amount;

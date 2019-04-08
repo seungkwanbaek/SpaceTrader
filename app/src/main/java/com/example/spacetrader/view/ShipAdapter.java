@@ -6,10 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.spacetrader.R;
-
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,18 +18,21 @@ public final class ShipAdapter extends RecyclerView.Adapter<ShipAdapter.ShipView
     private List<ResourceItem> cargoList = new ArrayList<>();
 
     @NonNull
+    @Override
     public ShipViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.resource_item_ship, parent, false);
         return new ShipViewHolder(itemView);
     }
 
+    @Override
     public void onBindViewHolder(@NonNull ShipViewHolder holder, int position) {
         ResourceItem r = cargoList.get(position);
         holder.resourceName.setText(r.getResourceName());
         holder.resourceAmount.setText(Long.toString(r.getResrouceAmount()));
     }
 
+    @Override
     public int getItemCount() { return cargoList.size(); }
 
     public void setUpCargo(HashMap<String, Long> cargo) {
@@ -41,7 +41,7 @@ public final class ShipAdapter extends RecyclerView.Adapter<ShipAdapter.ShipView
         notifyDataSetChanged();
     }
 
-    class ShipViewHolder extends RecyclerView.ViewHolder {
+    final class ShipViewHolder extends RecyclerView.ViewHolder {
         private TextView resourceName;
         private TextView resourceAmount;
 

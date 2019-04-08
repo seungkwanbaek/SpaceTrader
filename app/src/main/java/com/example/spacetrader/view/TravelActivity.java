@@ -4,19 +4,15 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Button;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entities.Player;
-import com.example.spacetrader.entities.Resource;
-import com.example.spacetrader.entities.ResourceItem;
 import com.example.spacetrader.entities.SolarSystem;
 import com.example.spacetrader.viewmodel.PlayerViewModel;
 import com.example.spacetrader.viewmodel.SolarSystemViewModel;
@@ -36,6 +32,8 @@ public class TravelActivity extends AppCompatActivity {
     private TextView curSolarSystemView;
     private TextView curFuel;
     private HashMap<Integer, SolarSystem> solarSystemHashMap;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.travel_page);
@@ -91,6 +89,7 @@ public class TravelActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
     public void onResume() {
         super.onResume();
         adapter.setUpAdapter(allSolarSystems, player.getSolarSystem(), curSolarSystemView);

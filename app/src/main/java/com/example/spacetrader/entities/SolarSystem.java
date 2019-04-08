@@ -59,8 +59,7 @@ public class SolarSystem implements Serializable {
         SolarSystem rhs = (SolarSystem) that;
         if (rhs.name.equals(this.name)) {
             return true;
-        }
-        if (this.x == rhs.x && this.y == rhs.y) {
+        } else if (this.x == rhs.x && this.y == rhs.y) {
             return true;
         }
         return false;

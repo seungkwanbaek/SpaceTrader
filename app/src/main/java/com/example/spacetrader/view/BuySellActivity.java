@@ -38,6 +38,7 @@ public class BuySellActivity extends AppCompatActivity {
     private TextView balanceTextView, subTotalTextView, capacityTextView, usedCapacityTextView;
     private Button buySellButton;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buy_sell_page);

@@ -1,17 +1,13 @@
 package com.example.spacetrader.view;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.annotation.NonNull;
-import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entities.Resource;
 import com.example.spacetrader.entities.ResourceItem;
 
 import java.util.ArrayList;
@@ -28,12 +24,14 @@ public final class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.
     private TextView balanceTextView, subTotalTextView, capacityTextView, usedCapacityTextView;
 
     @NonNull
+    @Override
     public ResourceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.resource_item, parent, false);
         return new ResourceViewHolder(itemView);
     }
 
+    @Override
     public void onBindViewHolder(@NonNull ResourceViewHolder holder, int position) {
         ResourceItem resourceItem = resourceList.get(position);
         holder.resourceName.setText(resourceItem.getResourceName());
@@ -46,6 +44,7 @@ public final class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.
         resourceList.set(position, resourceItem);
     }
 
+    @Override
     public int getItemCount() { return resourceList.size(); }
 
     public ResourceItem getItem(int position) { return resourceList.get(position); }

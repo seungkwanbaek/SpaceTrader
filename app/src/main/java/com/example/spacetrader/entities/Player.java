@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.spacetrader.entities.ShipType.Gnat;
-
 public class Player implements Serializable {
     private String user_name;
     private String difficulty;
-    private HashMap<String, Integer> skill_points = new HashMap<String, Integer>();
+    private HashMap<String, Integer> skill_points = new HashMap<>();
     private Ship ship;
     private SolarSystem solarSystem;
     private int currentCredit;
@@ -102,7 +100,7 @@ public class Player implements Serializable {
      * Getter for skillPoints
      * @return the map of skillPoints allocation
      */
-    public HashMap getSkillPoints() {
+    public Map getSkillPoints() {
         return skill_points;
     }
 

@@ -7,11 +7,7 @@ import com.example.spacetrader.entities.Resource;
 import com.example.spacetrader.entities.SolarSystem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-
-
 
 /**
  * This class is an abstraction of the data storage for the business classes

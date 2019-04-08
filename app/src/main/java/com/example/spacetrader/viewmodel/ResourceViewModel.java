@@ -3,8 +3,6 @@ package com.example.spacetrader.viewmodel;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
-
-import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.entities.Resource;
 import com.example.spacetrader.model.Model;
 import com.example.spacetrader.model.ResourceInteractor;

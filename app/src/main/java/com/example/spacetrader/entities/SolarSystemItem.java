@@ -1,5 +1,4 @@
 package com.example.spacetrader.entities;
-import java.lang.Math;
 
 public class SolarSystemItem {
     private String solarSystemName;
