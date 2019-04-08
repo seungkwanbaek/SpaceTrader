@@ -7,8 +7,6 @@ import com.example.spacetrader.entities.Resource;
 import com.example.spacetrader.entities.SolarSystem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 
@@ -18,7 +16,7 @@ import java.util.List;
  * Normally this would passthrough to our ROOM objects.   To keep this assignment
  * simple, we are just using in-memory storage
  */
-class Repository {
+public class Repository {
 
     private static int next_id = 1;
 
