@@ -1,6 +1,6 @@
 package com.example.spacetrader.model;
 
-public class Model {
+public final class Model {
     private Repository repo;
     private PlayerInteractor playerInteractor;
     private SolarSystemInteractor solarSystemInteractor;

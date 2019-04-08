@@ -38,6 +38,11 @@ public class BuySellActivity extends AppCompatActivity {
     private TextView balanceTextView, subTotalTextView, capacityTextView, usedCapacityTextView;
     private Button buySellButton;
 
+    /**
+     * Setup buy and sell page, initialize price list and cargo list from model
+     * @param savedInstanceState
+     * @throws Resources.NotFoundException
+     */
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buy_sell_page);
@@ -69,6 +74,11 @@ public class BuySellActivity extends AppCompatActivity {
         Map<Integer, SolarSystem> map = new HashMap<>();
     }
 
+    /**
+     * Try to submit the trade, if sanity check not passed, raise a toast
+     * warning and stay at the same page
+     * @param view
+     */
     public void onSubmitPressed(View view) {
         int totalPrice = adapter.getSubTotal();
         long usedCap = adapter.getUsedCap();
@@ -116,6 +126,10 @@ public class BuySellActivity extends AppCompatActivity {
                 balanceTextView, subTotalTextView, capacityTextView, usedCapacityTextView);
     }
 
+    /**
+     * Go back to player page
+     * @param view
+     */
     public void onCancelPressed(View view) {
         Intent intent = new Intent(this, ShowPlayerActivity.class);
         intent.putExtra(ShowPlayerActivity.SOLAR_SYSTEM_NAME, solarSystem.getName());
@@ -124,8 +138,8 @@ public class BuySellActivity extends AppCompatActivity {
         finish();
     }
 
-    private HashMap<String, Long> generateResourcePriceList() {
-        HashMap<String, Long> priceList = new HashMap<>();
+    private Map<String, Long> generateResourcePriceList() {
+        Map<String, Long> priceList = new HashMap<>();
         int techLv = solarSystem.getTechLevelValue();
         List<Resource> allResources = resourceViewModel.getAllResource();
         for (Resource r : allResources)
