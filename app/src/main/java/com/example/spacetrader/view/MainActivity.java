@@ -72,6 +72,10 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
                 }
             };
 
+    /**
+     * Setup the initial page, let the user create a new player or load previous saved player
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,6 +184,10 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
         alertDialog.show();
     }
 
+    /**
+     * Listener that save changes to firebase
+     * @param dataSnapshot
+     */
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         if (dataSnapshot.exists()) {
@@ -227,11 +235,18 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
         }
     }
 
+    /**
+     * Handle error of firebase
+     * @param databaseError
+     */
     @Override
     public void onCancelled(DatabaseError databaseError) {
         System.out.println("The read failed: " + databaseError.getCode());
     }
 
+    /**
+     * Start firebase
+     */
     protected void onStart() {
         super.onStart();
         myPlayerReference.addListenerForSingleValueEvent(this);
