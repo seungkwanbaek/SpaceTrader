@@ -1,7 +1,5 @@
 package com.example.spacetrader.model;
 
-import android.util.Log;
-
 import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.entities.Resource;
 import com.example.spacetrader.entities.SolarSystem;
@@ -27,7 +25,6 @@ public class Repository {
      * Constrcutor of repository
      */
     public Repository() {
-        Log.w("[[X]]", "New repo created");
         allPlayers = new ArrayList<>();
         allSolarSystems = new ArrayList<>();
         initResourceList();

@@ -15,9 +15,9 @@ import java.util.List;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+public class PlayerInteractorUnitTest {
     @Test
-    public void addition_isCorrect() {
+    public void playerDoesExist() {
 
         Repository tempRepo = new Repository();
 
