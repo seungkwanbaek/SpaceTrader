@@ -30,12 +30,12 @@ public class ShipAdapter extends RecyclerView.Adapter<ShipAdapter.ShipViewHolder
     public void onBindViewHolder(@NonNull ShipViewHolder holder, int position) {
         ResourceItem r = cargoList.get(position);
         holder.resourceName.setText(r.getResourceName());
-        holder.resourceAmount.setText(Integer.toString(r.getResrouceAmount()));
+        holder.resourceAmount.setText(Long.toString(r.getResrouceAmount()));
     }
 
     public int getItemCount() { return cargoList.size(); }
 
-    public void setUpCargo(HashMap<String, Integer> cargo) {
+    public void setUpCargo(HashMap<String, Long> cargo) {
         for (String r : cargo.keySet())
             cargoList.add(new ResourceItem(r, 0, cargo.get(r)));
         notifyDataSetChanged();

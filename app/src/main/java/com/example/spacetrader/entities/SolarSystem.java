@@ -37,6 +37,13 @@ public class SolarSystem implements Serializable {
         resourceDescrption = resourceDescrptionList[r2];
     }
 
+    public SolarSystem(String name, String resourceDescrption, String techLevel, int x, int y) {
+        this.name = name;
+        this.x = x;
+        this.y = y;
+        this.resourceDescrption = resourceDescrption;
+        this.techLevel = techLevel;
+    }
     @Override
     public boolean equals(Object that) {
         SolarSystem rhs = (SolarSystem) that;
@@ -51,7 +58,8 @@ public class SolarSystem implements Serializable {
 
     public String getName() { return name; }
     public String getResourceDescrption() { return resourceDescrption; }
-    public int getTechLevel() { return techLevelValue; }
+    public String getTechLevel() { return techLevel; }
+    public int getTechLevelValue() { return techLevelValue; }
 
     public int getX() { return x; }
     public int getY() { return y; }

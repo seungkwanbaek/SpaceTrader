@@ -23,7 +23,8 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
 
     private List<ResourceItem> resourceList = new ArrayList<>();
     private boolean buyFlag = true;
-    private int subTotal = 0, balance = 0, cap = 0, usedCap = 0;
+    private int subTotal = 0, balance = 0;
+    private long cap = 0, usedCap = 0;
     private TextView balanceTextView, subTotalTextView, capacityTextView, usedCapacityTextView;
 
     @NonNull
@@ -36,9 +37,9 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
     public void onBindViewHolder(@NonNull ResourceViewHolder holder, int position) {
         ResourceItem resourceItem = resourceList.get(position);
         holder.resourceName.setText(resourceItem.getResourceName());
-        holder.resourcePrice.setText(Integer.toString(resourceItem.getResroucePrice()));
+        holder.resourcePrice.setText(Long.toString(resourceItem.getResroucePrice()));
         if (resourceItem.getResrouceAmount() == 0) holder.buyAmount.setMaxValue(100);
-        else holder.buyAmount.setMaxValue(resourceItem.getResrouceAmount());
+        else holder.buyAmount.setMaxValue((int)resourceItem.getResrouceAmount());
         holder.buyAmount.setMinValue(0);
         holder.buyAmount.setValue(0);
         resourceItem.setResourceAmount(0);
@@ -51,9 +52,9 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
 
     public int getSubTotal() { return subTotal; }
 
-    public int getUsedCap() { return usedCap; }
+    public long getUsedCap() { return usedCap; }
 
-    private void setUpAdapter(int balance_, int cap_, int usedCap_,
+    private void setUpAdapter(int balance_, long cap_, long usedCap_,
                               TextView balanceTextView_, TextView subTotalTextView_, TextView capacityTextView_, TextView usedCapacityTextView_) {
         this.balance = balance_;
         this.usedCap = usedCap_;
@@ -63,25 +64,25 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
         this.capacityTextView = capacityTextView_;
         this.usedCapacityTextView = usedCapacityTextView_;
         balanceTextView.setText(Integer.toString(balance));
-        capacityTextView.setText(Integer.toString(cap));
-        usedCapacityTextView.setText(Integer.toString(usedCap));
+        capacityTextView.setText(Long.toString(cap));
+        usedCapacityTextView.setText(Long.toString(usedCap));
     }
 
-    public void setUpBuyAdapter(HashMap<String, Integer> resourcePriceList, int balance_, int cap_, int usedCap_,
+    public void setUpBuyAdapter(HashMap<String, Long> resourcePriceList, int balance_, long cap_, long usedCap_,
                              TextView balanceTextView_, TextView subTotalTextView_, TextView capacityTextView_, TextView usedCapacityTextView_) {
         setUpAdapter(balance_, cap_, usedCap_, balanceTextView_, subTotalTextView_, capacityTextView_, usedCapacityTextView_);
 
-        for (Map.Entry<String, Integer> entry : resourcePriceList.entrySet()) {
+        for (Map.Entry<String, Long> entry : resourcePriceList.entrySet()) {
             resourceList.add(new ResourceItem(entry.getKey(), entry.getValue(), 0));
         }
         notifyDataSetChanged();
     }
 
-    public void setUpSellAdapter(HashMap<String, Integer> resourcePriceList, HashMap<String, Integer> cargo, int balance_, int cap_, int usedCap_,
+    public void setUpSellAdapter(HashMap<String, Long> resourcePriceList, HashMap<String, Long> cargo, int balance_, long cap_, long usedCap_,
                                 TextView balanceTextView_, TextView subTotalTextView_, TextView capacityTextView_, TextView usedCapacityTextView_) {
         setUpAdapter(balance_, cap_, usedCap_, balanceTextView_, subTotalTextView_, capacityTextView_, usedCapacityTextView_);
         this.buyFlag = false;
-        for (Map.Entry<String, Integer> entry : resourcePriceList.entrySet()) {
+        for (Map.Entry<String, Long> entry : resourcePriceList.entrySet()) {
             String rName = entry.getKey();
             if (cargo.containsKey(rName))
                 resourceList.add(new ResourceItem(entry.getKey(), entry.getValue(), cargo.get(rName)));
@@ -108,7 +109,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.Resour
                     subTotalTextView.setText(Integer.toString(subTotal));
                     if (buyFlag) usedCap += newVal-oldVal;
                     else usedCap -= newVal-oldVal;
-                    usedCapacityTextView.setText(Integer.toString(usedCap));
+                    usedCapacityTextView.setText(Long.toString(usedCap));
                 }
             });
         }

@@ -24,6 +24,7 @@ import com.example.spacetrader.viewmodel.SolarSystemViewModel;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BuySellActivity extends AppCompatActivity {
     PlayerViewModel playerViewModel;
@@ -65,11 +66,12 @@ public class BuySellActivity extends AppCompatActivity {
 
         adapter = new ResourceAdapter();
         resourceRecyclerView.setAdapter(adapter);
+        Map<Integer, SolarSystem> map = new HashMap<>();
     }
 
     public void onSubmitPressed(View view) {
         int totalPrice = adapter.getSubTotal();
-        int usedCap = adapter.getUsedCap();
+        long usedCap = adapter.getUsedCap();
         int cap = player.getShipCapacity();
         int currentBalance = player.getCurrentCredit();
         if (buyFlag) {
@@ -86,16 +88,17 @@ public class BuySellActivity extends AppCompatActivity {
             player.cost(totalPrice);
             for (int i = 0; i < adapter.getItemCount(); ++i) {
                 ResourceItem r = adapter.getItem(i);
-                player.loadCargo(r.getResourceName(), r.getResrouceAmount());
+                player.loadCargo(r.getResourceName(), (int)r.getResrouceAmount());
             }
         } else {
             player.deposit(totalPrice);
             for (int i = 0; i < adapter.getItemCount(); ++i) {
                 ResourceItem r = adapter.getItem(i);
-                player.unloadCargo(r.getResourceName(), r.getResrouceAmount());
+                player.unloadCargo(r.getResourceName(), (int)r.getResrouceAmount());
             }
         }
         playerViewModel.setPlayer(player);
+        MainActivity.myPlayerReference.setValue(player);
         Intent intent = new Intent(this, ShowPlayerActivity.class);
         intent.putExtra(ShowPlayerActivity.SOLAR_SYSTEM_NAME, solarSystem.getName());
         intent.putExtra(ShowPlayerActivity.PLAYER_NAME, player.getUserName());
@@ -121,12 +124,13 @@ public class BuySellActivity extends AppCompatActivity {
         finish();
     }
 
-    private HashMap<String, Integer> generateResourcePriceList() {
-        HashMap<String, Integer> priceList = new HashMap<>();
-        int techLv = solarSystem.getTechLevel();
+    private HashMap<String, Long> generateResourcePriceList() {
+        HashMap<String, Long> priceList = new HashMap<>();
+        int techLv = solarSystem.getTechLevelValue();
         List<Resource> allResources = resourceViewModel.getAllResource();
         for (Resource r : allResources)
-            priceList.put(r.getName(), r.getPrice(techLv));
+            priceList.put(r.getName(), (long)r.getPrice(techLv));
+        MainActivity.myResourceReference.setValue(priceList);
         return priceList;
     }
 }

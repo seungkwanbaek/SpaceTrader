@@ -2,10 +2,10 @@ package com.example.spacetrader.entities;
 
 public class ResourceItem {
     private String resourceName;
-    private int resroucePrice;
-    private int resourceAmount;
+    private long resroucePrice;
+    private long resourceAmount;
 
-    public ResourceItem(String name, int price, int amount) {
+    public ResourceItem(String name, long price, long amount) {
         this.resourceAmount = amount;
         this.resroucePrice = price;
         this.resourceName = name;
@@ -15,11 +15,11 @@ public class ResourceItem {
         return resourceName;
     }
 
-    public int getResroucePrice() {
+    public long getResroucePrice() {
         return resroucePrice;
     }
 
-    public int getResrouceAmount() {
+    public long getResrouceAmount() {
         return resourceAmount;
     }
 

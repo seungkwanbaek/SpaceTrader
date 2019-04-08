@@ -3,6 +3,7 @@ package com.example.spacetrader.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.spacetrader.entities.ShipType.Gnat;
 
@@ -13,6 +14,11 @@ public class Player implements Serializable {
     private Ship ship;
     private SolarSystem solarSystem;
     private int currentCredit;
+    private long usedCapacity;
+    private int shipCapacity;
+    private double fuel;
+
+    public Player() { }
 
     public Player(Player player) {
         this.user_name = player.user_name;
@@ -20,7 +26,7 @@ public class Player implements Serializable {
         this.skill_points.put("Pilot", player.skill_points.get("Pilot"));
         this.skill_points.put("Fighter", player.skill_points.get("Fighter"));
         this.skill_points.put("Trader", player.skill_points.get("Trader"));
-        this.skill_points.put("Trader", player.skill_points.get("Trader"));
+        this.skill_points.put("Engineer", player.skill_points.get("Engineer"));
         this.solarSystem = player.solarSystem;
         this.currentCredit = 1000;
     }
@@ -39,6 +45,9 @@ public class Player implements Serializable {
         this.skill_points.put("Engineer", skill_points_.get(3));
         this.solarSystem = solarSystem;
         this.currentCredit = currentCredit;
+        this.usedCapacity = ship.getTotalCargoAmount();
+        this.shipCapacity = ship.getCargoCapacity();
+        this.fuel = ship.getFuelAmount();
     }
 
     public String getUserName() { return user_name; }
@@ -48,15 +57,35 @@ public class Player implements Serializable {
     public HashMap getSkillPoints() { return skill_points; }
 
     public Ship getShip() { return ship; }
-    public int getUsedCapacity() { return ship.getTotalCargoAmount(); }
-    public int getShipCapacity() { return ship.getCargoCapacity(); }
-    public double getFuel() { return ship.getFuelAmount(); }
+    public long getUsedCapacity() {
+        this.usedCapacity = ship.getTotalCargoAmount();
+        return usedCapacity;
+    }
+    public int getShipCapacity() {
+        this.shipCapacity = ship.getCargoCapacity();
+        return shipCapacity;
+    }
+    public double getFuel() {
+        this.fuel = ship.getFuelAmount();
+        return fuel;
+    }
 
     public SolarSystem getSolarSystem() { return solarSystem; }
+    public HashMap<String, Long> getCargo() { return this.ship.getCargo(); }
 
-    public HashMap<String, Integer> getCargo() { return this.ship.getCargo(); }
     public void loadCargo(String resourceName, int amount) { this.ship.loadCargo(resourceName, amount); }
     public void unloadCargo(String resourceName, int amount) { this.ship.unloadCargo(resourceName, amount); }
+
+    public void setSkillPoints(Map<String, Integer> skillPoints) {
+        this.skill_points.put("Pilot", skillPoints.get("Pilot"));
+        this.skill_points.put("Fighter", skillPoints.get("Fighter"));
+        this.skill_points.put("Trader", skillPoints.get("Trader"));
+        this.skill_points.put("Engineer", skillPoints.get("Engineer"));
+    }
+
+    public void setUsedCapacity(int usedCapacity) {
+        this.usedCapacity = usedCapacity;
+    }
 
     /**
      * Setter for skill_name
@@ -90,4 +119,5 @@ public class Player implements Serializable {
         this.solarSystem = destination;
         this.ship.useFuel(costFuel);
     }
+
 }

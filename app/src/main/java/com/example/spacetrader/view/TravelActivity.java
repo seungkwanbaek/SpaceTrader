@@ -22,6 +22,7 @@ import com.example.spacetrader.viewmodel.PlayerViewModel;
 import com.example.spacetrader.viewmodel.SolarSystemViewModel;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 public class TravelActivity extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class TravelActivity extends AppCompatActivity {
     private RecyclerView solarSystemRecyclerView;
     private TextView curSolarSystemView;
     private TextView curFuel;
-
+    private HashMap<Integer, SolarSystem> solarSystemHashMap;
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.travel_page);
@@ -70,6 +71,7 @@ public class TravelActivity extends AppCompatActivity {
             player.getShip().unloadCargo("Water", 2);
         }
         playerViewModel.setPlayer(player);
+        MainActivity.myPlayerReference.setValue(player);
         Intent intent = new Intent(this, ShowPlayerActivity.class);
         intent.putExtra(ShowPlayerActivity.SOLAR_SYSTEM_NAME, destination.getName());
         intent.putExtra(ShowPlayerActivity.PLAYER_NAME, player.getUserName());
@@ -79,10 +81,6 @@ public class TravelActivity extends AppCompatActivity {
     public void onCancelPressed(View view) {
         String solarName = getIntent().getExtras().getString(ShowPlayerActivity.SOLAR_SYSTEM_NAME);
         Intent intent = new Intent(this, ShowPlayerActivity.class);
-        //SolarSystem destination = solarSystemViewModel.getSolarSystem(getIntent().
-         //       getExtras().getString(ShowPlayerActivity.SOLAR_SYSTEM_NAME));
-
-//        intent.putExtra(ShowPlayerActivity.SOLAR_SYSTEM_NAME, player.getSolarSystem().getName());
         intent.putExtra(ShowPlayerActivity.SOLAR_SYSTEM_NAME, solarName);
         intent.putExtra(ShowPlayerActivity.PLAYER_NAME, player.getUserName());
         startActivity(intent);

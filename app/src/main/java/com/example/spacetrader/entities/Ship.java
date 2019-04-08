@@ -14,8 +14,10 @@ import java.util.HashMap;
 public class Ship implements Serializable {
     private ShipType type;
     //private CargoHold cargoHold;
-    private HashMap<String, Integer> cargo;
+    private HashMap<String, Long> cargo;
     private double fuelAmount;
+
+    public Ship() {};
 
     /**
      * Create a new ship of a given type and set its owner.
@@ -27,6 +29,15 @@ public class Ship implements Serializable {
         this.fuelAmount = type.fuelCapacity;
         this.cargo = new HashMap<>();
     }
+
+    public Ship(ShipType type, HashMap<String, Long> cargo, double fuelAmount) {
+        this.type = type;
+        this.cargo = cargo;
+        this.fuelAmount = fuelAmount;
+    }
+    public void setFuelCapacity(int fuelCapacity) { }
+    public void setCargoCapacity(int cargoCapacity) {}
+    public void setFuelAmount(double fuelAmount) { this.fuelAmount = fuelAmount; }
 
     /**
      * @return The type of the ship
@@ -46,13 +57,13 @@ public class Ship implements Serializable {
     /**
      * @return The ship's cargo hold
      */
-    public HashMap<String, Integer> getCargo() {
+    public HashMap<String, Long> getCargo() {
         return cargo;
     }
 
-    public void loadCargo(String resourceName, int amount) {
+    public void loadCargo(String resourceName, long amount) {
         if (amount == 0) return;
-        Integer currentAmount = cargo.get(resourceName);
+        Long currentAmount = cargo.get(resourceName);
         if (currentAmount == null) cargo.put(resourceName, amount);
         else cargo.put(resourceName, amount+currentAmount);
     }
@@ -63,15 +74,15 @@ public class Ship implements Serializable {
             return;
         }
         if (amount == 0) return;
-        Integer currentAmount = cargo.get(resourceName);
+        Long currentAmount = cargo.get(resourceName);
         assert(currentAmount != null && currentAmount >= amount);
-        Log.d("[TEST]", resourceName+" "+Integer.toString(currentAmount)+" "+Integer.toString(amount));
+        Log.d("[TEST]", resourceName+" "+Long.toString(currentAmount)+" "+Integer.toString(amount));
         if (currentAmount == amount) cargo.remove(resourceName);
         else cargo.put(resourceName, currentAmount-amount);
     }
 
-    public int getTotalCargoAmount() {
-        int totalAmount = 0;
+    public long getTotalCargoAmount() {
+        long totalAmount = 0;
         for (String r : cargo.keySet()) totalAmount += cargo.get(r);
         return totalAmount;
     }
