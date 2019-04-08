@@ -21,6 +21,17 @@
             "package_name": "com.example.androidtutorial",
             "certificate_hash": "564a1a40b8631522c4812330768e813c7f453e73"
           }
+<<<<<<< HEAD
+        },
+        {
+          "client_id": "1085787416401-ovf23hedbel59nmic5tlth8sv0qn94ej.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.androidtutorial",
+            "certificate_hash": "dd150db43334ac94c85f7f67249c7a2ea5c46335"
+          }
+=======
+>>>>>>> f79d30c8b51e80a20ecbf5442f7aace5acd35152
         }
       ],
       "api_key": [
