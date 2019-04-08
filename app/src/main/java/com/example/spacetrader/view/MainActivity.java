@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
     private NumberPicker fPoint;
     private NumberPicker tPoint;
     private NumberPicker ePoint;
+    final int skillPointsMax = 16;
+    static private int maxLogLength = 4000;
 
     private SolarSystemInteractor solarSystemInteractor = Model.getInstance()
             .getSolarSystemInteractor();
@@ -119,10 +121,11 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
         if (pName.equals("")) {
             String res = "Please enter your userName!";
             Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
-        } else if (skillPointsSum > 16) {
+        } else //noinspection MagicNumber,MagicNumber,MagicNumber,MagicNumber
+            if (skillPointsSum > skillPointsMax) {
             String res = "Skill points cannot exceed 16!";
             Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
-        } else if (skillPointsSum < 16) {
+        } else if (skillPointsSum < skillPointsMax) {
             String res = "Please allocate all skill points!";
             Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
         } else {
@@ -263,9 +266,9 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
      * Print the Universe
      */
     public static void largeLog(String tag, String content) {
-        if (content.length() > 4000) {
-            Log.d(tag, content.substring(0, 4000));
-            largeLog(tag, content.substring(4000));
+        if (content.length() > maxLogLength) {
+            Log.d(tag, content.substring(0, maxLogLength));
+            largeLog(tag, content.substring(maxLogLength));
         } else {
             Log.d(tag, content);
         }
@@ -277,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
      */
     private void setNumberPicker(NumberPicker np) {
         np.setMinValue(0);
-        np.setMaxValue(16);
+        np.setMaxValue(skillPointsMax);
         np.setOnValueChangedListener(onValueChangeListener);
     }
 
