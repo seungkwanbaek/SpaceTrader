@@ -15,3 +15,4 @@ Xibei Zhang|xzhang774|xzhang774@gatech.edu
 - [x] M6: Initialize universe  
 - [x] M7: Market and trading
 - [x] M8: Travel and Update
+- [x] M9: Random Events and Persistence
