@@ -26,6 +26,9 @@ public class SolarSystem implements Serializable {
             "DESERT", "LOTSOFWATER", "RICHSOIL", "POORSOIL", "RICHFAUNA", "LIFELESS",
             "WEIRDMUSHROOMS", "LOTSOFHERBS", "ARTISTIC", "WARLIKE"};
 
+    /**
+     * Constructor of solar system
+     */
     public SolarSystem() {
         this.name = generateSolarName();
         int[] coordinates = generateCoordinate();
@@ -37,9 +40,14 @@ public class SolarSystem implements Serializable {
         resourceDescrption = resourceDescrptionList[r2];
     }
 
-    public void setTechLevelValue(int tv) {
-        this.techLevelValue = tv;
-    }
+    /**
+     * Constructor of solar system with name, description, techLevel and location
+     * @param name the solar system name
+     * @param resourceDescrption the resource description
+     * @param techLevel the tech level
+     * @param x the x location
+     * @param y the y location
+     */
     public SolarSystem(String name, String resourceDescrption, String techLevel, int x, int y) {
         this.name = name;
         this.x = x;
@@ -48,6 +56,9 @@ public class SolarSystem implements Serializable {
         this.techLevel = techLevel;
     }
     @Override
+    /**
+     * Override equals method
+     */
     public boolean equals(Object that) {
         SolarSystem rhs = (SolarSystem) that;
         if (rhs.name.equals(this.name)) {
@@ -59,14 +70,64 @@ public class SolarSystem implements Serializable {
         return false;
     }
 
+    /**
+     * Setter method for techLevelValue
+     * @param tv the given techLevel
+     */
+    public void setTechLevelValue(int tv) {
+        this.techLevelValue = tv;
+    }
+
+    /**
+     * Getter method for name
+     * @return the  solar system name
+     */
     public String getName() { return name; }
-    public String getResourceDescrption() { return resourceDescrption; }
-    public String getTechLevel() { return techLevel; }
-    public int getTechLevelValue() { return techLevelValue; }
 
-    public int getX() { return x; }
-    public int getY() { return y; }
+    /**
+     * Getter method for description
+     * @return the resource description
+     */
+    public String getResourceDescrption() {
+        return resourceDescrption;
+    }
 
+    /**
+     * Getter method for tech level
+     * @return the tech level
+     */
+    public String getTechLevel() {
+        return techLevel;
+    }
+
+    /**
+     * Getter method for techLevelValue
+     * @return the techLevelValue
+     */
+    public int getTechLevelValue() {
+        return techLevelValue;
+    }
+
+    /**
+     * Getter method for x
+     * @return x value
+     */
+    public int getX() {
+        return x;
+    }
+
+    /**
+     * Getter method for y
+     * @return y value
+     */
+    public int getY() {
+        return y;
+    }
+
+    /**
+     * Generate the coordinate
+     * @return the coordinate location
+     */
     private int[] generateCoordinate() {
         int[] coordinate = new int[2];
         coordinate[0] = rand.nextInt(100);
@@ -87,6 +148,10 @@ public class SolarSystem implements Serializable {
         return new String(sb);
     }
 
+    /**
+     * toString method
+     * @return the toString value
+     */
     public String toString() {
         return "Name: " + name + ", x_coord: " + x + ", y_coord: " + y +
                 " resourceDescription:" + resourceDescrption + ", techLevel: " + techLevel;

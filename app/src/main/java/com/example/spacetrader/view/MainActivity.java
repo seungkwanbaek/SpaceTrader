@@ -3,20 +3,15 @@ package com.example.spacetrader.view;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.icu.lang.UScript;
-import android.nfc.Tag;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import android.util.Log;
@@ -40,14 +35,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements ValueEventListener {
     public static final String PLAYER_NAME = "PLAYER_NAME";
 
     final Context context = this;
-
     private PlayerViewModel playerViewModel;
     private SolarSystemViewModel solarSystemViewModel;
 
@@ -106,6 +98,8 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
         setNumberPicker(fPoint);
         setNumberPicker(tPoint);
         setNumberPicker(ePoint);
+        initializeUniverse();
+        printUniverse();
     }
 
     /**
@@ -132,8 +126,6 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
             String res = "Please allocate all skill points!";
             Toast.makeText(MainActivity.this, "Warning: " + res, Toast.LENGTH_LONG).show();
         } else {
-            initializeUniverse();
-            printUniverse();
             SolarSystem selectedSolarSystem = solarSystemViewModel.getAllSolarSystems().get(0);
             final Player player = new Player(pName, pDifficulty,
                     new ArrayList<>((Arrays.asList(pValue, fValue, tValue, eValue))),
@@ -157,8 +149,6 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
         initializeUniverse();
         printUniverse();
         solarSystemViewModel.addSolarSystem(lastPlayer.getSolarSystem());
-//        SolarSystem selectedSolarSystem = solarSystemViewModel.getAllSolarSystems().get(0);
-//        lastPlayer.setSolarSystem(selectedSolarSystem);
         playerViewModel.addPlayer(lastPlayer);
         mySolarSystemReference.setValue(solarSystemViewModel.getAllSolarSystems());
         Intent intent = new Intent(MainActivity.this, ShowPlayerActivity.class);
@@ -246,7 +236,6 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
     protected void onStart() {
         super.onStart();
         myPlayerReference.addListenerForSingleValueEvent(this);
-//        mySolarSystemReference.addListenerForSingleValueEvent(this);
     }
 
     /**
