@@ -31,6 +31,9 @@ class Repository {
     private List<Resource> allResources;
     private List<SolarSystem> allSolarSystems;
 
+    /**
+     * Constrcutor of repository
+     */
     public Repository() {
         Log.w("[[X]]", "New repo created");
         allPlayers = new ArrayList<>();
@@ -38,6 +41,9 @@ class Repository {
         initResourceList();
     }
 
+    /**
+     * initialize the resource list
+     */
     private void initResourceList() {
         allResources = new ArrayList<>();
         allResources.add(new Resource("Water", 0, 0, 2,
@@ -84,11 +90,15 @@ class Repository {
      * @param player the player to add
      */
     public void addPlayer(Player player) {
-        //player.setPlayerID(Repository.getNextUniqueID());
         allPlayers.add(player);
     }
 
+    /**
+     * Update player
+     * @param player the player to update
+     */
     public void updatePlayer(Player player) {
+
         allPlayers.set(0, player);
     }
 
@@ -106,20 +116,4 @@ class Repository {
         allSolarSystems.add(solarSystem);
         return true;
     }
-
-
-    /*public void updatePlayer(Player p) {
-        for (Player player: allPlayers) {
-            if (player.getPlayerID() == p.getPlayerID()) {
-                Log.d("APP", "Found player to update: " + player);
-                player.setDifficulty(p.getDifficulty());
-                player.setUser_name(p.getUserName());
-                player.setSkill_points(p.getSkillPoints());
-                Log.d("APP", "Updated list: " + allPlayers.toString());
-                return;
-            }
-        }
-        Log.d("APP", "Student not found with id = " + p.getPlayerID());
-
-    }*/
 }

@@ -50,9 +50,11 @@ public class SolarSystem implements Serializable {
         this.resourceDescrption = resourceDescrption;
         this.techLevel = techLevel;
     }
-    @Override
 
-    // Override equals method
+    /**
+     * Override equals method
+     */
+    @Override
     public boolean equals(Object that) {
         SolarSystem rhs = (SolarSystem) that;
         if (rhs.name.equals(this.name)) {
