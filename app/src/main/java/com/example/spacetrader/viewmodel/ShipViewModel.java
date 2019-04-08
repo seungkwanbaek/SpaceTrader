@@ -12,12 +12,12 @@ import com.example.spacetrader.model.Model;
 public class ShipViewModel extends AndroidViewModel {
     private ShipInteractor interactor;
 
+    /**
+     * Constructor of ShipViewModel
+     * @param application
+     */
     public ShipViewModel(@NonNull Application application) {
         super(application);
         interactor = Model.getInstance().getShipInteractor();
-    }
-
-    public Player getPlayer(String name) {
-        return interactor.getPlayer(name);
     }
 }
