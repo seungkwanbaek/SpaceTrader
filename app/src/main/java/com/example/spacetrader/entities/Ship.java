@@ -82,7 +82,8 @@ public class Ship implements Serializable {
      * @param amount the resource amount
      */
     public void loadCargo(String resourceName, long amount) {
-        if (amount == 0) return;
+        if (resourceName == null) return;
+        if (amount <= 0) return;
         Long currentAmount = cargo.get(resourceName);
         if (currentAmount == null) cargo.put(resourceName, amount);
         else cargo.put(resourceName, amount+currentAmount);
