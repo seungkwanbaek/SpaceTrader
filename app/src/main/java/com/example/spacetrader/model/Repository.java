@@ -1,7 +1,5 @@
 package com.example.spacetrader.model;
 
-import android.util.Log;
-
 import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.entities.Resource;
 import com.example.spacetrader.entities.SolarSystem;
@@ -14,7 +12,7 @@ import java.util.List;
  * Normally this would passthrough to our ROOM objects.   To keep this assignment
  * simple, we are just using in-memory storage
  */
-class Repository {
+public class Repository {
 
     /** all the students known in the application */
     private List<Player> allPlayers;
@@ -25,7 +23,6 @@ class Repository {
      * Constrcutor of repository
      */
     public Repository() {
-        Log.w("[[X]]", "New repo created");
         allPlayers = new ArrayList<>();
         allSolarSystems = new ArrayList<>();
         initResourceList();
