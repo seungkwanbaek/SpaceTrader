@@ -15,6 +15,9 @@ import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.viewmodel.PlayerViewModel;
 import com.example.spacetrader.viewmodel.ShipViewModel;
 
+/**
+ * The ShowShipActivity class
+ */
 public class ShowShipActivity extends AppCompatActivity {
     private PlayerViewModel playerViewModel;
     private ShipViewModel shipViewModel;
@@ -25,6 +28,11 @@ public class ShowShipActivity extends AppCompatActivity {
     private TextView capacity;
     private TextView remaining;
 
+    /**
+     * onCreate method
+     * @param savedInstanceState the bundle
+     * @throws Resources.NotFoundException the exception to throw
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
@@ -51,12 +59,19 @@ public class ShowShipActivity extends AppCompatActivity {
         remaining.setText(String.valueOf(player.getShip().getTotalCargoAmount()));
     }
 
+    /**
+     * onResume method
+     */
     @Override
     public void onResume() {
         super.onResume();
         adapter.setUpCargo(player.getCargo());
     }
 
+    /**
+     * onBackPressed method for back button
+     * @param view the view
+     */
     public void onBackPressed(View view) {
         super.onBackPressed();
         Intent intent = new Intent(this, ShowPlayerActivity.class);

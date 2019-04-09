@@ -24,7 +24,11 @@ import com.example.spacetrader.viewmodel.SolarSystemViewModel;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+/**
+ * The buySellActivity
+ */
 public class BuySellActivity extends AppCompatActivity {
     PlayerViewModel playerViewModel;
     SolarSystemViewModel solarSystemViewModel;
@@ -37,6 +41,12 @@ public class BuySellActivity extends AppCompatActivity {
     private TextView balanceTextView, subTotalTextView, capacityTextView, usedCapacityTextView;
     private Button buySellButton;
 
+    /**
+     * Setup buy and sell page, initialize price list and cargo list from model
+     * @param savedInstanceState the bundle
+     * @throws Resources.NotFoundException the exception
+     */
+    @Override
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buy_sell_page);
@@ -65,11 +75,17 @@ public class BuySellActivity extends AppCompatActivity {
 
         adapter = new ResourceAdapter();
         resourceRecyclerView.setAdapter(adapter);
+        Map<Integer, SolarSystem> map = new HashMap<>();
     }
 
+    /**
+     * Try to submit the trade, if sanity check not passed, raise a toast
+     * warning and stay at the same page
+     * @param view the view
+     */
     public void onSubmitPressed(View view) {
         int totalPrice = adapter.getSubTotal();
-        int usedCap = adapter.getUsedCap();
+        long usedCap = adapter.getUsedCap();
         int cap = player.getShipCapacity();
         int currentBalance = player.getCurrentCredit();
         if (buyFlag) {
@@ -86,22 +102,26 @@ public class BuySellActivity extends AppCompatActivity {
             player.cost(totalPrice);
             for (int i = 0; i < adapter.getItemCount(); ++i) {
                 ResourceItem r = adapter.getItem(i);
-                player.loadCargo(r.getResourceName(), r.getResrouceAmount());
+                player.loadCargo(r.getResourceName(), (int)r.getResourceAmount());
             }
         } else {
             player.deposit(totalPrice);
             for (int i = 0; i < adapter.getItemCount(); ++i) {
                 ResourceItem r = adapter.getItem(i);
-                player.unloadCargo(r.getResourceName(), r.getResrouceAmount());
+                player.unloadCargo(r.getResourceName(), (int)r.getResourceAmount());
             }
         }
         playerViewModel.setPlayer(player);
+        MainActivity.myPlayerReference.setValue(player);
         Intent intent = new Intent(this, ShowPlayerActivity.class);
         intent.putExtra(ShowPlayerActivity.SOLAR_SYSTEM_NAME, solarSystem.getName());
         intent.putExtra(ShowPlayerActivity.PLAYER_NAME, player.getUserName());
         startActivity(intent);
     }
 
+    /**
+     * onResume method
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -113,6 +133,10 @@ public class BuySellActivity extends AppCompatActivity {
                 balanceTextView, subTotalTextView, capacityTextView, usedCapacityTextView);
     }
 
+    /**
+     * Go back to player page
+     * @param view the view
+     */
     public void onCancelPressed(View view) {
         Intent intent = new Intent(this, ShowPlayerActivity.class);
         intent.putExtra(ShowPlayerActivity.SOLAR_SYSTEM_NAME, solarSystem.getName());
@@ -121,12 +145,17 @@ public class BuySellActivity extends AppCompatActivity {
         finish();
     }
 
-    private HashMap<String, Integer> generateResourcePriceList() {
-        HashMap<String, Integer> priceList = new HashMap<>();
-        int techLv = solarSystem.getTechLevel();
+    /**
+     * generate resource price list
+     * @return the resource price list
+     */
+    private Map<String, Long> generateResourcePriceList() {
+        Map<String, Long> priceList = new HashMap<>();
+        int techLv = solarSystem.getTechLevelValue();
         List<Resource> allResources = resourceViewModel.getAllResource();
         for (Resource r : allResources)
-            priceList.put(r.getName(), r.getPrice(techLv));
+            priceList.put(r.getName(), (long)r.getPrice(techLv));
+        MainActivity.myResourceReference.setValue(priceList);
         return priceList;
     }
 }

@@ -1,5 +1,8 @@
 package com.example.spacetrader.entities;
 
+/**
+ * The shipType class
+ */
 public enum ShipType {
     /**
      * The cheapest and most basic type of ship.
@@ -32,6 +35,13 @@ public enum ShipType {
      */
     private final String name;
 
+    /**
+     * Constructor for ship type
+     * @param cargoCapacity the cargo capacity
+     * @param fuelCapacity the fuel capacity
+     * @param price the price
+     * @param name the name
+     */
     ShipType(int cargoCapacity, int fuelCapacity, int price, String name) {
         this.cargoCapacity = cargoCapacity;
         this.fuelCapacity = fuelCapacity;
@@ -39,6 +49,10 @@ public enum ShipType {
         this.name = name;
     }
 
+    /**
+     * to string method
+     * @return the string of ship type
+     */
     public String toString() {
         return name;
     }

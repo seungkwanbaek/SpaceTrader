@@ -3,8 +3,8 @@ package com.example.spacetrader.entities;
 import android.util.Log;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Model of a ship.
@@ -13,13 +13,16 @@ import java.util.HashMap;
  */
 public class Ship implements Serializable {
     private ShipType type;
-    //private CargoHold cargoHold;
-    private HashMap<String, Integer> cargo;
+    private Map<String, Long> cargo;
     private double fuelAmount;
 
     /**
+     * Default Constructor for ship
+     */
+    public Ship() {}
+
+    /**
      * Create a new ship of a given type and set its owner.
-     *
      * @param type  The type of the new ship.
      */
     public Ship(ShipType type) {
@@ -29,46 +32,85 @@ public class Ship implements Serializable {
     }
 
     /**
+     * Constructor of ship with type, cargo and fuelAmount
+     * @param type the type
+     * @param cargo the cargo
+     * @param fuelAmount the fuel amount
+     */
+    public Ship(ShipType type, Map<String, Long> cargo, double fuelAmount) {
+        this.type = type;
+        this.cargo = cargo;
+        this.fuelAmount = fuelAmount;
+    }
+    /**
+     * Getter method for type
      * @return The type of the ship
      */
     public ShipType getType() {
         return type;
     }
 
+    /**
+     * Getter method for cargo capacity
+     * @return the cargo capacity
+     */
     public int getCargoCapacity() {
         return type.cargoCapacity;
     }
 
+    /**
+     * Getter method for fuel capacity
+     * @return the fuel capacity
+     */
     public int getFuelCapacity() {
         return type.fuelCapacity;
     }
 
     /**
+     * Getter method for cargo
      * @return The ship's cargo hold
      */
-    public HashMap<String, Integer> getCargo() {
+    public Map<String, Long> getCargo() {
         return cargo;
     }
 
-    public void loadCargo(String resourceName, int amount) {
+    /**
+     * Load cargo with resource name and amount
+     * @param resourceName the resource name
+     * @param amount the resource amount
+     */
+    public void loadCargo(String resourceName, long amount) {
         if (resourceName == null) return;
         if (amount <= 0) return;
-        Integer currentAmount = cargo.get(resourceName);
+        Long currentAmount = cargo.get(resourceName);
         if (currentAmount == null) cargo.put(resourceName, amount);
         else cargo.put(resourceName, amount+currentAmount);
     }
 
+    /**
+     * Unload cargo with resource and amount
+     * @param resourceName the resource name
+     * @param amount the resource amount
+     */
     public void unloadCargo(String resourceName, int amount) {
+        if (!cargo.containsKey(resourceName)) {
+            Log.d("[TEST]", "No " + resourceName + " resource!");
+            return;
+        }
         if (amount == 0) return;
-        Integer currentAmount = cargo.get(resourceName);
+        Long currentAmount = cargo.get(resourceName);
         assert(currentAmount != null && currentAmount >= amount);
-        Log.d("[TEST]", resourceName+" "+Integer.toString(currentAmount)+" "+Integer.toString(amount));
+        Log.d("[TEST]", resourceName+" "+Long.toString(currentAmount)+" "+Integer.toString(amount));
         if (currentAmount == amount) cargo.remove(resourceName);
         else cargo.put(resourceName, currentAmount-amount);
     }
 
-    public int getTotalCargoAmount() {
-        int totalAmount = 0;
+    /**
+     * Getter for total cargoAmount
+     * @return the total cargo amount
+     */
+    public long getTotalCargoAmount() {
+        long totalAmount = 0;
         for (String r : cargo.keySet()) totalAmount += cargo.get(r);
         return totalAmount;
     }
@@ -95,13 +137,18 @@ public class Ship implements Serializable {
      * @param amount amount of fuel to be added
      */
     public void addFuel(double amount) {
-        if (fuelAmount + amount > type.fuelCapacity) {
+        double currentAmount = fuelAmount + amount;
+        if (currentAmount > type.fuelCapacity) {
             fuelAmount = type.fuelCapacity;
         } else {
             fuelAmount += amount;
         }
     }
 
+    /**
+     * use fuel method
+     * @param amount the used fuel amount
+     */
     public void useFuel(double amount) {
         fuelAmount -= amount;
     }
