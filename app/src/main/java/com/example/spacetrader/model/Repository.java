@@ -1,43 +1,36 @@
 package com.example.spacetrader.model;
 
-import android.util.Log;
-
 import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.entities.Resource;
 import com.example.spacetrader.entities.SolarSystem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-
-
 
 /**
  * This class is an abstraction of the data storage for the business classes
  * Normally this would passthrough to our ROOM objects.   To keep this assignment
  * simple, we are just using in-memory storage
  */
-class Repository {
-
-    private static int next_id = 1;
-
-    private static int getNextUniqueID() {
-        return next_id++;
-    }
+public class Repository {
 
     /** all the students known in the application */
     private List<Player> allPlayers;
     private List<Resource> allResources;
     private List<SolarSystem> allSolarSystems;
 
+    /**
+     * Constrcutor of repository
+     */
     public Repository() {
-        Log.w("[[X]]", "New repo created");
         allPlayers = new ArrayList<>();
         allSolarSystems = new ArrayList<>();
         initResourceList();
     }
 
+    /**
+     * initialize the resource list
+     */
     private void initResourceList() {
         allResources = new ArrayList<>();
         allResources.add(new Resource("Water", 0, 0, 2,
@@ -84,11 +77,15 @@ class Repository {
      * @param player the player to add
      */
     public void addPlayer(Player player) {
-        //player.setPlayerID(Repository.getNextUniqueID());
         allPlayers.add(player);
     }
 
+    /**
+     * Update player
+     * @param player the player to update
+     */
     public void updatePlayer(Player player) {
+
         allPlayers.set(0, player);
     }
 
@@ -106,20 +103,4 @@ class Repository {
         allSolarSystems.add(solarSystem);
         return true;
     }
-
-
-    /*public void updatePlayer(Player p) {
-        for (Player player: allPlayers) {
-            if (player.getPlayerID() == p.getPlayerID()) {
-                Log.d("APP", "Found player to update: " + player);
-                player.setDifficulty(p.getDifficulty());
-                player.setUser_name(p.getUserName());
-                player.setSkill_points(p.getSkillPoints());
-                Log.d("APP", "Updated list: " + allPlayers.toString());
-                return;
-            }
-        }
-        Log.d("APP", "Student not found with id = " + p.getPlayerID());
-
-    }*/
 }

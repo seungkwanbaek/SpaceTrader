@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "1085787416401",
+    "firebase_url": "https://spacetrader-8c19b.firebaseio.com",
+    "project_id": "spacetrader-8c19b",
+    "storage_bucket": "spacetrader-8c19b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085787416401:android:5015a1a0cf196f12",
+        "android_client_info": {
+          "package_name": "com.example.androidtutorial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085787416401-jt4a0e0jt146a7jheeg2rcu8ui90ab69.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.androidtutorial",
+            "certificate_hash": "564a1a40b8631522c4812330768e813c7f453e73"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlItMeUtJRJf0BsyEtt0C7TKLptMipfGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085787416401-7gcd7ven4ipsn6cv190re83p88lq24hi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
