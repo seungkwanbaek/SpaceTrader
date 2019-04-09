@@ -16,6 +16,9 @@ import com.example.spacetrader.R;
 import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.viewmodel.PlayerViewModel;
 
+/**
+ * The ShowPlayerActivity class
+ */
 public class ShowPlayerActivity extends AppCompatActivity {
     public static final String SOLAR_SYSTEM_NAME = "SOLAR_SYSTEM_NAME";
     public static final String PLAYER_NAME = "PLAYER_NAME";
@@ -34,6 +37,11 @@ public class ShowPlayerActivity extends AppCompatActivity {
     private TextView balance;
     private TextView shipFuel;
 
+    /**
+     * onCreate method
+     * @param savedInstanceState the bundle
+     * @throws Resources.NotFoundException the exception to throw
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) throws Resources.NotFoundException {
         super.onCreate(savedInstanceState);
@@ -75,6 +83,10 @@ public class ShowPlayerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * onBuyPressed button for buy button
+     * @param view the view
+     */
     public void onBuyPressed(View view) {
         Intent intent = new Intent(this, BuySellActivity.class);
         intent.putExtra(SOLAR_SYSTEM_NAME, solarSystem.getText());
@@ -83,6 +95,10 @@ public class ShowPlayerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * onSellPressed button for sell button
+     * @param view the view
+     */
     public void onSellPressed(View view) {
         Intent intent = new Intent(this, BuySellActivity.class);
         intent.putExtra(SOLAR_SYSTEM_NAME, solarSystem.getText());
@@ -90,12 +106,20 @@ public class ShowPlayerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * onShipButtonPressed for ship button
+     * @param view the view
+     */
     public void onShipButtonPressed(View view) {
         Intent intent = new Intent( this, ShowShipActivity.class);
         intent.putExtra(PLAYER_NAME, player.getUserName());
         startActivity(intent);
     }
 
+    /**
+     * onTravelButtonPressed for travel button
+     * @param view the view
+     */
     public void onTravelButtonPressed(View view) {
         Intent intent = new Intent( this, TravelActivity.class);
         intent.putExtra(PLAYER_NAME, player.getUserName());
@@ -103,6 +127,11 @@ public class ShowPlayerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Change format from double to string
+     * @param value the double value
+     * @return the string value
+     */
     private String formatDouble(Double value) {
         final DecimalFormat df = new DecimalFormat("0.00");
         return df.format(value);

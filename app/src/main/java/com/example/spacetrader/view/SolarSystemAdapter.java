@@ -14,7 +14,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * SolarSystemAdapter Class
+ */
 public class SolarSystemAdapter extends RecyclerView.Adapter<SolarSystemAdapter.
         SolarSystemViewHolder> {
     private List<SolarSystemItem> solarSystemItemsList = new ArrayList<>();
@@ -27,6 +29,12 @@ public class SolarSystemAdapter extends RecyclerView.Adapter<SolarSystemAdapter.
     public double getCostDistance() { return costDistance; }
     public SolarSystem getSolarSystem() { return solarSystem; }
 
+    /**
+     * onCreateViewHolder for SolarSystemViewHolder
+     * @param parent the ViewGroup
+     * @param i the position
+     * @return the solarSystemViewHolder
+     */
     @Override
     public SolarSystemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View itemView = LayoutInflater.from(parent.getContext())
@@ -34,6 +42,11 @@ public class SolarSystemAdapter extends RecyclerView.Adapter<SolarSystemAdapter.
         return new SolarSystemViewHolder(itemView);
     }
 
+    /**
+     * onBindViewHolder for SolarSystemViewHolder
+     * @param holder the solarSystemViewHolder
+     * @param position the position
+     */
     @Override
     public void onBindViewHolder(@NonNull SolarSystemViewHolder holder, final int position) {
         SolarSystemItem solarSystemItem = solarSystemItemsList.get(position);
@@ -45,6 +58,12 @@ public class SolarSystemAdapter extends RecyclerView.Adapter<SolarSystemAdapter.
         solarSystemItemsList.set(position, solarSystemItem);
     }
 
+    /**
+     * Set up the adapter
+     * @param allSolarSystems the list of all solar systems
+     * @param curSolarSystem current solar systems
+     * @param curSolarSystemTextView the textview for current solar system
+     */
     public void setUpAdapter(List<SolarSystem> allSolarSystems, SolarSystem curSolarSystem,
                              TextView curSolarSystemTextView) {
         int cur_x = curSolarSystem.getX();
@@ -62,22 +81,43 @@ public class SolarSystemAdapter extends RecyclerView.Adapter<SolarSystemAdapter.
         notifyDataSetChanged();
     }
 
+    /**
+     * format change from double to string
+     * @param value the double value
+     * @return the string value
+     */
     private String formatDouble(Double value) {
         final DecimalFormat df = new DecimalFormat("0.00");
         return df.format(value);
     }
 
+    /**
+     * GetItemCount method
+     * @return the itemCount
+     */
     @Override
     public int getItemCount() { return solarSystemItemsList.size(); }
 
+    /**
+     * GetItem method
+     * @param position the position
+     * @return the solarSystemItem
+     */
     public SolarSystemItem getItem(int position) { return solarSystemItemsList.get(position); }
 
+    /**
+     * SolarSystemViewHolder
+     */
     class SolarSystemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView solarSystemName;
         private TextView solarSystemDistance;
         private TextView cost;
         private SparseBooleanArray selectedItems = new SparseBooleanArray();
 
+        /**
+         * SolarSystemViewHolder
+         * @param itemView the view
+         */
         public SolarSystemViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
@@ -86,6 +126,10 @@ public class SolarSystemAdapter extends RecyclerView.Adapter<SolarSystemAdapter.
             cost = itemView.findViewById(R.id.text_solar_system_cost);
         }
 
+        /**
+         * onClick method for view
+         * @param view the view
+         */
         @Override
         public void onClick(View view) {
             if (selectedItem != null) selectedItem.setSelected(false);

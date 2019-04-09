@@ -31,6 +31,9 @@ public class PlayerUnitTest {
         player = new Player("ABC", "beginner", sp, ss);
     }
 
+    /**
+     * Set Skill Points Test
+     */
     @Test
     public void setSkillPointsTest() {
         Assert.assertEquals(16, (long) player.getSkillPoint("Pilot"));

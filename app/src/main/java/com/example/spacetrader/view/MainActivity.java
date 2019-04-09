@@ -35,8 +35,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-
-
+/**
+ * THe MainActivity Class
+ */
 public class MainActivity extends AppCompatActivity implements ValueEventListener {
     public static final String PLAYER_NAME = "PLAYER_NAME";
 
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
 
     /**
      * Setup the initial page, let the user create a new player or load previous saved player
-     * @param savedInstanceState
+     * @param savedInstanceState the bundle
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
 
     /**
      * Listener that save changes to firebase
-     * @param dataSnapshot
+     * @param dataSnapshot the datasnapshot
      */
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -242,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
 
     /**
      * Handle error of firebase
-     * @param databaseError
+     * @param databaseError the database error
      */
     @Override
     public void onCancelled(DatabaseError databaseError) {
@@ -280,7 +281,9 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
     }
 
     /**
-     * Print the Universe
+     * The largeLog method
+     * @param tag the tag
+     * @param content the content
      */
     public static void largeLog(String tag, String content) {
         if (content.length() > maxLogLength) {

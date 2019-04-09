@@ -8,12 +8,15 @@ import com.example.spacetrader.entities.Player;
 import com.example.spacetrader.model.PlayerInteractor;
 import com.example.spacetrader.model.Model;
 
+/**
+ * The PlayerViewModel class
+ */
 public class PlayerViewModel extends AndroidViewModel {
     private PlayerInteractor interactor;
 
     /**
      * Constructor of PlayerViewModel
-     * @param application
+     * @param application the application
      */
     public PlayerViewModel(@NonNull Application application) {
         super(application);

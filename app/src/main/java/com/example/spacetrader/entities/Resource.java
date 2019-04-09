@@ -1,5 +1,8 @@
 package com.example.spacetrader.entities;
 
+/**
+ * The Resource class
+ */
 public class Resource {
     String name;
     int MTLP;

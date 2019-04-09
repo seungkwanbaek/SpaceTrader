@@ -1,8 +1,11 @@
 package com.example.spacetrader.entities;
 
+/**
+ * The ResourceItem class
+ */
 public class ResourceItem {
     private String resourceName;
-    private long resroucePrice;
+    private long resourcePrice;
     private long resourceAmount;
 
     /**
@@ -13,7 +16,7 @@ public class ResourceItem {
      */
     public ResourceItem(String name, long price, long amount) {
         this.resourceAmount = amount;
-        this.resroucePrice = price;
+        this.resourcePrice = price;
         this.resourceName = name;
     }
 
@@ -29,15 +32,15 @@ public class ResourceItem {
      * Getter method for resource price
      * @return the resource price
      */
-    public long getResroucePrice() {
-        return resroucePrice;
+    public long getResourcePrice() {
+        return resourcePrice;
     }
 
     /**
      * Getter method for resource amount
      * @return the resource amount
      */
-    public long getResrouceAmount() {
+    public long getResourceAmount() {
         return resourceAmount;
     }
 
@@ -51,10 +54,10 @@ public class ResourceItem {
 
     /**
      * Setter method for resource price
-     * @param resroucePrice the resource price
+     * @param resourcePrice the resource price
      */
-    public void setResroucePrice(int resroucePrice) {
-        this.resroucePrice = resroucePrice;
+    public void setResourcePrice(int resourcePrice) {
+        this.resourcePrice = resourcePrice;
     }
 
     /**

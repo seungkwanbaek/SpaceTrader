@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The player class
+ */
 public class Player implements Serializable {
     private String user_name;
     private String difficulty;
@@ -114,7 +117,7 @@ public class Player implements Serializable {
 
     /**
      * Getter for usedCapacity
-     * @return the usedcapacity
+     * @return the used capacity
      */
     public long getUsedCapacity() {
         this.usedCapacity = ship.getTotalCargoAmount();
@@ -123,7 +126,7 @@ public class Player implements Serializable {
 
     /**
      * Getter for shipCapacity
-     * @return the shipcapacity
+     * @return the ship capacity
      */
     public int getShipCapacity() {
         this.shipCapacity = ship.getCargoCapacity();
@@ -159,10 +162,14 @@ public class Player implements Serializable {
      * Getter for cargo
      * @return the cargo
      */
-    public HashMap<String, Long> getCargo() {
+    public Map<String, Long> getCargo() {
         return this.ship.getCargo();
     }
 
+    /**
+     * Set skillPoints
+     * @param skillPoints the skillPoints to set
+     */
     public void setSkillPoints(Map<String, Integer> skillPoints) {
         this.skill_points.put("Pilot", skillPoints.get("Pilot"));
         this.skill_points.put("Fighter", skillPoints.get("Fighter"));

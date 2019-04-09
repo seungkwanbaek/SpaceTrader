@@ -9,12 +9,15 @@ import com.example.spacetrader.model.ResourceInteractor;
 
 import java.util.List;
 
+/**
+ * The ResourceViewModel class
+ */
 public class ResourceViewModel extends AndroidViewModel {
     private ResourceInteractor interactor;
 
     /**
      * Constructor of ResourceViewModel
-     * @param application
+     * @param application the application
      */
     public ResourceViewModel(@NonNull Application application) {
         super(application);

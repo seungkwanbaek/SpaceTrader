@@ -35,7 +35,7 @@ public class Ship implements Serializable {
      * Constructor of ship with type, cargo and fuelAmount
      * @param type the type
      * @param cargo the cargo
-     * @param fuelAmount the fule amount
+     * @param fuelAmount the fuel amount
      */
     public Ship(ShipType type, Map<String, Long> cargo, double fuelAmount) {
         this.type = type;

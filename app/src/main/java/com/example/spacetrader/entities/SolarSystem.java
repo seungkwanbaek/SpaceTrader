@@ -3,12 +3,15 @@ package com.example.spacetrader.entities;
 import java.io.Serializable;
 import java.util.Random;
 
+/**
+ * The SolarSystem class
+ */
 public class SolarSystem implements Serializable {
 
     private String name;
     private String techLevel;
     private int techLevelValue;
-    private String resourceDescrption;
+    private String resourceDescrpition;
     private Random rand = new Random();
     private int x;
     private int y;
@@ -32,7 +35,7 @@ public class SolarSystem implements Serializable {
         this.techLevelValue = rand.nextInt(techLevelList.length);
         int r2 = rand.nextInt(resourceDescrptionList.length);
         techLevel = techLevelList[techLevelValue];
-        resourceDescrption = resourceDescrptionList[r2];
+        resourceDescrpition = resourceDescrptionList[r2];
     }
 
     /**
@@ -47,7 +50,7 @@ public class SolarSystem implements Serializable {
         this.name = name;
         this.x = x;
         this.y = y;
-        this.resourceDescrption = resourceDescrption;
+        this.resourceDescrpition = resourceDescrption;
         this.techLevel = techLevel;
     }
 
@@ -83,8 +86,8 @@ public class SolarSystem implements Serializable {
      * Getter method for description
      * @return the resource description
      */
-    public String getResourceDescrption() {
-        return resourceDescrption;
+    public String getResourceDescrpition() {
+        return resourceDescrpition;
     }
 
     /**
@@ -149,7 +152,7 @@ public class SolarSystem implements Serializable {
      */
     public String toString() {
         return "Name: " + name + ", x_coord: " + x + ", y_coord: " + y +
-                " resourceDescription:" + resourceDescrption + ", techLevel: " + techLevel;
+                " resourceDescription:" + resourceDescrpition + ", techLevel: " + techLevel;
     }
 
 }

@@ -1,5 +1,8 @@
 package com.example.spacetrader.entities;
 
+/**
+ * The shipType class
+ */
 public enum ShipType {
     /**
      * The cheapest and most basic type of ship.

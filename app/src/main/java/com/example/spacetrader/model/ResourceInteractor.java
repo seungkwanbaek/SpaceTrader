@@ -3,6 +3,9 @@ import com.example.spacetrader.entities.Resource;
 
 import java.util.List;
 
+/**
+ * The ResourceInteractor class
+ */
 public class ResourceInteractor extends Interactor {
 
     /**

@@ -1,5 +1,8 @@
 package com.example.spacetrader.model;
 
+/**
+ * THe Model Class
+ */
 public final class Model {
     private Repository repo;
     private PlayerInteractor playerInteractor;
@@ -10,8 +13,8 @@ public final class Model {
     private static Model instance = new Model();
 
     /**
-     *
-     * @return
+     * get instance of the model
+     * @return the instance of model
      */
     public static Model getInstance() { return instance; }
 

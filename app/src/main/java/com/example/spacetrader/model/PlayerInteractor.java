@@ -3,6 +3,9 @@ package com.example.spacetrader.model;
 import com.example.spacetrader.entities.Player;
 import java.util.List;
 
+/**
+ * The PlayerInteractor class
+ */
 public class PlayerInteractor extends Interactor{
 
     /**

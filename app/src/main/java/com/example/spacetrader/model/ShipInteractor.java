@@ -3,6 +3,9 @@ package com.example.spacetrader.model;
 import com.example.spacetrader.entities.Player;
 import java.util.List;
 
+/**
+ * The ShipInteractor class
+ */
 public class ShipInteractor extends Interactor{
 
     /**

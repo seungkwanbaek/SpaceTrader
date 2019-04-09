@@ -1,5 +1,8 @@
 package com.example.spacetrader.model;
 
+/**
+ * THe Interactor class
+ */
 public class Interactor {
     private Repository myRepository;
 
