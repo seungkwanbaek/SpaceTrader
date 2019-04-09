@@ -3,6 +3,9 @@ import com.example.spacetrader.entities.SolarSystem;
 
 import java.util.List;
 
+/**
+ * The SolarSystemInteractor class
+ */
 public class SolarSystemInteractor extends Interactor {
 
     /**

@@ -1,5 +1,8 @@
 package com.example.spacetrader.entities;
 
+/**
+ * The SolarSystemItem
+ */
 public class SolarSystemItem {
     private String solarSystemName;
     private SolarSystem solarSystem;

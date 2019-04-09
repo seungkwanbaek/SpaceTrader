@@ -25,8 +25,22 @@ public class SolarSystemAdapter extends RecyclerView.Adapter<SolarSystemAdapter.
     private SolarSystem solarSystem;
     private View selectedItem;
 
+    /**
+     * Get cost fuel
+     * @return the costFuel
+     */
     public double getCostFuel() { return costFuel; }
+
+    /**
+     * Get costDistance
+     * @return the costDistance
+     */
     public double getCostDistance() { return costDistance; }
+
+    /**
+     * Get solarSystem
+     * @return the solarSystem
+     */
     public SolarSystem getSolarSystem() { return solarSystem; }
 
     /**

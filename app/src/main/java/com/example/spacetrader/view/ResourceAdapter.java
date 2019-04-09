@@ -123,6 +123,18 @@ public final class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.
         notifyDataSetChanged();
     }
 
+    /**
+     * Set up sell adapter
+     * @param resourcePriceList the resourcePriceList
+     * @param cargo the cargo
+     * @param balance_ the balance
+     * @param cap_ the capacity
+     * @param usedCap_ the usedCapacity
+     * @param balanceTextView_ the balanceTextView
+     * @param subTotalTextView_ the subTotalTextView
+     * @param capacityTextView_ the capaityTextView
+     * @param usedCapacityTextView_ the usedCapacityTextView
+     */
     public void setUpSellAdapter(Map<String, Long> resourcePriceList, Map<String, Long> cargo, int balance_, long cap_, long usedCap_,
                                 TextView balanceTextView_, TextView subTotalTextView_, TextView capacityTextView_, TextView usedCapacityTextView_) {
         setUpAdapter(balance_, cap_, usedCap_, balanceTextView_, subTotalTextView_, capacityTextView_, usedCapacityTextView_);

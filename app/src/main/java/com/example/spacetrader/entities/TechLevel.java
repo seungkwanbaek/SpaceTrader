@@ -1,5 +1,8 @@
 package com.example.spacetrader.entities;
 
+/**
+ * The TechLevel class
+ */
 public enum TechLevel {
     T0 ("Pre-Agriculture"),
     T1 ("Agriculture"),

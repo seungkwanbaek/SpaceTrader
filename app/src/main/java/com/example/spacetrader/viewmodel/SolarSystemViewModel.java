@@ -9,6 +9,9 @@ import com.example.spacetrader.model.SolarSystemInteractor;
 
 import java.util.List;
 
+/**
+ * The SolarSystemViewModel class
+ */
 public class SolarSystemViewModel extends AndroidViewModel {
     private SolarSystemInteractor interactor;
 
